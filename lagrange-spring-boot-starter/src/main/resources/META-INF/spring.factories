@@ -1,0 +1,1 @@
+org.springframework.boot.env.EnvironmentPostProcessor=com.jinsulive.lagrange.spring.autoconfigure.processor.JsonEnvironmentPostProcessor
