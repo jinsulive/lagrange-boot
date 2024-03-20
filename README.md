@@ -1,3 +1,8 @@
+<p align="center">
+    <img alt="" src="https://img.shields.io/badge/Java-17-brightgreen.svg"/>
+    <img alt="" src="https://img.shields.io/badge/SpringBoot-3.0.5-green.svg"/>
+</p>
+
 ## Lagrange-Boot
 
 > 本项目基于[Lagrange.Core](https://github.com/KonataDev/Lagrange.Core)实现  
