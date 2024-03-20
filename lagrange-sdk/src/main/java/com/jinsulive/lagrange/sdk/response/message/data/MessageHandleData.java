@@ -1,4 +1,4 @@
-package com.jinsulive.lagrange.sdk.response.message;
+package com.jinsulive.lagrange.sdk.response.message.data;
 
 import lombok.Data;
 
