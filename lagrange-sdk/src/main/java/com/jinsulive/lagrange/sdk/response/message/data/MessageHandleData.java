@@ -9,6 +9,6 @@ import lombok.Data;
 @Data
 public class MessageHandleData {
 
-    private String messageId;
+    private Long messageId;
 
 }
