@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 发送/撤销/
+ * 发送/撤销
  *
  * @author lxy
  * @since 2024年03月15日 14:20:48
