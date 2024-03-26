@@ -14,7 +14,8 @@ import com.jinsulive.lagrange.spring.autoconfigure.entity.MethodListenerContext;
 import com.jinsulive.lagrange.spring.autoconfigure.service.EventService;
 import com.jinsulive.lagrange.spring.autoconfigure.util.SpringUtil;
 import jakarta.annotation.Resource;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.concurrent.CustomizableThreadFactory;
 
 import java.lang.reflect.InvocationTargetException;
@@ -29,8 +30,9 @@ import java.util.concurrent.TimeUnit;
  * @author lxy
  * @since 2024年03月06日 16:42:07
  */
-@Slf4j
 public class MessageEventService implements EventService {
+
+    private static final Logger log = LoggerFactory.getLogger(MessageEventService.class);
 
     private final ExecutorService executorService = this.executorService();
     @Resource

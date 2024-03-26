@@ -8,14 +8,16 @@ import cn.hutool.http.HttpResponse;
 import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.sdk.request.LagrangeBotRequest;
 import com.jinsulive.lagrange.sdk.response.AbstractResponse;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author lxy
  * @since 2024年03月15日 10:52:39
  */
-@Slf4j
 public class DefaultLagrangeBotClient implements LagrangeBotClient {
+
+    private static final Logger log = LoggerFactory.getLogger(DefaultLagrangeBotClient.class);
 
     private final String serverUrl;
 

@@ -1,10 +1,5 @@
 package com.jinsulive.lagrange.core.entity.message.data;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 /**
  * At某人
  *
@@ -12,10 +7,39 @@ import lombok.NoArgsConstructor;
  * @see <a href="https://github.com/botuniverse/onebot-11/blob/master/message/segment.md#%E6%9F%90%E4%BA%BA" />
  * @since 2024年03月06日 23:22:23
  */
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class At {
+
     private String qq;
+
+    private At(Builder builder) {
+        qq = builder.qq;
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
+
+    public static final class Builder {
+        private String qq;
+
+        private Builder() {
+        }
+
+        public Builder qq(String qq) {
+            this.qq = qq;
+            return this;
+        }
+
+        public At build() {
+            return new At(this);
+        }
+    }
 }

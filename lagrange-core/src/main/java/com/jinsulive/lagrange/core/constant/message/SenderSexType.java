@@ -1,7 +1,5 @@
 package com.jinsulive.lagrange.core.constant.message;
 
-import lombok.Getter;
-
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -9,7 +7,6 @@ import java.util.Objects;
  * @author lxy
  * @since 2024年03月07日 10:19:49
  */
-@Getter
 public enum SenderSexType {
 
     MALE("male"),
@@ -26,6 +23,10 @@ public enum SenderSexType {
         return Arrays.stream(SenderSexType.values())
                 .filter(postType -> Objects.equals(postType.getType(), type))
                 .findFirst().orElse(null);
+    }
+
+    public String getType() {
+        return type;
     }
 
     @Override

@@ -6,7 +6,8 @@ import com.jinsulive.lagrange.core.annotation.message.MessageListenerInfo;
 import com.jinsulive.lagrange.core.event.message.FriendMessageEvent;
 import com.jinsulive.lagrange.core.event.message.GroupMessageEvent;
 import com.jinsulive.lagrange.spring.autoconfigure.entity.MethodListenerContext;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.aop.scope.ScopedProxyUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -26,8 +27,9 @@ import java.util.function.Supplier;
  * @author lxy
  * @since 2024年03月08日 16:45:22
  */
-@Slf4j
 public class EventListenerMethodProcessor extends ConfigurationClassPostProcessor {
+
+    private static final Logger log = LoggerFactory.getLogger(EventListenerMethodProcessor.class);
 
     private BeanDefinitionRegistry registry;
 

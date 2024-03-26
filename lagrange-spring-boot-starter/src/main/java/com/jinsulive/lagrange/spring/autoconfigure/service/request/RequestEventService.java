@@ -7,14 +7,16 @@ import com.jinsulive.lagrange.core.util.LogUtil;
 import com.jinsulive.lagrange.spring.autoconfigure.config.LagrangeConfig;
 import com.jinsulive.lagrange.spring.autoconfigure.service.EventService;
 import jakarta.annotation.Resource;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author lxy
  * @since 2024年03月06日 16:42:07
  */
-@Slf4j
 public class RequestEventService implements EventService {
+
+    private static final Logger log = LoggerFactory.getLogger(RequestEventService.class);
 
     @Resource
     private LagrangeConfig lagrangeConfig;

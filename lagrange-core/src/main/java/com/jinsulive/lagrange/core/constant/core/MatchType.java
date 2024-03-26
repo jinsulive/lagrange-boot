@@ -1,7 +1,6 @@
 package com.jinsulive.lagrange.core.constant.core;
 
 import com.jinsulive.lagrange.core.service.Matcher;
-import lombok.Getter;
 
 import java.util.regex.Pattern;
 
@@ -11,7 +10,6 @@ import java.util.regex.Pattern;
  * @author lxy
  * @since 2024年03月07日 11:50:05
  */
-@Getter
 public enum MatchType {
 
     TEXT_EQUALS(String::equals, true),
@@ -33,6 +31,14 @@ public enum MatchType {
     MatchType(Matcher<String, String> matcher, boolean plainText) {
         this.matcher = matcher;
         this.plainText = plainText;
+    }
+
+    public Matcher<String, String> getMatcher() {
+        return matcher;
+    }
+
+    public boolean isPlainText() {
+        return plainText;
     }
 
 }

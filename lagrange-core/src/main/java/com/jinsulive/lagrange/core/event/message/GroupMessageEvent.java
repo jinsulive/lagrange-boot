@@ -2,8 +2,6 @@ package com.jinsulive.lagrange.core.event.message;
 
 import com.jinsulive.lagrange.core.constant.message.SenderRoleType;
 import com.jinsulive.lagrange.core.entity.message.Message;
-import lombok.Builder;
-import lombok.Data;
 
 import java.util.List;
 
@@ -13,8 +11,6 @@ import java.util.List;
  * @author lxy
  * @since 2024年03月11日 17:50:57
  */
-@Data
-@Builder
 public class GroupMessageEvent {
     private Integer messageId;
     private Long groupId;
@@ -36,4 +32,170 @@ public class GroupMessageEvent {
      */
     private List<Message> sourceMessageChain;
 
+    private GroupMessageEvent(Builder builder) {
+        messageId = builder.messageId;
+        groupId = builder.groupId;
+        userId = builder.userId;
+        anonymous = builder.anonymous;
+        nickname = builder.nickname;
+        role = builder.role;
+        title = builder.title;
+        plainText = builder.plainText;
+        rawMessage = builder.rawMessage;
+        sourceMessageChain = builder.sourceMessageChain;
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public Integer getMessageId() {
+        return messageId;
+    }
+
+    public void setMessageId(Integer messageId) {
+        this.messageId = messageId;
+    }
+
+    public Long getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getAnonymous() {
+        return anonymous;
+    }
+
+    public void setAnonymous(String anonymous) {
+        this.anonymous = anonymous;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public SenderRoleType getRole() {
+        return role;
+    }
+
+    public void setRole(SenderRoleType role) {
+        this.role = role;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getPlainText() {
+        return plainText;
+    }
+
+    public void setPlainText(String plainText) {
+        this.plainText = plainText;
+    }
+
+    public String getRawMessage() {
+        return rawMessage;
+    }
+
+    public void setRawMessage(String rawMessage) {
+        this.rawMessage = rawMessage;
+    }
+
+    public List<Message> getSourceMessageChain() {
+        return sourceMessageChain;
+    }
+
+    public void setSourceMessageChain(List<Message> sourceMessageChain) {
+        this.sourceMessageChain = sourceMessageChain;
+    }
+
+    public static final class Builder {
+        private Integer messageId;
+        private Long groupId;
+        private Long userId;
+        private String anonymous;
+        private String nickname;
+        private SenderRoleType role;
+        private String title;
+        private String plainText;
+        private String rawMessage;
+        private List<Message> sourceMessageChain;
+
+        private Builder() {
+        }
+
+        public Builder messageId(Integer messageId) {
+            this.messageId = messageId;
+            return this;
+        }
+
+        public Builder groupId(Long groupId) {
+            this.groupId = groupId;
+            return this;
+        }
+
+        public Builder userId(Long userId) {
+            this.userId = userId;
+            return this;
+        }
+
+        public Builder anonymous(String anonymous) {
+            this.anonymous = anonymous;
+            return this;
+        }
+
+        public Builder nickname(String nickname) {
+            this.nickname = nickname;
+            return this;
+        }
+
+        public Builder role(SenderRoleType role) {
+            this.role = role;
+            return this;
+        }
+
+        public Builder title(String title) {
+            this.title = title;
+            return this;
+        }
+
+        public Builder plainText(String plainText) {
+            this.plainText = plainText;
+            return this;
+        }
+
+        public Builder rawMessage(String rawMessage) {
+            this.rawMessage = rawMessage;
+            return this;
+        }
+
+        public Builder sourceMessageChain(List<Message> sourceMessageChain) {
+            this.sourceMessageChain = sourceMessageChain;
+            return this;
+        }
+
+        public GroupMessageEvent build() {
+            return new GroupMessageEvent(this);
+        }
+    }
 }

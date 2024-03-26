@@ -1,7 +1,5 @@
 package com.jinsulive.lagrange.core.constant.message.data;
 
-import lombok.Getter;
-
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -9,7 +7,6 @@ import java.util.Objects;
  * @author lxy
  * @since 2024年03月06日 23:38:00
  */
-@Getter
 public enum MusicType {
 
     CUSTOM("custom"),
@@ -27,6 +24,10 @@ public enum MusicType {
         return Arrays.stream(MusicType.values())
                 .filter(musicType -> Objects.equals(musicType.getType(), type))
                 .findFirst().orElse(null);
+    }
+
+    public String getType() {
+        return type;
     }
 
     @Override

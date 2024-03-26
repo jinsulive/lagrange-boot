@@ -5,7 +5,6 @@ import com.jinsulive.lagrange.core.constant.message.MessageEventType;
 import com.jinsulive.lagrange.core.entity.message.Message;
 import com.jinsulive.lagrange.sdk.request.LagrangeBotRequest;
 import com.jinsulive.lagrange.sdk.response.message.MessageHandleResponse;
-import lombok.Data;
 
 import java.util.List;
 
@@ -13,7 +12,6 @@ import java.util.List;
  * @author lxy
  * @since 2024年03月15日 14:38:09
  */
-@Data
 public class SendMessageRequest implements LagrangeBotRequest<MessageHandleResponse> {
 
     /**
@@ -26,6 +24,22 @@ public class SendMessageRequest implements LagrangeBotRequest<MessageHandleRespo
     private Long groupId;
 
     private List<Message> message;
+
+    public void setMessageType(MessageEventType messageType) {
+        this.messageType = messageType;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
+    }
+
+    public void setMessage(List<Message> message) {
+        this.message = message;
+    }
 
     @Override
     public String getServiceUrl() {

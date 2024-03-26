@@ -1,7 +1,5 @@
 package com.jinsulive.lagrange.core.constant.message;
 
-import lombok.Getter;
-
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -9,7 +7,6 @@ import java.util.Objects;
  * @author lxy
  * @since 2024年03月07日 10:06:14
  */
-@Getter
 public enum MessageSubType {
 
     GROUP_NORMAL("normal"),
@@ -29,6 +26,10 @@ public enum MessageSubType {
         return Arrays.stream(MessageSubType.values())
                 .filter(postType -> Objects.equals(postType.getType(), type))
                 .findFirst().orElse(null);
+    }
+
+    public String getType() {
+        return type;
     }
 
     @Override

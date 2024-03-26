@@ -4,7 +4,6 @@ import com.jinsulive.lagrange.spring.autoconfigure.client.LagrangeBotWebSocketCl
 import com.jinsulive.lagrange.spring.autoconfigure.config.LagrangeConfig;
 import com.jinsulive.lagrange.spring.autoconfigure.handler.EventServiceHandler;
 import jakarta.annotation.Resource;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
@@ -23,7 +22,6 @@ import java.net.URI;
  * @author lxy
  * @since 2024年03月05日 14:50:25
  */
-@Slf4j
 public class LagrangeClientRegistryRunner implements ApplicationRunner, ApplicationContextAware {
 
     private ApplicationContext applicationContext;

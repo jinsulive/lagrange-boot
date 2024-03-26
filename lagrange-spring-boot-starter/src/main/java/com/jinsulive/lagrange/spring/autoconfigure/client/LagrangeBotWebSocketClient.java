@@ -3,9 +3,10 @@ package com.jinsulive.lagrange.spring.autoconfigure.client;
 import com.jinsulive.lagrange.core.event.BaseEvent;
 import com.jinsulive.lagrange.core.util.ConvertUtil;
 import com.jinsulive.lagrange.spring.autoconfigure.handler.EventServiceHandler;
-import lombok.extern.slf4j.Slf4j;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URI;
 import java.text.DecimalFormat;
@@ -17,8 +18,9 @@ import java.util.TimerTask;
  * @author lxy
  * @since 2024年03月18日 16:05:03
  */
-@Slf4j
 public class LagrangeBotWebSocketClient extends WebSocketClient {
+
+    private static final Logger log = LoggerFactory.getLogger(LagrangeBotWebSocketClient.class);
 
     private final Integer reconnectInterval = 1000;
     private final Integer maxReconnectInterval = 30000;

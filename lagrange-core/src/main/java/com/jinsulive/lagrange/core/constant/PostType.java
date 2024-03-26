@@ -1,7 +1,5 @@
 package com.jinsulive.lagrange.core.constant;
 
-import lombok.Getter;
-
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -9,7 +7,6 @@ import java.util.Objects;
  * @author lxy
  * @since 2024年03月06日 11:41:59
  */
-@Getter
 public enum PostType {
 
     MESSAGE("message"),
@@ -27,6 +24,10 @@ public enum PostType {
         return Arrays.stream(PostType.values())
                 .filter(postType -> Objects.equals(postType.getType(), type))
                 .findFirst().orElse(null);
+    }
+
+    public String getType() {
+        return type;
     }
 
     @Override

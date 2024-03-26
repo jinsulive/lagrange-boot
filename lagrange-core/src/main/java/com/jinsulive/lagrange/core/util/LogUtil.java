@@ -1,13 +1,15 @@
 package com.jinsulive.lagrange.core.util;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author lxy
  * @since 2024年03月06日 17:28:32
  */
-@Slf4j
 public class LogUtil {
+
+    private static final Logger log = LoggerFactory.getLogger(LogUtil.class);
 
     public static void debug(boolean condition, String message, Object... args) {
         if (condition) {

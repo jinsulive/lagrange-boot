@@ -12,7 +12,8 @@ import com.jinsulive.lagrange.core.event.message.MessageEvent;
 import com.jinsulive.lagrange.core.event.meta.MataEvent;
 import com.jinsulive.lagrange.core.event.notice.NoticeEvent;
 import com.jinsulive.lagrange.core.event.request.RequestEvent;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
@@ -20,8 +21,9 @@ import java.util.Objects;
  * @author lxy
  * @since 2024年03月06日 13:37:21
  */
-@Slf4j
 public class ConvertUtil {
+
+    private static final Logger log = LoggerFactory.getLogger(ConvertUtil.class);
 
     public static BaseEvent convertMessage(String message) {
         JSONObject messageJson = JsonUtil.toJsonObj(message);

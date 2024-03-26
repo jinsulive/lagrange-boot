@@ -3,7 +3,8 @@ package com.jinsulive.lagrange.spring.autoconfigure.handler;
 import com.jinsulive.lagrange.core.constant.PostType;
 import com.jinsulive.lagrange.core.event.BaseEvent;
 import com.jinsulive.lagrange.spring.autoconfigure.service.EventService;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Map;
@@ -14,8 +15,9 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author lxy
  * @since 2024年03月06日 16:31:18
  */
-@Slf4j
 public class EventServiceHandler {
+
+    private static final Logger log = LoggerFactory.getLogger(EventServiceHandler.class);
 
     private static final Map<PostType, EventService> EVENT_SERVICE = new ConcurrentHashMap<>();
 

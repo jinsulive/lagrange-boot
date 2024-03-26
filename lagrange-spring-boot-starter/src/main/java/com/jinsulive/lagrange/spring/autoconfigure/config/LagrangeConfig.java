@@ -1,6 +1,5 @@
 package com.jinsulive.lagrange.spring.autoconfigure.config;
 
-import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -9,7 +8,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author lxy
  * @since 2024年03月06日 11:29:52
  */
-@Data
 @ConfigurationProperties(prefix = "lagrange")
 public class LagrangeConfig {
 
@@ -20,5 +18,37 @@ public class LagrangeConfig {
     private boolean openDebugLog = false;
 
     private boolean openMataEventLog = false;
+
+    public String getWebSocketServer() {
+        return webSocketServer;
+    }
+
+    public void setWebSocketServer(String webSocketServer) {
+        this.webSocketServer = webSocketServer;
+    }
+
+    public String getHttpServer() {
+        return httpServer;
+    }
+
+    public void setHttpServer(String httpServer) {
+        this.httpServer = httpServer;
+    }
+
+    public boolean isOpenDebugLog() {
+        return openDebugLog;
+    }
+
+    public void setOpenDebugLog(boolean openDebugLog) {
+        this.openDebugLog = openDebugLog;
+    }
+
+    public boolean isOpenMataEventLog() {
+        return openMataEventLog;
+    }
+
+    public void setOpenMataEventLog(boolean openMataEventLog) {
+        this.openMataEventLog = openMataEventLog;
+    }
 
 }

@@ -6,7 +6,8 @@ import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.core.util.JsonUtil;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.env.EnvironmentPostProcessor;
 import org.springframework.boot.env.OriginTrackedMapPropertySource;
@@ -25,8 +26,9 @@ import java.util.Map;
  * @author lxy
  * @since 2024年03月19日 17:25:41
  */
-@Slf4j
 public class JsonEnvironmentPostProcessor implements EnvironmentPostProcessor {
+
+    private static final Logger log = LoggerFactory.getLogger(JsonEnvironmentPostProcessor.class);
 
     private final String[] jsonSourceNames = new String[]{"lagrange.json"};
 

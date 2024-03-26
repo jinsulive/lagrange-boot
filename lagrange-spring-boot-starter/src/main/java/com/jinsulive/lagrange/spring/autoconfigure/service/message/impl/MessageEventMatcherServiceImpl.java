@@ -11,7 +11,8 @@ import com.jinsulive.lagrange.core.event.message.MessageEvent;
 import com.jinsulive.lagrange.core.service.Matcher;
 import com.jinsulive.lagrange.core.util.ConvertUtil;
 import com.jinsulive.lagrange.spring.autoconfigure.service.message.MessageEventMatcherService;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Objects;
@@ -21,8 +22,9 @@ import java.util.stream.Collectors;
  * @author lxy
  * @since 2024年03月11日 17:11:40
  */
-@Slf4j
 public class MessageEventMatcherServiceImpl implements MessageEventMatcherService {
+
+    private static final Logger log = LoggerFactory.getLogger(MessageEventMatcherServiceImpl.class);
 
     @Override
     public boolean match(MessageEvent messageEvent, MessageListenerInfo messageListenerInfo) {

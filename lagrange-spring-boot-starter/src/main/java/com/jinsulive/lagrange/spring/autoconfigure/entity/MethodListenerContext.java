@@ -1,8 +1,6 @@
 package com.jinsulive.lagrange.spring.autoconfigure.entity;
 
 import com.jinsulive.lagrange.core.annotation.message.MessageListenerInfo;
-import lombok.Builder;
-import lombok.Getter;
 
 import java.util.List;
 
@@ -12,10 +10,39 @@ import java.util.List;
  * @author lxy
  * @since 2024年03月11日 15:27:15
  */
-@Getter
-@Builder
 public final class MethodListenerContext {
 
     private List<MessageListenerInfo> messageListenerInfos;
 
+    private MethodListenerContext(Builder builder) {
+        messageListenerInfos = builder.messageListenerInfos;
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public List<MessageListenerInfo> getMessageListenerInfos() {
+        return messageListenerInfos;
+    }
+
+    public void setMessageListenerInfos(List<MessageListenerInfo> messageListenerInfos) {
+        this.messageListenerInfos = messageListenerInfos;
+    }
+
+    public static final class Builder {
+        private List<MessageListenerInfo> messageListenerInfos;
+
+        private Builder() {
+        }
+
+        public Builder messageListenerInfos(List<MessageListenerInfo> messageListenerInfos) {
+            this.messageListenerInfos = messageListenerInfos;
+            return this;
+        }
+
+        public MethodListenerContext build() {
+            return new MethodListenerContext(this);
+        }
+    }
 }

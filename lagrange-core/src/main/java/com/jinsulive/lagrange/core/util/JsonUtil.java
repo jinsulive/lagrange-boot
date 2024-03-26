@@ -3,14 +3,16 @@ package com.jinsulive.lagrange.core.util;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author lxy
  * @since 2024年03月06日 13:38:56
  */
-@Slf4j
 public class JsonUtil {
+
+    private static final Logger log = LoggerFactory.getLogger(JsonUtil.class);
 
     public static JSONObject toJsonObj(String content) {
         if (StrUtil.isBlank(content) || !JSONUtil.isTypeJSONObject(content)) {
