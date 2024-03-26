@@ -15,6 +15,9 @@ public class Video {
     private Integer proxy;
     private Integer timeout;
 
+    public Video() {
+    }
+
     private Video(Builder builder) {
         file = builder.file;
         url = builder.url;

@@ -13,6 +13,9 @@ public class MessageHandleResponse extends AbstractResponse {
 
     private MessageHandleData data;
 
+    public MessageHandleResponse() {
+    }
+
     public MessageHandleData getData() {
         return data;
     }

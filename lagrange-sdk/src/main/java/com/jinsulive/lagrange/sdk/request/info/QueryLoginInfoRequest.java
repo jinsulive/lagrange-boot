@@ -10,6 +10,9 @@ import com.jinsulive.lagrange.sdk.request.LagrangeBotRequest;
  */
 public class QueryLoginInfoRequest implements LagrangeBotRequest<QueryLoginInfoRequest> {
 
+    public QueryLoginInfoRequest() {
+    }
+
     @Override
     public String getServiceUrl() {
         return "get_login_info";

@@ -10,6 +10,9 @@ package com.jinsulive.lagrange.core.entity.message.data;
 public class Reply {
     private String id;
 
+    public Reply() {
+    }
+
     private Reply(Builder builder) {
         id = builder.id;
     }

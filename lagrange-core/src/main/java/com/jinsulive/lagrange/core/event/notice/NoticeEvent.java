@@ -13,6 +13,9 @@ public class NoticeEvent extends BaseEvent {
     private Integer operatorId;
     private String noticeType;
 
+    public NoticeEvent() {
+    }
+
     public Integer getGroupId() {
         return groupId;
     }

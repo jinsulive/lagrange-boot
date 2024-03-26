@@ -11,6 +11,9 @@ public class StrangerInfoData {
     private String sex;
     private Long age;
 
+    public StrangerInfoData() {
+    }
+
     public Long getUserId() {
         return userId;
     }

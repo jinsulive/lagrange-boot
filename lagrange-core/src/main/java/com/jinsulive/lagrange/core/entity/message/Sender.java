@@ -19,6 +19,9 @@ public class Sender {
     private SenderRoleType role;
     private String title;
 
+    public Sender() {
+    }
+
     private Sender(Builder builder) {
         userId = builder.userId;
         nickname = builder.nickname;

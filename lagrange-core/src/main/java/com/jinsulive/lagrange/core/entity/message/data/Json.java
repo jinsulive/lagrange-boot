@@ -10,6 +10,9 @@ package com.jinsulive.lagrange.core.entity.message.data;
 public class Json {
     private String data;
 
+    public Json() {
+    }
+
     private Json(Builder builder) {
         data = builder.data;
     }

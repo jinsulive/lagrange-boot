@@ -25,6 +25,9 @@ public class SendMessageRequest implements LagrangeBotRequest<MessageHandleRespo
 
     private List<Message> message;
 
+    public SendMessageRequest() {
+    }
+
     public void setMessageType(MessageEventType messageType) {
         this.messageType = messageType;
     }

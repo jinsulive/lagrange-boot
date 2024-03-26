@@ -10,6 +10,9 @@ package com.jinsulive.lagrange.core.entity.message.data;
 public class Text {
     private String text;
 
+    public Text() {
+    }
+
     private Text(Builder builder) {
         text = builder.text;
     }

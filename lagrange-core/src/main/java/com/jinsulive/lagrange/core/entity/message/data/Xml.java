@@ -10,6 +10,9 @@ package com.jinsulive.lagrange.core.entity.message.data;
 public class Xml {
     private String data;
 
+    public Xml() {
+    }
+
     private Xml(Builder builder) {
         data = builder.data;
     }

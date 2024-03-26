@@ -16,6 +16,9 @@ public class Image {
     private Integer proxy;
     private Integer timeout;
 
+    public Image() {
+    }
+
     private Image(Builder builder) {
         file = builder.file;
         url = builder.url;

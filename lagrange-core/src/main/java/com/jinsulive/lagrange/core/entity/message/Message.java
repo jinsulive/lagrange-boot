@@ -12,6 +12,9 @@ public class Message {
 
     private Object data;
 
+    public Message() {
+    }
+
     private Message(Builder builder) {
         type = builder.type;
         data = builder.data;

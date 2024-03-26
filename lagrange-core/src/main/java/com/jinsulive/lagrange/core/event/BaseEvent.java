@@ -14,6 +14,9 @@ public class BaseEvent {
 
     private PostType postType;
 
+    public BaseEvent() {
+    }
+
     public Long getTime() {
         return time;
     }

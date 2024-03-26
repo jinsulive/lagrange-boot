@@ -32,6 +32,9 @@ public class GroupMessageEvent {
      */
     private List<Message> sourceMessageChain;
 
+    public GroupMessageEvent() {
+    }
+
     private GroupMessageEvent(Builder builder) {
         messageId = builder.messageId;
         groupId = builder.groupId;

@@ -11,6 +11,9 @@ public class StrangerInfoResponse extends AbstractResponse {
 
     private StrangerInfoData data;
 
+    public StrangerInfoResponse() {
+    }
+
     public StrangerInfoData getData() {
         return data;
     }

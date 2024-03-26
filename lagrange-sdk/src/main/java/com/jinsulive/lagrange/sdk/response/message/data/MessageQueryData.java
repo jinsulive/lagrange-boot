@@ -18,6 +18,9 @@ public class MessageQueryData {
     private Sender sender;
     private List<Message> message;
 
+    public MessageQueryData() {
+    }
+
     public Long getTime() {
         return time;
     }

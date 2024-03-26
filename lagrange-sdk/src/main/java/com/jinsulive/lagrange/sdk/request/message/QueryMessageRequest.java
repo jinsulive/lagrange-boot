@@ -12,6 +12,9 @@ public class QueryMessageRequest implements LagrangeBotRequest<MessageQueryRespo
 
     private Long messageId;
 
+    public QueryMessageRequest() {
+    }
+
     public void setMessageId(Long messageId) {
         this.messageId = messageId;
     }

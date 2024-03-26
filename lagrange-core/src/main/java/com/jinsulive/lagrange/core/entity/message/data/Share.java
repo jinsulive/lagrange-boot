@@ -14,6 +14,9 @@ public class Share {
     private String content;
     private String image;
 
+    public Share() {
+    }
+
     private Share(Builder builder) {
         url = builder.url;
         title = builder.title;

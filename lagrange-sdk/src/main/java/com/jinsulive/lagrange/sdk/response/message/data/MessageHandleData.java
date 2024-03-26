@@ -8,6 +8,9 @@ public class MessageHandleData {
 
     private Long messageId;
 
+    public MessageHandleData() {
+    }
+
     public Long getMessageId() {
         return messageId;
     }

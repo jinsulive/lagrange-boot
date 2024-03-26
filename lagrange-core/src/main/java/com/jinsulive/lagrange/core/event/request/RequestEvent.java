@@ -7,4 +7,8 @@ import com.jinsulive.lagrange.core.event.BaseEvent;
  * @since 2024年03月06日 13:42:02
  */
 public class RequestEvent extends BaseEvent {
+
+    public RequestEvent() {
+    }
+
 }

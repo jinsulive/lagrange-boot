@@ -26,6 +26,9 @@ public class MessageEvent extends BaseEvent {
     private Sender sender;
     private String plainText;
 
+    public MessageEvent() {
+    }
+
     public MessageEventType getMessageType() {
         return messageType;
     }

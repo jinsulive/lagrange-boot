@@ -12,6 +12,9 @@ public class QueryStrangerInfoRequest implements LagrangeBotRequest<StrangerInfo
     private String userId;
     private Boolean noCache;
 
+    public QueryStrangerInfoRequest() {
+    }
+
     public void setUserId(String userId) {
         this.userId = userId;
     }

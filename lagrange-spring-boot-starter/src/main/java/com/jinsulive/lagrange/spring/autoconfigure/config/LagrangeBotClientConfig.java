@@ -16,6 +16,9 @@ public class LagrangeBotClientConfig {
     @Resource
     private LagrangeConfig lagrangeConfig;
 
+    public LagrangeBotClientConfig() {
+    }
+
     @Bean
     public LagrangeBotClient lagrangeBotClient() {
         String httpServer = lagrangeConfig.getHttpServer();

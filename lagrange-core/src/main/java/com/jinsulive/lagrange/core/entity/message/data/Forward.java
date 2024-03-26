@@ -10,6 +10,9 @@ package com.jinsulive.lagrange.core.entity.message.data;
 public class Forward {
     private String id;
 
+    public Forward() {
+    }
+
     private Forward(Builder builder) {
         id = builder.id;
     }

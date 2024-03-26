@@ -11,6 +11,9 @@ public class LoginInfoResponse extends AbstractResponse {
 
     private LoginInfoData data;
 
+    public LoginInfoResponse() {
+    }
+
     public LoginInfoData getData() {
         return data;
     }

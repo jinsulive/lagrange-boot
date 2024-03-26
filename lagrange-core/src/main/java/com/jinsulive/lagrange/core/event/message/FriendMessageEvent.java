@@ -27,6 +27,9 @@ public class FriendMessageEvent {
      */
     private List<Message> sourceMessageChain;
 
+    public FriendMessageEvent() {
+    }
+
     private FriendMessageEvent(Builder builder) {
         messageId = builder.messageId;
         userId = builder.userId;

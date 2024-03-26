@@ -16,6 +16,9 @@ public class Record {
     private Integer proxy;
     private Integer timeout;
 
+    public Record() {
+    }
+
     private Record(Builder builder) {
         file = builder.file;
         magic = builder.magic;

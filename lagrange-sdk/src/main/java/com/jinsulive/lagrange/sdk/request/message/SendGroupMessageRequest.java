@@ -17,6 +17,9 @@ public class SendGroupMessageRequest implements LagrangeBotRequest<MessageHandle
 
     private List<Message> message;
 
+    public SendGroupMessageRequest() {
+    }
+
     public void setGroupId(Long groupId) {
         this.groupId = groupId;
     }

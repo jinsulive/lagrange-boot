@@ -10,6 +10,9 @@ package com.jinsulive.lagrange.core.entity.message.data;
 public class Face {
     private String id;
 
+    public Face() {
+    }
+
     private Face(Builder builder) {
         id = builder.id;
     }

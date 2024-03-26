@@ -10,6 +10,9 @@ public class LoginInfoData {
 
     private String nickname;
 
+    public LoginInfoData() {
+    }
+
     public Long getUserId() {
         return userId;
     }

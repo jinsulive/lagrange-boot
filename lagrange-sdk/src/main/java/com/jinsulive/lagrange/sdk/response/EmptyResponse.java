@@ -5,4 +5,8 @@ package com.jinsulive.lagrange.sdk.response;
  * @since 2024年03月20日 22:08:00
  */
 public class EmptyResponse extends AbstractResponse {
+
+    public EmptyResponse() {
+    }
+
 }

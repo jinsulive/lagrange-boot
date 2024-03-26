@@ -17,6 +17,9 @@ public class Location {
 
     private String content;
 
+    public Location() {
+    }
+
     private Location(Builder builder) {
         this.lat = builder.lat;
         this.lon = builder.lon;

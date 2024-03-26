@@ -19,6 +19,9 @@ public class LagrangeConfig {
 
     private boolean openMataEventLog = false;
 
+    public LagrangeConfig() {
+    }
+
     public String getWebSocketServer() {
         return webSocketServer;
     }

@@ -14,6 +14,9 @@ public final class MethodListenerContext {
 
     private List<MessageListenerInfo> messageListenerInfos;
 
+    public MethodListenerContext() {
+    }
+
     private MethodListenerContext(Builder builder) {
         messageListenerInfos = builder.messageListenerInfos;
     }

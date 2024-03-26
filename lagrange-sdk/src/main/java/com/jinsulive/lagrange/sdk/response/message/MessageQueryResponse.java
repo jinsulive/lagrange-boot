@@ -11,6 +11,9 @@ public class MessageQueryResponse extends AbstractResponse {
 
     private MessageQueryData data;
 
+    public MessageQueryResponse() {
+    }
+
     public MessageQueryData getData() {
         return data;
     }

@@ -17,6 +17,9 @@ public class SendPrivateMessageRequest implements LagrangeBotRequest<MessageHand
 
     private List<Message> message;
 
+    public SendPrivateMessageRequest() {
+    }
+
     public void setUserId(Long userId) {
         this.userId = userId;
     }

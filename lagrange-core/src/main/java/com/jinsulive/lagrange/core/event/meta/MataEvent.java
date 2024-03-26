@@ -13,6 +13,9 @@ public class MataEvent extends BaseEvent {
     private MataStatus status;
     private String metaEventType;
 
+    public MataEvent() {
+    }
+
     public int getInterval() {
         return interval;
     }

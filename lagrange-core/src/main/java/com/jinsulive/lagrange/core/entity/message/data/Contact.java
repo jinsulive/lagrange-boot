@@ -13,6 +13,9 @@ public class Contact {
     private ContactType type;
     private String qq;
 
+    public Contact() {
+    }
+
     private Contact(Builder builder) {
         type = builder.type;
         qq = builder.qq;

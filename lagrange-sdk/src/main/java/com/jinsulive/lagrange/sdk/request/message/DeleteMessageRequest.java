@@ -12,6 +12,9 @@ public class DeleteMessageRequest implements LagrangeBotRequest<EmptyResponse> {
 
     private Long messageId;
 
+    public DeleteMessageRequest() {
+    }
+
     public void setMessageId(Long messageId) {
         this.messageId = messageId;
     }

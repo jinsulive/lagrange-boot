@@ -9,6 +9,9 @@ package com.jinsulive.lagrange.core.entity.message.data;
 public class Markdown {
     private String content;
 
+    public Markdown() {
+    }
+
     private Markdown(Builder builder) {
         this.content = builder.content;
     }

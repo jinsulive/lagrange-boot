@@ -18,6 +18,9 @@ public class Node {
     private String nickname;
     private List<Message> content;
 
+    public Node() {
+    }
+
     private Node(Builder builder) {
         id = builder.id;
         userId = builder.userId;

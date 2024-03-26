@@ -11,6 +11,9 @@ public class At {
 
     private String qq;
 
+    public At() {
+    }
+
     private At(Builder builder) {
         qq = builder.qq;
     }

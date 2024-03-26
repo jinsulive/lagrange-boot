@@ -19,6 +19,9 @@ public class Music {
     private String content;
     private String image;
 
+    public Music() {
+    }
+
     private Music(Builder builder) {
         type = builder.type;
         id = builder.id;
