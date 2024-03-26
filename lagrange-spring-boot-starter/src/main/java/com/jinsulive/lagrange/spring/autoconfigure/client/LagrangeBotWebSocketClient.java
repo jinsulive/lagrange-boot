@@ -53,7 +53,7 @@ public class LagrangeBotWebSocketClient extends WebSocketClient {
             }
             eventServiceHandler.handle(baseEvent);
         } catch (Exception e) {
-            log.error("[websocket] 消息处理出现异常: {}", e.getMessage(), e);
+            log.error("[websocket] 消息处理出现异常 message: {}, e: {}", message, e.getMessage(), e);
         }
     }
 

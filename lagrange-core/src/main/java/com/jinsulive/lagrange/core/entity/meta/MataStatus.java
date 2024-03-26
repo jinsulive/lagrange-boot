@@ -12,6 +12,9 @@ public class MataStatus {
     private boolean online;
     private boolean good;
 
+    public MataStatus() {
+    }
+
     private MataStatus(Builder builder) {
         this.appInitialized = builder.appInitialized;
         this.appEnabled = builder.appEnabled;
