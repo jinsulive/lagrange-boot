@@ -1,5 +1,6 @@
 package com.jinsulive.lagrange.core.entity.message.data;
 
+import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.core.entity.message.Message;
 
 import java.util.List;
@@ -64,6 +65,11 @@ public class Node {
         this.content = content;
     }
 
+    @Override
+    public String toString() {
+        return JSONUtil.toJsonStr(this);
+    }
+
     public static final class Builder {
         private String id;
         private String userId;
@@ -97,4 +103,5 @@ public class Node {
             return new Node(this);
         }
     }
+
 }

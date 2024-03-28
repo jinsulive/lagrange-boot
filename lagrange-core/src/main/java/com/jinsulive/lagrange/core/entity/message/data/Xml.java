@@ -1,5 +1,7 @@
 package com.jinsulive.lagrange.core.entity.message.data;
 
+import cn.hutool.json.JSONUtil;
+
 /**
  * xml
  *
@@ -29,6 +31,11 @@ public class Xml {
         this.data = data;
     }
 
+    @Override
+    public String toString() {
+        return JSONUtil.toJsonStr(this);
+    }
+
     public static final class Builder {
         private String data;
 
@@ -44,4 +51,5 @@ public class Xml {
             return new Xml(this);
         }
     }
+
 }

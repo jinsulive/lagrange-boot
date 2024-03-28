@@ -1,5 +1,7 @@
 package com.jinsulive.lagrange.core.entity.message.data;
 
+import cn.hutool.json.JSONUtil;
+
 /**
  * At某人
  *
@@ -30,6 +32,11 @@ public class At {
         this.qq = qq;
     }
 
+    @Override
+    public String toString() {
+        return JSONUtil.toJsonStr(this);
+    }
+
     public static final class Builder {
         private String qq;
 
@@ -45,4 +52,5 @@ public class At {
             return new At(this);
         }
     }
+
 }

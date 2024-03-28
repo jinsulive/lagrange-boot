@@ -1,5 +1,7 @@
 package com.jinsulive.lagrange.core.entity.meta;
 
+import cn.hutool.json.JSONUtil;
+
 /**
  * @author lxy
  * @since 2024年03月05日 15:51:20
@@ -65,6 +67,11 @@ public class MataStatus {
 
     public void setGood(boolean good) {
         this.good = good;
+    }
+
+    @Override
+    public String toString() {
+        return JSONUtil.toJsonStr(this);
     }
 
     public static final class Builder {

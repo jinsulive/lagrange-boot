@@ -1,6 +1,6 @@
 package com.jinsulive.lagrange.sdk;
 
-import com.jinsulive.lagrange.sdk.request.LagrangeBotRequest;
+import com.jinsulive.lagrange.sdk.request.AbstractRequest;
 import com.jinsulive.lagrange.sdk.response.AbstractResponse;
 
 /**
@@ -11,6 +11,6 @@ import com.jinsulive.lagrange.sdk.response.AbstractResponse;
  */
 public interface LagrangeBotClient {
 
-    <T extends AbstractResponse> T execute(LagrangeBotRequest<T> request) throws Exception;
+    <T extends AbstractResponse> T execute(AbstractRequest<T> request) throws Exception;
 
 }

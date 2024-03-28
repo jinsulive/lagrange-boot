@@ -1,6 +1,6 @@
 package com.jinsulive.lagrange.sdk.request.info;
 
-import com.jinsulive.lagrange.sdk.request.LagrangeBotRequest;
+import com.jinsulive.lagrange.sdk.request.AbstractRequest;
 
 /**
  * 获取登录号信息
@@ -8,7 +8,7 @@ import com.jinsulive.lagrange.sdk.request.LagrangeBotRequest;
  * @author lxy
  * @since 2024年03月21日 15:10:48
  */
-public class QueryLoginInfoRequest implements LagrangeBotRequest<QueryLoginInfoRequest> {
+public class QueryLoginInfoRequest extends AbstractRequest<QueryLoginInfoRequest> {
 
     public QueryLoginInfoRequest() {
     }

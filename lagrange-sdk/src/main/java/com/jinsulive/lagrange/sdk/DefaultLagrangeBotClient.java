@@ -6,7 +6,7 @@ import cn.hutool.http.Header;
 import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
 import cn.hutool.json.JSONUtil;
-import com.jinsulive.lagrange.sdk.request.LagrangeBotRequest;
+import com.jinsulive.lagrange.sdk.request.AbstractRequest;
 import com.jinsulive.lagrange.sdk.response.AbstractResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +29,7 @@ public class DefaultLagrangeBotClient implements LagrangeBotClient {
     }
 
     @Override
-    public <T extends AbstractResponse> T execute(LagrangeBotRequest<T> request) throws Exception {
+    public <T extends AbstractResponse> T execute(AbstractRequest<T> request) throws Exception {
         String url = this.buildUrl(request.getServiceUrl());
         String jsonParamString = request.getJsonParamString();
         HttpRequest postRequest = this.buildPostRequest(url, jsonParamString);

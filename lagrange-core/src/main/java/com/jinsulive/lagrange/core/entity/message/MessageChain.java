@@ -1,5 +1,6 @@
 package com.jinsulive.lagrange.core.entity.message;
 
+import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.core.constant.message.MessageType;
 import com.jinsulive.lagrange.core.entity.message.data.At;
 import com.jinsulive.lagrange.core.entity.message.data.Text;
@@ -58,6 +59,11 @@ public class MessageChain {
 
     public List<Message> get() {
         return messages;
+    }
+
+    @Override
+    public String toString() {
+        return JSONUtil.toJsonStr(messages);
     }
 
 }

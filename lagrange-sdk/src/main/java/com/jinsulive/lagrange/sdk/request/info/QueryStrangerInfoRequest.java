@@ -1,14 +1,14 @@
 package com.jinsulive.lagrange.sdk.request.info;
 
 import cn.hutool.json.JSONUtil;
-import com.jinsulive.lagrange.sdk.request.LagrangeBotRequest;
+import com.jinsulive.lagrange.sdk.request.AbstractRequest;
 import com.jinsulive.lagrange.sdk.response.info.StrangerInfoResponse;
 
 /**
  * @author lxy
  * @since 2024年03月21日 15:18:24
  */
-public class QueryStrangerInfoRequest implements LagrangeBotRequest<StrangerInfoResponse> {
+public class QueryStrangerInfoRequest extends AbstractRequest<StrangerInfoResponse> {
     private String userId;
     private Boolean noCache;
 

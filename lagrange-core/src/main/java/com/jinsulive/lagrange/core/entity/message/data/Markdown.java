@@ -1,5 +1,7 @@
 package com.jinsulive.lagrange.core.entity.message.data;
 
+import cn.hutool.json.JSONUtil;
+
 /**
  * markdown
  *
@@ -28,6 +30,10 @@ public class Markdown {
         this.content = content;
     }
 
+    @Override
+    public String toString() {
+        return JSONUtil.toJsonStr(this);
+    }
 
     public static final class Builder {
         private String content;
@@ -44,4 +50,5 @@ public class Markdown {
             return new Markdown(this);
         }
     }
+
 }

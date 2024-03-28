@@ -1,5 +1,6 @@
 package com.jinsulive.lagrange.core.entity.message;
 
+import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.core.constant.message.MessageType;
 
 /**
@@ -40,6 +41,11 @@ public class Message {
         this.data = data;
     }
 
+    @Override
+    public String toString() {
+        return JSONUtil.toJsonStr(this);
+    }
+
     public static final class Builder {
         private MessageType type;
         private Object data;
@@ -61,4 +67,5 @@ public class Message {
             return new Message(this);
         }
     }
+
 }

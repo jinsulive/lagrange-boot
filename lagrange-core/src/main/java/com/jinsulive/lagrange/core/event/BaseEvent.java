@@ -1,5 +1,6 @@
 package com.jinsulive.lagrange.core.event;
 
+import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.core.constant.PostType;
 
 /**
@@ -40,4 +41,10 @@ public class BaseEvent {
     public void setPostType(PostType postType) {
         this.postType = postType;
     }
+
+    @Override
+    public String toString() {
+        return JSONUtil.toJsonStr(this);
+    }
+
 }

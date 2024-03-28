@@ -1,5 +1,6 @@
 package com.jinsulive.lagrange.core.event.message;
 
+import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.core.entity.message.Message;
 
 import java.util.List;
@@ -91,6 +92,11 @@ public class FriendMessageEvent {
         this.sourceMessageChain = sourceMessageChain;
     }
 
+    @Override
+    public String toString() {
+        return JSONUtil.toJsonStr(this);
+    }
+
     public static final class Builder {
         private Integer messageId;
         private Long userId;
@@ -136,4 +142,5 @@ public class FriendMessageEvent {
             return new FriendMessageEvent(this);
         }
     }
+
 }

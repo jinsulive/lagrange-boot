@@ -1,5 +1,7 @@
 package com.jinsulive.lagrange.core.entity.message.data;
 
+import cn.hutool.json.JSONUtil;
+
 /**
  * 语音
  *
@@ -80,6 +82,11 @@ public class Record {
         this.timeout = timeout;
     }
 
+    @Override
+    public String toString() {
+        return JSONUtil.toJsonStr(this);
+    }
+
     public static final class Builder {
         private String file;
         private Integer magic;
@@ -125,4 +132,5 @@ public class Record {
             return new Record(this);
         }
     }
+
 }

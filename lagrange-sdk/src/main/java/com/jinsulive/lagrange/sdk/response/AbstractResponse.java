@@ -1,5 +1,7 @@
 package com.jinsulive.lagrange.sdk.response;
 
+import cn.hutool.json.JSONUtil;
+
 /**
  * @author lxy
  * @since 2024年03月15日 14:07:25
@@ -34,4 +36,10 @@ public abstract class AbstractResponse {
     public void setEcho(Object echo) {
         this.echo = echo;
     }
+
+    @Override
+    public String toString() {
+        return JSONUtil.toJsonStr(this);
+    }
+
 }

@@ -1,14 +1,14 @@
 package com.jinsulive.lagrange.sdk.request.message;
 
 import cn.hutool.json.JSONUtil;
-import com.jinsulive.lagrange.sdk.request.LagrangeBotRequest;
+import com.jinsulive.lagrange.sdk.request.AbstractRequest;
 import com.jinsulive.lagrange.sdk.response.EmptyResponse;
 
 /**
  * @author lxy
  * @since 2024年03月20日 22:00:07
  */
-public class DeleteMessageRequest implements LagrangeBotRequest<EmptyResponse> {
+public class DeleteMessageRequest extends AbstractRequest<EmptyResponse> {
 
     private Long messageId;
 

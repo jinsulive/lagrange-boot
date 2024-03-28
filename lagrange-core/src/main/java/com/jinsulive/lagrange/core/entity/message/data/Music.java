@@ -1,5 +1,6 @@
 package com.jinsulive.lagrange.core.entity.message.data;
 
+import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.core.constant.message.data.MusicType;
 
 /**
@@ -92,6 +93,11 @@ public class Music {
         this.image = image;
     }
 
+    @Override
+    public String toString() {
+        return JSONUtil.toJsonStr(this);
+    }
+
     public static final class Builder {
         private MusicType type;
         private String id;
@@ -143,4 +149,5 @@ public class Music {
             return new Music(this);
         }
     }
+
 }

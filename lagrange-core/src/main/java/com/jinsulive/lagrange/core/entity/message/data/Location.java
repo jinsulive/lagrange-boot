@@ -1,5 +1,7 @@
 package com.jinsulive.lagrange.core.entity.message.data;
 
+import cn.hutool.json.JSONUtil;
+
 /**
  * 位置
  *
@@ -63,6 +65,11 @@ public class Location {
         this.content = content;
     }
 
+    @Override
+    public String toString() {
+        return JSONUtil.toJsonStr(this);
+    }
+
     public static final class Builder {
         private String lat;
         private String lon;
@@ -96,4 +103,5 @@ public class Location {
             return new Location(this);
         }
     }
+
 }

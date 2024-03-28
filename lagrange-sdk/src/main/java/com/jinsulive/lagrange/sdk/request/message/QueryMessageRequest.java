@@ -1,14 +1,14 @@
 package com.jinsulive.lagrange.sdk.request.message;
 
 import cn.hutool.json.JSONUtil;
-import com.jinsulive.lagrange.sdk.request.LagrangeBotRequest;
+import com.jinsulive.lagrange.sdk.request.AbstractRequest;
 import com.jinsulive.lagrange.sdk.response.message.MessageQueryResponse;
 
 /**
  * @author lxy
  * @since 2024年03月20日 21:54:25
  */
-public class QueryMessageRequest implements LagrangeBotRequest<MessageQueryResponse> {
+public class QueryMessageRequest extends AbstractRequest<MessageQueryResponse> {
 
     private Long messageId;
 

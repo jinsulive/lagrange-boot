@@ -1,5 +1,6 @@
 package com.jinsulive.lagrange.core.entity.message;
 
+import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.core.constant.message.SenderRoleType;
 import com.jinsulive.lagrange.core.constant.message.SenderSexType;
 
@@ -110,6 +111,11 @@ public class Sender {
         this.title = title;
     }
 
+    @Override
+    public String toString() {
+        return JSONUtil.toJsonStr(this);
+    }
+
     public static final class Builder {
         private long userId;
         private String nickname;
@@ -173,4 +179,5 @@ public class Sender {
             return new Sender(this);
         }
     }
+
 }

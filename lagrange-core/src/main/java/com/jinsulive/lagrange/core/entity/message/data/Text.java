@@ -1,5 +1,7 @@
 package com.jinsulive.lagrange.core.entity.message.data;
 
+import cn.hutool.json.JSONUtil;
+
 /**
  * 纯文本
  *
@@ -29,6 +31,11 @@ public class Text {
         this.text = text;
     }
 
+    @Override
+    public String toString() {
+        return JSONUtil.toJsonStr(this);
+    }
+
     public static final class Builder {
         private String text;
 
@@ -44,4 +51,5 @@ public class Text {
             return new Text(this);
         }
     }
+
 }

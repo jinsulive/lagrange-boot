@@ -1,5 +1,7 @@
 package com.jinsulive.lagrange.core.entity.message.data;
 
+import cn.hutool.json.JSONUtil;
+
 /**
  * 合并转发
  *
@@ -29,6 +31,11 @@ public class Forward {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return JSONUtil.toJsonStr(this);
+    }
+
     public static final class Builder {
         private String id;
 
@@ -44,4 +51,5 @@ public class Forward {
             return new Forward(this);
         }
     }
+
 }

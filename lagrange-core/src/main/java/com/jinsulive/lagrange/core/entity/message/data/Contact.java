@@ -1,5 +1,6 @@
 package com.jinsulive.lagrange.core.entity.message.data;
 
+import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.core.constant.message.data.ContactType;
 
 /**
@@ -41,6 +42,11 @@ public class Contact {
         this.qq = qq;
     }
 
+    @Override
+    public String toString() {
+        return JSONUtil.toJsonStr(this);
+    }
+
     public static final class Builder {
         private ContactType type;
         private String qq;
@@ -62,4 +68,5 @@ public class Contact {
             return new Contact(this);
         }
     }
+
 }
