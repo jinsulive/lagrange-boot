@@ -1,5 +1,7 @@
 package com.jinsulive.lagrange.sdk.response.info.data;
 
+import cn.hutool.json.JSONUtil;
+
 /**
  * @author lxy
  * @since 2024年03月21日 15:11:59
@@ -28,4 +30,10 @@ public class LoginInfoData {
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
+
+    @Override
+    public String toString() {
+        return JSONUtil.toJsonStr(this);
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.jinsulive.lagrange.sdk.response.message.data;
 
+import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.core.constant.message.MessageEventType;
 import com.jinsulive.lagrange.core.entity.message.Message;
 import com.jinsulive.lagrange.core.entity.message.Sender;
@@ -68,4 +69,10 @@ public class MessageQueryData {
     public void setMessage(List<Message> message) {
         this.message = message;
     }
+
+    @Override
+    public String toString() {
+        return JSONUtil.toJsonStr(this);
+    }
+
 }
