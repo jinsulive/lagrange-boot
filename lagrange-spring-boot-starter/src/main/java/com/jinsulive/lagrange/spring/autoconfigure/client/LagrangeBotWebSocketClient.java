@@ -9,10 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.net.URI;
-import java.text.DecimalFormat;
 import java.util.Objects;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author lxy
@@ -21,16 +21,17 @@ import java.util.TimerTask;
 public class LagrangeBotWebSocketClient extends WebSocketClient {
 
     private static final Logger log = LoggerFactory.getLogger(LagrangeBotWebSocketClient.class);
-
-    private final Integer reconnectInterval = 1000;
-    private final Integer maxReconnectInterval = 30000;
-    private final Double reconnectDecay = 1.5;
-    private final Integer maxReconnectAttempts = 5000;
     private final EventServiceHandler eventServiceHandler;
-    private Integer reconnectAttempts = 0;
-    private Timer reconnectTimer;
-    private volatile Boolean isReconnecting = false;
-    private TimerTask reconnectTimerTask;
+
+    /**
+     * Initial reconnect delay in seconds
+     */
+    private final long INITIAL_RECONNECT_DELAY = 1;
+    private final long MAX_RECONNECT_ATTEMPTS = 10;
+    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+    private long reconnectDelay = INITIAL_RECONNECT_DELAY;
+    private int reconnectAttempts = 0;
+    private Boolean reconnect = false;
 
     public LagrangeBotWebSocketClient(URI serverUri, EventServiceHandler eventServiceHandler) {
         super(serverUri);
@@ -59,10 +60,10 @@ public class LagrangeBotWebSocketClient extends WebSocketClient {
 
     @Override
     public void onClose(int code, String reason, boolean remote) {
-        if (!isReconnecting) {
+        if (!reconnect) {
             log.warn("[websocket] 连接关闭 code: {}, reason: {}, remote: {}", code, reason, remote);
-            restartReconnectionTimer();
-            isReconnecting = true;
+            reconnectWebSocket();
+            reconnect = true;
         }
     }
 
@@ -71,49 +72,34 @@ public class LagrangeBotWebSocketClient extends WebSocketClient {
         log.error("[websocket] 连接异常: {}", ex.getMessage(), ex);
     }
 
-    private void restartReconnectionTimer() {
-        cancelReconnectionTimer();
-        reconnectTimer = new Timer("reconnectTimer");
-        reconnectTimerTask = new ReconnectTimerTask() {
-            @Override
-            public void run() {
-                if (reconnectAttempts >= maxReconnectAttempts) {
-                    cancelReconnectionTimer();
-                    log.error("[websocket] 达到最大重连次数:" + maxReconnectAttempts + "，停止重连");
+    private void reconnectWebSocket() {
+        scheduler.schedule(() -> {
+            try {
+                if (reconnectAttempts >= MAX_RECONNECT_ATTEMPTS) {
+                    log.error("[websocket] 达到最大重连次数: {} ，停止重连", MAX_RECONNECT_ATTEMPTS);
+                    return;
                 }
                 reconnectAttempts++;
-                try {
-                    boolean isOpen = reconnectBlocking();
-                    if (isOpen) {
-                        log.info("[websocket] 重连成功，重试次数为:" + reconnectAttempts);
-                        cancelReconnectionTimer();
-                        reconnectAttempts = 0;
-                        isReconnecting = false;
-                    } else {
-                        log.warn("[websocket] 重连失败，重试次数为:" + reconnectAttempts);
-                        double timeOuted = reconnectInterval * Math.pow(reconnectDecay, reconnectAttempts);
-                        int timeout = Integer.parseInt(new DecimalFormat("0").format(timeOuted));
-                        timeout = timeout > maxReconnectInterval ? maxReconnectInterval : timeout;
-                        reSchedule(timeout);
-                    }
-                } catch (Exception e) {
-                    log.error("[websocket] 重连异常: {}", e.getMessage(), e);
+                boolean connect = reconnectBlocking();
+                if (connect) {
+                    log.info("[websocket] 重连成功，重试次数为:" + reconnectAttempts);
+                    reconnectDelay = INITIAL_RECONNECT_DELAY;
+                    reconnectAttempts = 0;
+                    reconnect = false;
+                } else {
+                    reconnectDelay();
                 }
+            } catch (Exception e) {
+                log.error("[websocket] 重连异常: {}", e.getMessage(), e);
+                reconnectDelay();
             }
-        };
-        reconnectTimer.scheduleAtFixedRate(reconnectTimerTask, 0, reconnectInterval);
+        }, reconnectDelay, TimeUnit.SECONDS);
     }
 
-    private void cancelReconnectionTimer() {
-        if (reconnectTimer != null) {
-            reconnectTimer.cancel();
-            reconnectTimer = null;
-        }
-        if (reconnectTimerTask != null) {
-            reconnectTimerTask.cancel();
-            reconnectTimerTask = null;
-        }
+    private void reconnectDelay() {
+        reconnectDelay = (long) Math.min((reconnectDelay * Math.pow(1.25, reconnectAttempts)), 30);
+        log.info("[websocket]重连失败 已重试次数: {}, 下次重连延迟: {}", reconnectAttempts, reconnectDelay);
+        reconnectWebSocket();
     }
-
 
 }
