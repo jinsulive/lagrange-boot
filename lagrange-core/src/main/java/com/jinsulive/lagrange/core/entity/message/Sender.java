@@ -1,6 +1,6 @@
 package com.jinsulive.lagrange.core.entity.message;
 
-import cn.hutool.json.JSONUtil;
+import com.jinsulive.apt.tools.annotation.ToJsonString;
 import com.jinsulive.lagrange.core.constant.message.SenderRoleType;
 import com.jinsulive.lagrange.core.constant.message.SenderSexType;
 
@@ -8,6 +8,7 @@ import com.jinsulive.lagrange.core.constant.message.SenderSexType;
  * @author lxy
  * @since 2024年03月06日 14:28:36
  */
+@ToJsonString
 public class Sender {
 
     private long userId;
@@ -109,11 +110,6 @@ public class Sender {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    @Override
-    public String toString() {
-        return JSONUtil.toJsonStr(this);
     }
 
     public static final class Builder {
