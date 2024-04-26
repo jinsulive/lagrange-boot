@@ -3,6 +3,7 @@
     "webSocketServer": "ws://127.0.0.1:8081",
     "httpServer": "http://127.0.0.1:8083",
     "openDebugLog": false,
-    "openMataEventLog": false
+    "openMataEventLog": false,
+    "lagrangeBotClient": "com.jinsulive.lagrange.sdk.DefaultLagrangeBotClient"
   }
 }
