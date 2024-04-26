@@ -1,6 +1,5 @@
 package com.jinsulive.lagrange.spring.autoconfigure.config;
 
-import com.jinsulive.lagrange.sdk.DefaultLagrangeBotClient;
 import com.jinsulive.lagrange.sdk.LagrangeBotClient;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;
@@ -20,12 +19,14 @@ public class LagrangeBotClientConfig {
     }
 
     @Bean
-    public LagrangeBotClient lagrangeBotClient() {
+    @SuppressWarnings("unchecked")
+    public LagrangeBotClient lagrangeBotClient() throws Exception {
         String httpServer = lagrangeConfig.getHttpServer();
         if (httpServer == null) {
             throw new IllegalArgumentException("sendType has http. but lagrange httpServer is null");
         }
-        return new DefaultLagrangeBotClient(httpServer);
+        Class<? extends LagrangeBotClient> aClass = (Class<? extends LagrangeBotClient>) Class.forName(lagrangeConfig.getLagrangeBotClient());
+        return aClass.getConstructor(String.class).newInstance(httpServer);
     }
 
 }

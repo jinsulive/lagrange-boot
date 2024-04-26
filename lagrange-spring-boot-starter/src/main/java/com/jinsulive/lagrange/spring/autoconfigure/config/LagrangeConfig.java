@@ -19,6 +19,8 @@ public class LagrangeConfig {
 
     private boolean openMataEventLog = false;
 
+    private String lagrangeBotClient = "com.jinsulive.lagrange.sdk.DefaultLagrangeBotClient";
+
     public LagrangeConfig() {
     }
 
@@ -52,6 +54,14 @@ public class LagrangeConfig {
 
     public void setOpenMataEventLog(boolean openMataEventLog) {
         this.openMataEventLog = openMataEventLog;
+    }
+
+    public String getLagrangeBotClient() {
+        return lagrangeBotClient;
+    }
+
+    public void setLagrangeBotClient(String lagrangeBotClient) {
+        this.lagrangeBotClient = lagrangeBotClient;
     }
 
 }
