@@ -25,15 +25,6 @@ public class MessageChain {
         return new MessageChain();
     }
 
-    public MessageChain lineFeed() {
-        Message message = Message.builder().
-                type(MessageType.TEXT)
-                .data("\n")
-                .build();
-        messages.add(message);
-        return this;
-    }
-
     public MessageChain at(String qq) {
         this.addPreBlankSpace();
         Message message = Message.builder().
