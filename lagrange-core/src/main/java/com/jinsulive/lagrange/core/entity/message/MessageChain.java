@@ -173,20 +173,22 @@ public class MessageChain {
         return this;
     }
 
-    public void blankSpace() {
+    public MessageChain blankSpace() {
         Message message = Message.builder().
                 type(MessageType.TEXT)
                 .data(Text.builder().text(" ").build())
                 .build();
         messages.add(message);
+        return this;
     }
 
-    public void lineBreak() {
+    public MessageChain lineBreak() {
         Message message = Message.builder().
                 type(MessageType.TEXT)
                 .data(Text.builder().text("\n").build())
                 .build();
         messages.add(message);
+        return this;
     }
 
     public List<Message> get() {
