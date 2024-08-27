@@ -7,6 +7,7 @@ import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.DisposableBean;
 
 import java.net.URI;
 import java.util.Objects;
@@ -18,7 +19,7 @@ import java.util.concurrent.TimeUnit;
  * @author lxy
  * @since 2024年03月18日 16:05:03
  */
-public class LagrangeBotWebSocketClient extends WebSocketClient {
+public class LagrangeBotWebSocketClient extends WebSocketClient implements DisposableBean {
 
     private static final Logger log = LoggerFactory.getLogger(LagrangeBotWebSocketClient.class);
     private final EventServiceHandler eventServiceHandler;
@@ -102,4 +103,9 @@ public class LagrangeBotWebSocketClient extends WebSocketClient {
         reconnectWebSocket();
     }
 
+    @Override
+    public void destroy() throws Exception {
+        this.closeBlocking();
+        log.info("[websocket] 连接关闭");
+    }
 }
