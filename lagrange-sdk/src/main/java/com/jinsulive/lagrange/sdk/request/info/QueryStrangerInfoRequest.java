@@ -23,6 +23,14 @@ public class QueryStrangerInfoRequest extends AbstractRequest<StrangerInfoRespon
         this.noCache = noCache;
     }
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public Boolean getNoCache() {
+        return noCache;
+    }
+
     @Override
     public String getServiceUrl() {
         return "get_stranger_info";

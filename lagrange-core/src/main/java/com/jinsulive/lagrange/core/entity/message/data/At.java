@@ -13,11 +13,14 @@ public class At {
 
     private String qq;
 
+    private String name;
+
     public At() {
     }
 
     private At(Builder builder) {
         qq = builder.qq;
+        name = builder.name;
     }
 
     public static Builder builder() {
@@ -32,6 +35,14 @@ public class At {
         this.qq = qq;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return JSONUtil.toJsonStr(this);
@@ -40,11 +51,18 @@ public class At {
     public static final class Builder {
         private String qq;
 
+        private String name;
+
         private Builder() {
         }
 
         public Builder qq(String qq) {
             this.qq = qq;
+            return this;
+        }
+
+        public Builder name(String name) {
+            this.name = name;
             return this;
         }
 

@@ -44,6 +44,22 @@ public class SendMessageRequest extends AbstractRequest<MessageHandleResponse> {
         this.message = message;
     }
 
+    public MessageEventType getMessageType() {
+        return messageType;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public Long getGroupId() {
+        return groupId;
+    }
+
+    public List<Message> getMessage() {
+        return message;
+    }
+
     @Override
     public String getServiceUrl() {
         return "send_msg";

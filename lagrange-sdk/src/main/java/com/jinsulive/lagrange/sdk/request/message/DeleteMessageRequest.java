@@ -19,6 +19,10 @@ public class DeleteMessageRequest extends AbstractRequest<EmptyResponse> {
         this.messageId = messageId;
     }
 
+    public Long getMessageId() {
+        return messageId;
+    }
+
     @Override
     public String getServiceUrl() {
         return "delete_msg";

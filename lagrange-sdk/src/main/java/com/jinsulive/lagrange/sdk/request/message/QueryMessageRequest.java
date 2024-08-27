@@ -19,6 +19,10 @@ public class QueryMessageRequest extends AbstractRequest<MessageQueryResponse> {
         this.messageId = messageId;
     }
 
+    public Long getMessageId() {
+        return messageId;
+    }
+
     @Override
     public String getServiceUrl() {
         return "get_msg";

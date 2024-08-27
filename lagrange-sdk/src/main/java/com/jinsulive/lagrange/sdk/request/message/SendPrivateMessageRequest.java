@@ -28,6 +28,14 @@ public class SendPrivateMessageRequest extends AbstractRequest<MessageHandleResp
         this.message = message;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public List<Message> getMessage() {
+        return message;
+    }
+
     @Override
     public String getServiceUrl() {
         return "send_private_msg";

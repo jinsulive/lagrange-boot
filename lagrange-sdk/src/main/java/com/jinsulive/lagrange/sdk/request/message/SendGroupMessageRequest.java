@@ -28,6 +28,14 @@ public class SendGroupMessageRequest extends AbstractRequest<MessageHandleRespon
         this.message = message;
     }
 
+    public Long getGroupId() {
+        return groupId;
+    }
+
+    public List<Message> getMessage() {
+        return message;
+    }
+
     @Override
     public String getServiceUrl() {
         return "send_group_msg";
