@@ -105,7 +105,7 @@ public class LagrangeBotWebSocketClient extends WebSocketClient implements Dispo
 
     @Override
     public void destroy() throws Exception {
-        log.info("[websocket] 应用关闭");
         this.close();
+        log.info("[websocket] 连接关闭");
     }
 }
