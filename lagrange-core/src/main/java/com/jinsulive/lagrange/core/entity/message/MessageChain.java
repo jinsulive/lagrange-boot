@@ -2,11 +2,9 @@ package com.jinsulive.lagrange.core.entity.message;
 
 import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.core.constant.message.MessageType;
-import com.jinsulive.lagrange.core.entity.message.data.At;
-import com.jinsulive.lagrange.core.entity.message.data.Image;
-import com.jinsulive.lagrange.core.entity.message.data.Reply;
-import com.jinsulive.lagrange.core.entity.message.data.Text;
+import com.jinsulive.lagrange.core.entity.message.data.*;
 
+import java.lang.Record;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,11 +23,37 @@ public class MessageChain {
         return new MessageChain();
     }
 
-    public MessageChain at(String qq) {
-        this.addPreBlankSpace();
+    public MessageChain at(At at) {
         Message message = Message.builder().
                 type(MessageType.AT)
-                .data(At.builder().qq(qq).build())
+                .data(at)
+                .build();
+        messages.add(message);
+        return this;
+    }
+
+    public MessageChain contact(Contact contact) {
+        Message message = Message.builder().
+                type(MessageType.CONTACT)
+                .data(contact)
+                .build();
+        messages.add(message);
+        return this;
+    }
+
+    public MessageChain face(Face face) {
+        Message message = Message.builder().
+                type(MessageType.CONTACT)
+                .data(face)
+                .build();
+        messages.add(message);
+        return this;
+    }
+
+    public MessageChain forward(Forward forward) {
+        Message message = Message.builder().
+                type(MessageType.CONTACT)
+                .data(forward)
                 .build();
         messages.add(message);
         return this;
@@ -44,7 +68,53 @@ public class MessageChain {
         return this;
     }
 
-    public MessageChain reply(String messageId) {
+    public MessageChain json(Json json) {
+        Message message = Message.builder().
+                type(MessageType.JSON)
+                .data(json)
+                .build();
+        messages.add(message);
+        return this;
+    }
+
+    public MessageChain location(Location location) {
+        Message message = Message.builder().
+                type(MessageType.LOCATION)
+                .data(location)
+                .build();
+        messages.add(message);
+        return this;
+    }
+
+    public MessageChain markdown(Markdown markdown) {
+        Message message = Message.builder().
+                type(MessageType.MARKDOWN)
+                .data(markdown)
+                .build();
+        messages.add(message);
+        return this;
+    }
+
+    public MessageChain music(Music music) {
+        Message message = Message.builder().
+                type(MessageType.MUSIC)
+                .data(music)
+                .build();
+        messages.add(message);
+        return this;
+    }
+
+
+    public MessageChain node(Node node) {
+        Message message = Message.builder().
+                type(MessageType.NODE)
+                .data(node)
+                .build();
+        messages.add(message);
+        return this;
+    }
+
+    public MessageChain reply(Reply reply) {
         // 回复的引用消息只能有一条
         boolean match = messages.stream().anyMatch(message -> message.getType() == MessageType.REPLY);
         if (match) {
@@ -52,34 +122,71 @@ public class MessageChain {
         }
         Message message = Message.builder().
                 type(MessageType.REPLY)
-                .data(Reply.builder().id(String.valueOf(messageId)).build())
+                .data(reply)
                 .build();
         messages.add(message);
         return this;
     }
 
-    public MessageChain text(String text) {
-        boolean preTypeIsAt = preTypeIsAt();
+    public MessageChain share(Share share) {
+        Message message = Message.builder().
+                type(MessageType.SHARE)
+                .data(share)
+                .build();
+        messages.add(message);
+        return this;
+    }
+
+    public MessageChain text(Text text) {
         Message message = Message.builder().
                 type(MessageType.TEXT)
-                .data(Text.builder().text(preTypeIsAt ? " " + text : text).build())
+                .data(text)
                 .build();
         messages.add(message);
         return this;
     }
 
-    private void addPreBlankSpace() {
-        if (preTypeIsAt()) {
-            Message message = Message.builder().
-                    type(MessageType.TEXT)
-                    .data(Text.builder().text(" ").build())
-                    .build();
-            messages.add(message);
-        }
+    public MessageChain video(Video video) {
+        Message message = Message.builder().
+                type(MessageType.VIDEO)
+                .data(video)
+                .build();
+        messages.add(message);
+        return this;
     }
 
-    private boolean preTypeIsAt() {
-        return !messages.isEmpty() && messages.get(messages.size() - 1).getType() == MessageType.AT;
+    public MessageChain xml(Xml xml) {
+        Message message = Message.builder().
+                type(MessageType.XML)
+                .data(xml)
+                .build();
+        messages.add(message);
+        return this;
+    }
+
+    public MessageChain record(Record record) {
+        Message message = Message.builder().
+                type(MessageType.RECORD)
+                .data(record)
+                .build();
+        messages.add(message);
+        return this;
+    }
+
+    public void blankSpace() {
+        Message message = Message.builder().
+                type(MessageType.TEXT)
+                .data(Text.builder().text(" ").build())
+                .build();
+        messages.add(message);
+    }
+
+    public void lineBreak() {
+        Message message = Message.builder().
+                type(MessageType.TEXT)
+                .data(Text.builder().text("\n").build())
+                .build();
+        messages.add(message);
     }
 
     public List<Message> get() {
