@@ -137,6 +137,11 @@ public class MessageChain {
         return this;
     }
 
+    public MessageChain text(String text) {
+        this.text(Text.builder().text(text).build());
+        return this;
+    }
+
     public MessageChain text(Text text) {
         Message message = Message.builder().
                 type(MessageType.TEXT)
