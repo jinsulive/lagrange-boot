@@ -4,6 +4,7 @@ import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.core.entity.message.Message;
 import com.jinsulive.lagrange.sdk.request.AbstractRequest;
 import com.jinsulive.lagrange.sdk.response.message.MessageHandleResponse;
+import com.jinsulive.lagrange.sdk.util.ConvertMessageUtil;
 
 import java.util.List;
 
@@ -43,6 +44,7 @@ public class SendGroupMessageRequest extends AbstractRequest<MessageHandleRespon
 
     @Override
     public String getJsonParamString() {
+        ConvertMessageUtil.convert(message);
         return JSONUtil.createObj()
                 .putOpt("group_id", groupId)
                 .putOpt("message", message)

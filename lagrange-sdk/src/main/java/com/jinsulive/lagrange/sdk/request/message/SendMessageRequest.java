@@ -5,6 +5,7 @@ import com.jinsulive.lagrange.core.constant.message.MessageEventType;
 import com.jinsulive.lagrange.core.entity.message.Message;
 import com.jinsulive.lagrange.sdk.request.AbstractRequest;
 import com.jinsulive.lagrange.sdk.response.message.MessageHandleResponse;
+import com.jinsulive.lagrange.sdk.util.ConvertMessageUtil;
 
 import java.util.List;
 
@@ -67,6 +68,7 @@ public class SendMessageRequest extends AbstractRequest<MessageHandleResponse> {
 
     @Override
     public String getJsonParamString() {
+        ConvertMessageUtil.convert(message);
         return JSONUtil.createObj()
                 .putOpt("message_type", messageType)
                 .putOpt("user_id", userId)
