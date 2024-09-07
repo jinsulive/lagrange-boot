@@ -70,7 +70,7 @@ public class LagrangeBotWebSocketClient extends WebSocketClient implements Dispo
 
     @Override
     public void onError(Exception ex) {
-        log.error("[websocket] 连接异常: {}", ex.getMessage(), ex);
+        log.error("[websocket] 连接异常 serverUri: {}, e: {}", super.getURI().getSchemeSpecificPart(), ex.getMessage(), ex);
     }
 
     private void reconnectWebSocket() {

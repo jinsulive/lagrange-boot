@@ -1,6 +1,7 @@
 package com.jinsulive.lagrange.spring.autoconfigure.processor;
 
 import cn.hutool.core.io.resource.ClassPathResource;
+import cn.hutool.core.io.resource.FileResource;
 import cn.hutool.core.io.resource.Resource;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
@@ -14,10 +15,7 @@ import org.springframework.boot.env.OriginTrackedMapPropertySource;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.PropertySource;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,23 +28,32 @@ public class JsonEnvironmentPostProcessor implements EnvironmentPostProcessor {
 
     private static final Logger log = LoggerFactory.getLogger(JsonEnvironmentPostProcessor.class);
 
-    private final String[] jsonSourceNames = new String[]{"lagrange.json"};
+    private final String[] jsonSourceNames = new String[]{"lagrange.json", "config/lagrange.json"};
 
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
+        PropertySource<?> propertySource = null;
+        Resource resource;
         for (String jsonSourceName : jsonSourceNames) {
-            loadJsonFile(jsonSourceName, environment);
+            try {
+                resource = new ClassPathResource(jsonSourceName);
+                propertySource = loadJsonPropertySource(jsonSourceName, resource);
+                break;
+            } catch (Exception e) {
+                log.warn("尝试加载ClassPath配置文件异常: {}, e: {}", jsonSourceName, e.getMessage());
+            }
+            try {
+                resource = new FileResource(System.getProperty("user.dir") + File.separator + jsonSourceName);
+                propertySource = loadJsonPropertySource(jsonSourceName, resource);
+                break;
+            } catch (Exception e) {
+                log.warn("尝试从外部加载配置文件异常: {}, e: {}", jsonSourceName, e.getMessage());
+            }
         }
-    }
-
-    public void loadJsonFile(String jsonFile, ConfigurableEnvironment environment) {
-        Resource resource = new ClassPathResource(jsonFile);
-        try {
-            PropertySource<?> propertySource = loadJsonPropertySource(jsonFile, resource);
-            environment.getPropertySources().addLast(propertySource);
-        } catch (IOException e) {
-            log.error("load json file: {} error. {}", jsonFile, e.getMessage(), e);
+        if (propertySource == null) {
+            throw new RuntimeException("lagrange.json 配置文件加载异常, 请查看配置文件存放路径是否正确");
         }
+        environment.getPropertySources().addLast(propertySource);
     }
 
     public PropertySource<?> loadJsonPropertySource(String name, Resource resource) throws IOException {
