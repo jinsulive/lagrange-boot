@@ -14,8 +14,6 @@ import java.util.List;
  */
 public class NoticeListenerInfo extends ListenerInfo {
 
-    private String name;
-
     private NoticeType noticeType;
 
     private NoticeSubType subType;
@@ -24,28 +22,16 @@ public class NoticeListenerInfo extends ListenerInfo {
 
     private List<String> groups;
 
-    private Method method;
-
-
-    private NoticeListenerInfo(Builder builder) {
-        name = builder.name;
+    public NoticeListenerInfo(Builder builder) {
+        super(builder.name, builder.method);
         noticeType = builder.noticeType;
         subType = builder.subType;
         honorType = builder.honorType;
         groups = builder.groups;
-        method = builder.method;
     }
 
     public static Builder builder() {
         return new Builder();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public NoticeType getNoticeType() {
@@ -78,14 +64,6 @@ public class NoticeListenerInfo extends ListenerInfo {
 
     public void setGroups(List<String> groups) {
         this.groups = groups;
-    }
-
-    public Method getMethod() {
-        return method;
-    }
-
-    public void setMethod(Method method) {
-        this.method = method;
     }
 
     public static class Builder {

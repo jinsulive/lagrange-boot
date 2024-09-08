@@ -12,31 +12,18 @@ import java.lang.reflect.Method;
  */
 public class RequestListenerInfo extends ListenerInfo {
 
-    private String name;
-
     private RequestType requestType;
 
     private RequestSubType subType;
 
-    private Method method;
-
     private RequestListenerInfo(Builder builder) {
-        name = builder.name;
+        super(builder.name, builder.method);
         requestType = builder.requestType;
         subType = builder.subType;
-        method = builder.method;
     }
 
     public static Builder builder() {
         return new Builder();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public RequestType getRequestType() {
@@ -53,14 +40,6 @@ public class RequestListenerInfo extends ListenerInfo {
 
     public void setSubType(RequestSubType subType) {
         this.subType = subType;
-    }
-
-    public Method getMethod() {
-        return method;
-    }
-
-    public void setMethod(Method method) {
-        this.method = method;
     }
 
     public static class Builder {

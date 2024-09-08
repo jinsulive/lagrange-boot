@@ -21,8 +21,13 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.concurrent.CustomizableThreadFactory;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author lxy
@@ -98,6 +103,16 @@ public class LagrangeBotAutoConfiguration {
     @ConditionalOnMissingBean
     public LagrangeClientRegistryRunner lagrangeClientRegistryRunner() {
         return new LagrangeClientRegistryRunner();
+    }
+
+    @Bean("lagrangeExecutorService")
+    @ConditionalOnMissingBean
+    public ExecutorService lagrangeExecutorService() {
+        int availableProcessors = Runtime.getRuntime().availableProcessors();
+        return new ThreadPoolExecutor(availableProcessors, availableProcessors,
+                300L, TimeUnit.SECONDS, new LinkedBlockingQueue<>(),
+                new CustomizableThreadFactory("lagrange-executor-"),
+                new ThreadPoolExecutor.CallerRunsPolicy());
     }
 
 }

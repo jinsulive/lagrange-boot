@@ -12,8 +12,6 @@ import java.util.List;
  */
 public class MessageListenerInfo extends ListenerInfo {
 
-    private String name;
-
     private boolean contentTrim;
 
     private MatchType matchType;
@@ -28,10 +26,8 @@ public class MessageListenerInfo extends ListenerInfo {
 
     private boolean atBot;
 
-    private Method method;
-
-    private MessageListenerInfo(Builder builder) {
-        name = builder.name;
+    public MessageListenerInfo(Builder builder) {
+        super(builder.name, builder.method);
         contentTrim = builder.contentTrim;
         matchType = builder.matchType;
         matchValue = builder.matchValue;
@@ -39,19 +35,10 @@ public class MessageListenerInfo extends ListenerInfo {
         groups = builder.groups;
         authors = builder.authors;
         atBot = builder.atBot;
-        method = builder.method;
     }
 
     public static Builder builder() {
         return new Builder();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public boolean isContentTrim() {
@@ -108,14 +95,6 @@ public class MessageListenerInfo extends ListenerInfo {
 
     public void setAtBot(boolean atBot) {
         this.atBot = atBot;
-    }
-
-    public Method getMethod() {
-        return method;
-    }
-
-    public void setMethod(Method method) {
-        this.method = method;
     }
 
     public static final class Builder {

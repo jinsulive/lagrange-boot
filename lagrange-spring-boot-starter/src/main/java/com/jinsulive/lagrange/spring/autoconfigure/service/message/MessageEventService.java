@@ -17,15 +17,11 @@ import com.jinsulive.lagrange.spring.autoconfigure.util.SpringUtil;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.concurrent.CustomizableThreadFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author lxy
@@ -35,21 +31,15 @@ public class MessageEventService implements EventService {
 
     private static final Logger log = LoggerFactory.getLogger(MessageEventService.class);
 
-    private final ExecutorService executorService = this.executorService();
+    @Resource(name = "lagrangeExecutorService")
+    private ExecutorService executorService;
+
     @Resource
     private LagrangeConfig lagrangeConfig;
     @Resource
     private MethodListenerContext methodListenerContext;
     @Resource
     private MessageEventMatcherService messageEventMatcherService;
-
-    private ExecutorService executorService() {
-        int availableProcessors = Runtime.getRuntime().availableProcessors();
-        return new ThreadPoolExecutor(availableProcessors, availableProcessors,
-                300L, TimeUnit.SECONDS, new LinkedBlockingQueue<>(),
-                new CustomizableThreadFactory("message-executor-"),
-                new ThreadPoolExecutor.CallerRunsPolicy());
-    }
 
     @Override
     public PostType postType() {
