@@ -1,10 +1,17 @@
 package com.jinsulive.lagrange.spring.autoconfigure.processor;
 
 import cn.hutool.core.lang.Assert;
+import com.jinsulive.lagrange.core.annotation.ListenerInfo;
 import com.jinsulive.lagrange.core.annotation.message.MessageListener;
 import com.jinsulive.lagrange.core.annotation.message.MessageListenerInfo;
+import com.jinsulive.lagrange.core.annotation.notice.NoticeListener;
+import com.jinsulive.lagrange.core.annotation.notice.NoticeListenerInfo;
+import com.jinsulive.lagrange.core.annotation.request.RequestListener;
+import com.jinsulive.lagrange.core.annotation.request.RequestListenerInfo;
 import com.jinsulive.lagrange.core.event.message.FriendMessageEvent;
 import com.jinsulive.lagrange.core.event.message.GroupMessageEvent;
+import com.jinsulive.lagrange.core.event.notice.NoticeEvent;
+import com.jinsulive.lagrange.core.event.request.RequestEvent;
 import com.jinsulive.lagrange.spring.autoconfigure.entity.MethodListenerContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +27,7 @@ import javax.annotation.Nullable;
 import java.lang.reflect.Method;
 import java.util.*;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 /**
  * 监听器注册处理器
@@ -41,55 +49,74 @@ public class EventListenerMethodProcessor extends ConfigurationClassPostProcesso
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) {
         Iterator<String> beanNamesIterator = beanFactory.getBeanNamesIterator();
-        List<MessageListenerInfo> messageListenerInfos = new ArrayList<>();
+        List<ListenerInfo> listenerInfos = new ArrayList<>();
         while (beanNamesIterator.hasNext()) {
             String beanName = beanNamesIterator.next();
             if (!ScopedProxyUtils.isScopedTarget(beanName)) {
                 Class<?> type = beanFactory.getType(beanName);
                 if (Objects.nonNull(type)) {
-                    this.processType(type, messageListenerInfos);
+                    this.processType(type, listenerInfos);
                 }
             }
         }
-        this.registerMethodListenerContext(messageListenerInfos);
+        this.registerMethodListenerContext(listenerInfos);
     }
 
-    private void processType(Class<?> type, List<MessageListenerInfo> messageListenerInfos) {
+    private void processType(Class<?> type, List<ListenerInfo> listenerInfos) {
         Method[] methods = type.getMethods();
         for (Method method : methods) {
             if (method.isAnnotationPresent(MessageListener.class)) {
-                if (!this.isAssignableMethodParamType(method)) {
+                if (this.isNotAssignableMethodParamType(method, GroupMessageEvent.class, FriendMessageEvent.class, String.class)) {
                     continue;
                 }
                 MessageListener messageListener = method.getAnnotation(MessageListener.class);
                 MessageListenerInfo messageListenerInfo = this.convertMessageListenerInfo(type, method, messageListener);
-                messageListenerInfos.add(messageListenerInfo);
+                listenerInfos.add(messageListenerInfo);
+            } else if (method.isAnnotationPresent(NoticeListener.class)) {
+                if (this.isNotAssignableMethodParamType(method, NoticeEvent.class, String.class)) {
+                    continue;
+                }
+                NoticeListener noticeListener = method.getAnnotation(NoticeListener.class);
+                NoticeListenerInfo noticeListenerInfo = this.convertNoticeListenerInfo(type, method, noticeListener);
+                listenerInfos.add(noticeListenerInfo);
+            } else if (method.isAnnotationPresent(RequestListener.class)) {
+                if (this.isNotAssignableMethodParamType(method, RequestEvent.class, String.class)) {
+                    continue;
+                }
+                RequestListener requestListener = method.getAnnotation(RequestListener.class);
+                RequestListenerInfo requestListenerInfo = this.convertRequestListenerInfo(type, method, requestListener);
+                listenerInfos.add(requestListenerInfo);
             }
         }
     }
 
-    private void registerMethodListenerContext(List<MessageListenerInfo> messageListenerInfos) {
+    private void registerMethodListenerContext(List<ListenerInfo> listenerInfos) {
         String beanName = MethodListenerContext.class.getName();
         BeanDefinition beanDefinition = resolveToBeanDefinition(() ->
                 MethodListenerContext.builder()
-                        .messageListenerInfos(messageListenerInfos)
+                        .listenerInfos(listenerInfos)
                         .build());
         registry.registerBeanDefinition(beanName, beanDefinition);
     }
 
-    private boolean isAssignableMethodParamType(Method method) {
+    private boolean isNotAssignableMethodParamType(Method method, Class<?>... assignableTypes) {
         Class<?> type = method.getDeclaringClass();
         String methodName = type.getName() + "." + method.getName();
         Class<?>[] parameterTypes = method.getParameterTypes();
         Assert.isTrue(parameterTypes.length == 1, "{} should have only one parameter. but found {}.", methodName, parameterTypes.length);
         Class<?> parameterType = parameterTypes[0];
-        boolean assignableMethodParamType = GroupMessageEvent.class.isAssignableFrom(parameterType) ||
-                FriendMessageEvent.class.isAssignableFrom(parameterType) ||
-                String.class.isAssignableFrom(parameterType);
-        if (!assignableMethodParamType) {
-            log.warn("{} should be assignable to [GroupMessageEvent, FriendMessageEvent, String]. but found {}", methodName, parameterType.getName());
+        boolean assignableMethodParamType = false;
+        for (Class<?> assignableType : assignableTypes) {
+            if (parameterType.isAssignableFrom(assignableType)) {
+                assignableMethodParamType = true;
+                break;
+            }
         }
-        return assignableMethodParamType;
+        if (!assignableMethodParamType) {
+            String assignableTypesStr = Arrays.stream(assignableTypes).map(Class::getName).collect(Collectors.joining(","));
+            log.warn("{} should be assignable to [ {} ]. but found {}", assignableTypesStr, methodName, parameterType.getName());
+        }
+        return !assignableMethodParamType;
     }
 
     private MessageListenerInfo convertMessageListenerInfo(Class<?> type, Method method, MessageListener messageListener) {
@@ -102,6 +129,26 @@ public class EventListenerMethodProcessor extends ConfigurationClassPostProcesso
                 .groups(Arrays.asList(messageListener.filter().groups()))
                 .authors(Arrays.asList(messageListener.filter().authors()))
                 .atBot(messageListener.filter().atBot())
+                .method(method)
+                .build();
+    }
+
+    private NoticeListenerInfo convertNoticeListenerInfo(Class<?> type, Method method, NoticeListener noticeListener) {
+        return NoticeListenerInfo.builder()
+                .name(type.getName() + "." + method.getName())
+                .noticeType(noticeListener.match().noticeType())
+                .honorType(noticeListener.match().honorType())
+                .subType(noticeListener.match().subType())
+                .groups(Arrays.asList(noticeListener.filter().groups()))
+                .method(method)
+                .build();
+    }
+
+    private RequestListenerInfo convertRequestListenerInfo(Class<?> type, Method method, RequestListener requestListener) {
+        return RequestListenerInfo.builder()
+                .name(type.getName() + "." + method.getName())
+                .requestType(requestListener.match().requestType())
+                .subType(requestListener.match().subType())
                 .method(method)
                 .build();
     }

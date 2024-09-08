@@ -1,5 +1,6 @@
 package com.jinsulive.lagrange.core.annotation.message;
 
+import com.jinsulive.lagrange.core.annotation.ListenerInfo;
 import com.jinsulive.lagrange.core.constant.core.MatchType;
 
 import java.lang.reflect.Method;
@@ -9,7 +10,7 @@ import java.util.List;
  * @author lxy
  * @since 2024年03月08日 14:46:28
  */
-public class MessageListenerInfo {
+public class MessageListenerInfo extends ListenerInfo {
 
     private String name;
 

@@ -53,6 +53,9 @@ public class ConvertUtil {
     public static GroupMessageEvent convertGroupMessageEvent(MessageEvent messageEvent) {
         if (Objects.equals(MessageEventType.GROUP, messageEvent.getMessageType())) {
             return GroupMessageEvent.builder()
+                    .time(messageEvent.getTime())
+                    .selfId(messageEvent.getSelfId())
+                    .postType(messageEvent.getPostType())
                     .nickname(messageEvent.getSender().getNickname())
                     .messageId(messageEvent.getMessageId())
                     .groupId(messageEvent.getGroupId())
@@ -71,6 +74,9 @@ public class ConvertUtil {
     public static FriendMessageEvent convertFriendMessageEvent(MessageEvent messageEvent) {
         if (Objects.equals(MessageEventType.PRIVATE, messageEvent.getMessageType())) {
             return FriendMessageEvent.builder()
+                    .time(messageEvent.getTime())
+                    .selfId(messageEvent.getSelfId())
+                    .postType(messageEvent.getPostType())
                     .nickname(messageEvent.getSender().getNickname())
                     .messageId(messageEvent.getMessageId())
                     .userId(messageEvent.getSender().getUserId())

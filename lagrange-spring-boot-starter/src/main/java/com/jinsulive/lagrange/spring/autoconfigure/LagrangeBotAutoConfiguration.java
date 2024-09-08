@@ -9,8 +9,12 @@ import com.jinsulive.lagrange.spring.autoconfigure.service.mata.MataEventService
 import com.jinsulive.lagrange.spring.autoconfigure.service.message.MessageEventMatcherService;
 import com.jinsulive.lagrange.spring.autoconfigure.service.message.MessageEventService;
 import com.jinsulive.lagrange.spring.autoconfigure.service.message.impl.MessageEventMatcherServiceImpl;
+import com.jinsulive.lagrange.spring.autoconfigure.service.notice.NoticeEventMatcherService;
 import com.jinsulive.lagrange.spring.autoconfigure.service.notice.NoticeEventService;
+import com.jinsulive.lagrange.spring.autoconfigure.service.notice.impl.NoticeEventMatcherServiceImpl;
+import com.jinsulive.lagrange.spring.autoconfigure.service.request.RequestEventMatcherService;
 import com.jinsulive.lagrange.spring.autoconfigure.service.request.RequestEventService;
+import com.jinsulive.lagrange.spring.autoconfigure.service.request.impl.RequestEventMatcherServiceImpl;
 import com.jinsulive.lagrange.spring.autoconfigure.util.SpringUtil;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -62,6 +66,18 @@ public class LagrangeBotAutoConfiguration {
     @ConditionalOnMissingBean
     public MessageEventMatcherService messageEventMatcherService() {
         return new MessageEventMatcherServiceImpl();
+    }
+
+    @Bean("noticeEventMatcherService")
+    @ConditionalOnMissingBean
+    public NoticeEventMatcherService noticeEventMatcherService() {
+        return new NoticeEventMatcherServiceImpl();
+    }
+
+    @Bean("requestEventMatcherService")
+    @ConditionalOnMissingBean
+    public RequestEventMatcherService requestEventMatcherService() {
+        return new RequestEventMatcherServiceImpl();
     }
 
     @Bean("eventServiceHandler")

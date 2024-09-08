@@ -12,7 +12,7 @@ import com.jinsulive.lagrange.core.event.message.MessageEvent;
 public interface MessageEventMatcherService {
 
     /**
-     * 消息校验
+     * 消息匹配
      *
      * @param messageEvent        消息事件
      * @param messageListenerInfo 消息监听器信息

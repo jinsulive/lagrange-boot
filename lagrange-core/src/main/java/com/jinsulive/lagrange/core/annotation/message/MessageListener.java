@@ -6,7 +6,7 @@ import com.jinsulive.lagrange.core.constant.core.MatchType;
 import java.lang.annotation.*;
 
 /**
- * 监听器注解
+ * 消息事件监听器
  *
  * @author lxy
  * @since 2024年03月07日 11:16:18

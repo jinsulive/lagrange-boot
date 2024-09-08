@@ -1,6 +1,7 @@
 package com.jinsulive.lagrange.spring.autoconfigure.service.message;
 
 import cn.hutool.core.lang.Assert;
+import com.jinsulive.lagrange.core.annotation.ListenerInfo;
 import com.jinsulive.lagrange.core.annotation.message.MessageListenerInfo;
 import com.jinsulive.lagrange.core.constant.PostType;
 import com.jinsulive.lagrange.core.event.BaseEvent;
@@ -46,7 +47,7 @@ public class MessageEventService implements EventService {
         int availableProcessors = Runtime.getRuntime().availableProcessors();
         return new ThreadPoolExecutor(availableProcessors, availableProcessors,
                 300L, TimeUnit.SECONDS, new LinkedBlockingQueue<>(),
-                new CustomizableThreadFactory("lagrange-executor-"),
+                new CustomizableThreadFactory("message-executor-"),
                 new ThreadPoolExecutor.CallerRunsPolicy());
     }
 
@@ -60,11 +61,13 @@ public class MessageEventService implements EventService {
         MessageEvent messageEvent = (MessageEvent) event;
         LogUtil.debug(lagrangeConfig.isOpenDebugLog(), "[MessageEvent] 收到message消息: {}", messageEvent);
         executorService.execute(() -> {
-            List<MessageListenerInfo> messageListenerInfos = methodListenerContext.getMessageListenerInfos();
-            messageListenerInfos.forEach(messageListenerInfo -> {
-                boolean match = messageEventMatcherService.match(messageEvent, messageListenerInfo);
-                if (match) {
-                    this.invoke(messageEvent, messageListenerInfo);
+            List<ListenerInfo> messageListenerInfos = methodListenerContext.getListenerInfos();
+            messageListenerInfos.forEach(listenerInfo -> {
+                if (listenerInfo instanceof MessageListenerInfo messageListenerInfo) {
+                    boolean match = messageEventMatcherService.match(messageEvent, messageListenerInfo);
+                    if (match) {
+                        this.invoke(messageEvent, messageListenerInfo);
+                    }
                 }
             });
         });

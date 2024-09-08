@@ -1,6 +1,7 @@
 package com.jinsulive.lagrange.core.event.message;
 
 import cn.hutool.json.JSONUtil;
+import com.jinsulive.lagrange.core.constant.PostType;
 import com.jinsulive.lagrange.core.entity.message.Message;
 
 import java.util.List;
@@ -12,6 +13,10 @@ import java.util.List;
  * @since 2024年03月11日 17:51:21
  */
 public class FriendMessageEvent {
+
+    private Long time;
+    private Long selfId;
+    private PostType postType;
     private Integer messageId;
     private Long userId;
     private String nickname;
@@ -32,6 +37,9 @@ public class FriendMessageEvent {
     }
 
     private FriendMessageEvent(Builder builder) {
+        time = builder.time;
+        selfId = builder.selfId;
+        postType = builder.postType;
         messageId = builder.messageId;
         userId = builder.userId;
         nickname = builder.nickname;
@@ -42,6 +50,30 @@ public class FriendMessageEvent {
 
     public static Builder builder() {
         return new Builder();
+    }
+
+    public Long getTime() {
+        return time;
+    }
+
+    public void setTime(Long time) {
+        this.time = time;
+    }
+
+    public Long getSelfId() {
+        return selfId;
+    }
+
+    public void setSelfId(Long selfId) {
+        this.selfId = selfId;
+    }
+
+    public PostType getPostType() {
+        return postType;
+    }
+
+    public void setPostType(PostType postType) {
+        this.postType = postType;
     }
 
     public Integer getMessageId() {
@@ -98,6 +130,9 @@ public class FriendMessageEvent {
     }
 
     public static final class Builder {
+        private Long time;
+        private Long selfId;
+        private PostType postType;
         private Integer messageId;
         private Long userId;
         private String nickname;
@@ -106,6 +141,21 @@ public class FriendMessageEvent {
         private List<Message> sourceMessageChain;
 
         private Builder() {
+        }
+
+        public Builder time(Long time) {
+            this.time = time;
+            return this;
+        }
+
+        public Builder selfId(Long selfId) {
+            this.selfId = selfId;
+            return this;
+        }
+
+        public Builder postType(PostType postType) {
+            this.postType = postType;
+            return this;
         }
 
         public Builder messageId(Integer messageId) {
