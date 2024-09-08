@@ -4,6 +4,7 @@ import cn.hutool.core.lang.Assert;
 import com.jinsulive.lagrange.core.annotation.ListenerInfo;
 import com.jinsulive.lagrange.core.annotation.message.MessageListenerInfo;
 import com.jinsulive.lagrange.core.constant.PostType;
+import com.jinsulive.lagrange.core.constant.message.MessageEventType;
 import com.jinsulive.lagrange.core.event.BaseEvent;
 import com.jinsulive.lagrange.core.event.message.FriendMessageEvent;
 import com.jinsulive.lagrange.core.event.message.GroupMessageEvent;
@@ -21,6 +22,7 @@ import org.slf4j.LoggerFactory;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 
 /**
@@ -72,10 +74,10 @@ public class MessageEventService implements EventService {
         try {
             // 从spring中获取实例
             Object instance = SpringUtil.getBean(declaringClass);
-            if (parameterType.isAssignableFrom(GroupMessageEvent.class)) {
+            if (Objects.equals(MessageEventType.GROUP, messageEvent.getMessageType()) && parameterType.isAssignableFrom(GroupMessageEvent.class)) {
                 GroupMessageEvent groupMessageEvent = ConvertUtil.convertGroupMessageEvent(messageEvent);
                 method.invoke(instance, groupMessageEvent);
-            } else if (parameterType.isAssignableFrom(FriendMessageEvent.class)) {
+            } else if (Objects.equals(MessageEventType.PRIVATE, messageEvent.getMessageType()) && parameterType.isAssignableFrom(FriendMessageEvent.class)) {
                 FriendMessageEvent friendMessageEvent = ConvertUtil.convertFriendMessageEvent(messageEvent);
                 method.invoke(instance, friendMessageEvent);
             } else if (parameterType.isAssignableFrom(String.class)) {
