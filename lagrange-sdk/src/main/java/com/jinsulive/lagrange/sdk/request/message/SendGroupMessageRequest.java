@@ -21,20 +21,20 @@ public class SendGroupMessageRequest extends AbstractRequest<MessageHandleRespon
     public SendGroupMessageRequest() {
     }
 
-    public void setGroupId(Long groupId) {
-        this.groupId = groupId;
-    }
-
-    public void setMessage(List<Message> message) {
-        this.message = message;
-    }
-
     public Long getGroupId() {
         return groupId;
     }
 
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
+    }
+
     public List<Message> getMessage() {
         return message;
+    }
+
+    public void setMessage(List<Message> message) {
+        this.message = message;
     }
 
     @Override

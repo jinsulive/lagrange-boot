@@ -29,36 +29,36 @@ public class SendMessageRequest extends AbstractRequest<MessageHandleResponse> {
     public SendMessageRequest() {
     }
 
-    public void setMessageType(MessageEventType messageType) {
-        this.messageType = messageType;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public void setGroupId(Long groupId) {
-        this.groupId = groupId;
-    }
-
-    public void setMessage(List<Message> message) {
-        this.message = message;
-    }
-
     public MessageEventType getMessageType() {
         return messageType;
+    }
+
+    public void setMessageType(MessageEventType messageType) {
+        this.messageType = messageType;
     }
 
     public Long getUserId() {
         return userId;
     }
 
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
     public Long getGroupId() {
         return groupId;
     }
 
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
+    }
+
     public List<Message> getMessage() {
         return message;
+    }
+
+    public void setMessage(List<Message> message) {
+        this.message = message;
     }
 
     @Override

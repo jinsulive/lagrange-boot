@@ -15,20 +15,20 @@ public class QueryStrangerInfoRequest extends AbstractRequest<StrangerInfoRespon
     public QueryStrangerInfoRequest() {
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public void setNoCache(Boolean noCache) {
-        this.noCache = noCache;
-    }
-
     public String getUserId() {
         return userId;
     }
 
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     public Boolean getNoCache() {
         return noCache;
+    }
+
+    public void setNoCache(Boolean noCache) {
+        this.noCache = noCache;
     }
 
     @Override

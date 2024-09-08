@@ -1,7 +1,6 @@
 package com.jinsulive.lagrange.spring.autoconfigure.entity;
 
 import com.jinsulive.lagrange.core.annotation.ListenerInfo;
-import com.jinsulive.lagrange.core.annotation.message.MessageListenerInfo;
 
 import java.util.List;
 

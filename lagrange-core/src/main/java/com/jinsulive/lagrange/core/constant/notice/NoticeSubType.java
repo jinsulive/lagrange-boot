@@ -69,14 +69,14 @@ public enum NoticeSubType {
         this.value = value;
     }
 
-    public String getValue() {
-        return value;
-    }
-
     public static NoticeSubType convert(String value) {
         return Arrays.stream(values())
                 .filter(item -> Objects.equals(item.getValue(), value))
                 .findFirst().orElse(null);
+    }
+
+    public String getValue() {
+        return value;
     }
 
 }

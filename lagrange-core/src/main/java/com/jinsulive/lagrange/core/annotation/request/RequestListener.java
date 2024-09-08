@@ -1,8 +1,8 @@
 package com.jinsulive.lagrange.core.annotation.request;
 
 import com.jinsulive.lagrange.core.annotation.Listener;
-import com.jinsulive.lagrange.core.constant.request.RequestType;
 import com.jinsulive.lagrange.core.constant.request.RequestSubType;
+import com.jinsulive.lagrange.core.constant.request.RequestType;
 
 import java.lang.annotation.*;
 

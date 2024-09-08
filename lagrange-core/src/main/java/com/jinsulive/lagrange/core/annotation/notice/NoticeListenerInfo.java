@@ -27,10 +27,6 @@ public class NoticeListenerInfo extends ListenerInfo {
     private Method method;
 
 
-    public static Builder builder() {
-        return new Builder();
-    }
-
     private NoticeListenerInfo(Builder builder) {
         name = builder.name;
         noticeType = builder.noticeType;
@@ -38,6 +34,10 @@ public class NoticeListenerInfo extends ListenerInfo {
         honorType = builder.honorType;
         groups = builder.groups;
         method = builder.method;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getName() {

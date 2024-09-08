@@ -20,15 +20,15 @@ public class RequestListenerInfo extends ListenerInfo {
 
     private Method method;
 
-    public static Builder builder() {
-        return new Builder();
-    }
-
     private RequestListenerInfo(Builder builder) {
         name = builder.name;
         requestType = builder.requestType;
         subType = builder.subType;
         method = builder.method;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getName() {

@@ -21,20 +21,20 @@ public class SendPrivateMessageRequest extends AbstractRequest<MessageHandleResp
     public SendPrivateMessageRequest() {
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public void setMessage(List<Message> message) {
-        this.message = message;
-    }
-
     public Long getUserId() {
         return userId;
     }
 
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
     public List<Message> getMessage() {
         return message;
+    }
+
+    public void setMessage(List<Message> message) {
+        this.message = message;
     }
 
     @Override
