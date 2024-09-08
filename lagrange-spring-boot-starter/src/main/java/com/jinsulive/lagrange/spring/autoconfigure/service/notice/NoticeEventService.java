@@ -33,7 +33,7 @@ public class NoticeEventService implements EventService {
     private ExecutorService executorService;
 
     @Resource
-    private NoticeEventMatcherService requestEventMatcherService;
+    private NoticeEventMatcherService noticeEventMatcherService;
 
     @Resource
     private MethodListenerContext methodListenerContext;
@@ -54,7 +54,7 @@ public class NoticeEventService implements EventService {
             List<ListenerInfo> messageListenerInfos = methodListenerContext.getListenerInfos();
             messageListenerInfos.forEach(listenerInfo -> {
                 if (listenerInfo instanceof NoticeListenerInfo noticeListenerInfo) {
-                    boolean match = requestEventMatcherService.match(noticeEvent, noticeListenerInfo);
+                    boolean match = noticeEventMatcherService.match(noticeEvent, noticeListenerInfo);
                     if (match) {
                         this.invoke(noticeEvent, noticeListenerInfo);
                     }
