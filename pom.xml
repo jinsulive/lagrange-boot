@@ -14,6 +14,7 @@
     <artifactId>lagrange-boot</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
+
     <modules>
         <module>lagrange-core</module>
         <module>lagrange-sdk</module>
@@ -53,6 +54,22 @@
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>${jackson.version}</version>
+            </dependency>
+            <!-- lagrange -->
+            <dependency>
+                <groupId>com.jinsulive</groupId>
+                <artifactId>lagrange-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jinsulive</groupId>
+                <artifactId>lagrange-sdk</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jinsulive</groupId>
+                <artifactId>lagrange-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -21,7 +21,6 @@
         <dependency>
             <groupId>com.jinsulive</groupId>
             <artifactId>lagrange-core</artifactId>
-            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
