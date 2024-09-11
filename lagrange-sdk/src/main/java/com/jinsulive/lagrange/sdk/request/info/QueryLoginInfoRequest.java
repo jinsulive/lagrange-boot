@@ -1,6 +1,7 @@
 package com.jinsulive.lagrange.sdk.request.info;
 
 import com.jinsulive.lagrange.sdk.request.AbstractRequest;
+import com.jinsulive.lagrange.sdk.response.info.LoginInfoResponse;
 
 /**
  * 获取登录号信息
@@ -8,7 +9,7 @@ import com.jinsulive.lagrange.sdk.request.AbstractRequest;
  * @author lxy
  * @since 2024年03月21日 15:10:48
  */
-public class QueryLoginInfoRequest extends AbstractRequest<QueryLoginInfoRequest> {
+public class QueryLoginInfoRequest extends AbstractRequest<LoginInfoResponse> {
 
     public QueryLoginInfoRequest() {
     }
@@ -24,8 +25,8 @@ public class QueryLoginInfoRequest extends AbstractRequest<QueryLoginInfoRequest
     }
 
     @Override
-    public Class<QueryLoginInfoRequest> getResponseClass() {
-        return QueryLoginInfoRequest.class;
+    public Class<LoginInfoResponse> getResponseClass() {
+        return LoginInfoResponse.class;
     }
 
 }

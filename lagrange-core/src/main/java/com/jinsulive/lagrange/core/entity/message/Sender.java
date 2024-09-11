@@ -1,8 +1,8 @@
 package com.jinsulive.lagrange.core.entity.message;
 
 import cn.hutool.json.JSONUtil;
-import com.jinsulive.lagrange.core.constant.message.SenderRoleType;
-import com.jinsulive.lagrange.core.constant.message.SenderSexType;
+import com.jinsulive.lagrange.core.constant.RoleType;
+import com.jinsulive.lagrange.core.constant.SexType;
 
 /**
  * @author lxy
@@ -13,11 +13,11 @@ public class Sender {
     private long userId;
     private String nickname;
     private String card;
-    private SenderSexType sex;
+    private SexType sex;
     private int age;
     private String area;
     private String level;
-    private SenderRoleType role;
+    private RoleType role;
     private String title;
 
     public Sender() {
@@ -63,11 +63,11 @@ public class Sender {
         this.card = card;
     }
 
-    public SenderSexType getSex() {
+    public SexType getSex() {
         return sex;
     }
 
-    public void setSex(SenderSexType sex) {
+    public void setSex(SexType sex) {
         this.sex = sex;
     }
 
@@ -95,11 +95,11 @@ public class Sender {
         this.level = level;
     }
 
-    public SenderRoleType getRole() {
+    public RoleType getRole() {
         return role;
     }
 
-    public void setRole(SenderRoleType role) {
+    public void setRole(RoleType role) {
         this.role = role;
     }
 
@@ -120,11 +120,11 @@ public class Sender {
         private long userId;
         private String nickname;
         private String card;
-        private SenderSexType sex;
+        private SexType sex;
         private int age;
         private String area;
         private String level;
-        private SenderRoleType role;
+        private RoleType role;
         private String title;
 
         private Builder() {
@@ -145,7 +145,7 @@ public class Sender {
             return this;
         }
 
-        public Builder sex(SenderSexType sex) {
+        public Builder sex(SexType sex) {
             this.sex = sex;
             return this;
         }
@@ -165,7 +165,7 @@ public class Sender {
             return this;
         }
 
-        public Builder role(SenderRoleType role) {
+        public Builder role(RoleType role) {
             this.role = role;
             return this;
         }

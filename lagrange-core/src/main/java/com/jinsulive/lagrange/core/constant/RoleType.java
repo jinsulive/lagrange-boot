@@ -1,26 +1,26 @@
-package com.jinsulive.lagrange.core.constant.message;
+package com.jinsulive.lagrange.core.constant;
 
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
  * @author lxy
- * @since 2024年03月07日 10:19:49
+ * @since 2024年03月07日 10:16:08
  */
-public enum SenderSexType {
+public enum RoleType {
 
-    MALE("male"),
-    FEMALE("female"),
-    UNKNOWN("unknown");
+    ADMIN("admin"),
+    MEMBER("member"),
+    OWNER("owner");
 
     private final String type;
 
-    SenderSexType(String type) {
+    RoleType(String type) {
         this.type = type;
     }
 
-    public static SenderSexType convert(String type) {
-        return Arrays.stream(SenderSexType.values())
+    public static RoleType convert(String type) {
+        return Arrays.stream(RoleType.values())
                 .filter(postType -> Objects.equals(postType.getType(), type))
                 .findFirst().orElse(null);
     }

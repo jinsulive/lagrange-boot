@@ -1,6 +1,6 @@
 package com.jinsulive.lagrange.core.event.notice;
 
-import com.jinsulive.lagrange.core.constant.notice.HonorType;
+import com.jinsulive.lagrange.core.constant.HonorType;
 import com.jinsulive.lagrange.core.constant.notice.NoticeSubType;
 import com.jinsulive.lagrange.core.constant.notice.NoticeType;
 import com.jinsulive.lagrange.core.entity.notice.FileInfo;

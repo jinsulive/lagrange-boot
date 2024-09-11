@@ -2,7 +2,7 @@ package com.jinsulive.lagrange.spring.autoconfigure.service.notice.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import com.jinsulive.lagrange.core.annotation.notice.NoticeListenerInfo;
-import com.jinsulive.lagrange.core.constant.notice.HonorType;
+import com.jinsulive.lagrange.core.constant.HonorType;
 import com.jinsulive.lagrange.core.constant.notice.NoticeSubType;
 import com.jinsulive.lagrange.core.constant.notice.NoticeType;
 import com.jinsulive.lagrange.core.event.notice.NoticeEvent;

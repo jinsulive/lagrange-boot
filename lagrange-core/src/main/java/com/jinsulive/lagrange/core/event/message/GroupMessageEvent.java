@@ -2,7 +2,7 @@ package com.jinsulive.lagrange.core.event.message;
 
 import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.core.constant.PostType;
-import com.jinsulive.lagrange.core.constant.message.SenderRoleType;
+import com.jinsulive.lagrange.core.constant.RoleType;
 import com.jinsulive.lagrange.core.entity.message.Message;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public class GroupMessageEvent {
     private Long userId;
     private String anonymous;
     private String nickname;
-    private SenderRoleType role;
+    private RoleType role;
     private String title;
     /**
      * 纯文本消息
@@ -124,11 +124,11 @@ public class GroupMessageEvent {
         this.nickname = nickname;
     }
 
-    public SenderRoleType getRole() {
+    public RoleType getRole() {
         return role;
     }
 
-    public void setRole(SenderRoleType role) {
+    public void setRole(RoleType role) {
         this.role = role;
     }
 
@@ -178,7 +178,7 @@ public class GroupMessageEvent {
         private Long userId;
         private String anonymous;
         private String nickname;
-        private SenderRoleType role;
+        private RoleType role;
         private String title;
         private String plainText;
         private String rawMessage;
@@ -227,7 +227,7 @@ public class GroupMessageEvent {
             return this;
         }
 
-        public Builder role(SenderRoleType role) {
+        public Builder role(RoleType role) {
             this.role = role;
             return this;
         }

@@ -1,10 +1,10 @@
-package com.jinsulive.lagrange.core.constant.notice;
+package com.jinsulive.lagrange.core.constant;
 
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * 通知事件-荣誉类型
+ * 荣誉类型
  *
  * @author lxy
  * @since 2024年09月08日 02:24:05
@@ -20,13 +20,22 @@ public enum HonorType {
      */
     PERFORMER("performer"),
     /**
+     * 群聊炽焰
+     */
+    LEGEND("legend"),
+    /**
      * 快乐源泉
      */
     EMOTION("emotion"),
     /**
      * null
      */
-    NULL(null);
+    NULL(null),
+
+    /**
+     * all
+     */
+    ALL("all");
 
     private final String value;
 

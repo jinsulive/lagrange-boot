@@ -1,7 +1,7 @@
 package com.jinsulive.lagrange.core.annotation.notice;
 
 import com.jinsulive.lagrange.core.annotation.ListenerInfo;
-import com.jinsulive.lagrange.core.constant.notice.HonorType;
+import com.jinsulive.lagrange.core.constant.HonorType;
 import com.jinsulive.lagrange.core.constant.notice.NoticeSubType;
 import com.jinsulive.lagrange.core.constant.notice.NoticeType;
 
