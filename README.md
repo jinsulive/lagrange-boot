@@ -59,8 +59,8 @@
 
 ##### 1、消息事件
 
-> 注册一个消息监听事件，监听方法允许的参数类型为`GroupMessageEvent`、`FriendMessageEvent`、`String`
-> 若设置为`GroupMessageEvent`或`FriendMessageEvent`，只会监听群或好友消息
+> 注册一个消息监听事件，监听方法允许的参数类型为`GroupMessageEvent`、`FriendMessageEvent`、`String`  
+> 若设置为`GroupMessageEvent`或`FriendMessageEvent`，只会监听群或好友消息  
 > 若设置为`String`，将传递一个json object类型的字符串，群和好友消息都会被监听
 
 ```java
