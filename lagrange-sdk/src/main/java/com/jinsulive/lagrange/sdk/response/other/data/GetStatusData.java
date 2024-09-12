@@ -16,6 +16,11 @@ public class GetStatusData {
      * 状态符合预期，意味着各模块正常运行、功能正常，且 QQ 在线
      */
     private Boolean good;
+    private Boolean appInitialized;
+    private Boolean appEnabled;
+    private Boolean pluginsGood;
+    private Boolean appGood;
+    private Long memory;
 
     public GetStatusData() {
     }
@@ -34,6 +39,46 @@ public class GetStatusData {
 
     public void setGood(Boolean good) {
         this.good = good;
+    }
+
+    public Boolean getAppInitialized() {
+        return appInitialized;
+    }
+
+    public void setAppInitialized(Boolean appInitialized) {
+        this.appInitialized = appInitialized;
+    }
+
+    public Boolean getAppEnabled() {
+        return appEnabled;
+    }
+
+    public void setAppEnabled(Boolean appEnabled) {
+        this.appEnabled = appEnabled;
+    }
+
+    public Boolean getPluginsGood() {
+        return pluginsGood;
+    }
+
+    public void setPluginsGood(Boolean pluginsGood) {
+        this.pluginsGood = pluginsGood;
+    }
+
+    public Boolean getAppGood() {
+        return appGood;
+    }
+
+    public void setAppGood(Boolean appGood) {
+        this.appGood = appGood;
+    }
+
+    public Long getMemory() {
+        return memory;
+    }
+
+    public void setMemory(Long memory) {
+        this.memory = memory;
     }
 
     @Override

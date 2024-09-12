@@ -11,7 +11,6 @@ public class GroupMemberInfoResponse extends AbstractResponse {
 
     private GroupMemberInfoData data;
 
-
     public GroupMemberInfoResponse() {
     }
 

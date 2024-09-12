@@ -1,5 +1,6 @@
 package com.jinsulive.lagrange.sdk.request.friend;
 
+import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.sdk.request.AbstractRequest;
 import com.jinsulive.lagrange.sdk.response.EmptyResponse;
@@ -58,12 +59,11 @@ public class SetFriendAddRequest extends AbstractRequest<EmptyResponse> {
     }
 
     @Override
-    public String getJsonParamString() {
+    public JSONObject getParamJson() {
         return JSONUtil.createObj()
                 .putOpt("flag", flag)
                 .putOpt("approve", approve)
-                .putOpt("remark", remark)
-                .toString();
+                .putOpt("remark", remark);
     }
 
     @Override

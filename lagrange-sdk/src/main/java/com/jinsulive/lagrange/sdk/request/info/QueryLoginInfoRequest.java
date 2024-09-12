@@ -1,5 +1,6 @@
 package com.jinsulive.lagrange.sdk.request.info;
 
+import cn.hutool.http.Method;
 import com.jinsulive.lagrange.sdk.request.AbstractRequest;
 import com.jinsulive.lagrange.sdk.response.info.LoginInfoResponse;
 
@@ -15,13 +16,13 @@ public class QueryLoginInfoRequest extends AbstractRequest<LoginInfoResponse> {
     }
 
     @Override
-    public String getServiceUrl() {
-        return "get_login_info";
+    public Method getMethod() {
+        return Method.GET;
     }
 
     @Override
-    public String getJsonParamString() {
-        return "{}";
+    public String getServiceUrl() {
+        return "get_login_info";
     }
 
     @Override

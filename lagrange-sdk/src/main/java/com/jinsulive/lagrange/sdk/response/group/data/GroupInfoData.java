@@ -1,5 +1,7 @@
 package com.jinsulive.lagrange.sdk.response.group.data;
 
+import cn.hutool.json.JSONUtil;
+
 /**
  * 群信息
  *
@@ -28,4 +30,43 @@ public class GroupInfoData {
      */
     private Integer maxMemberCount;
 
+    public GroupInfoData() {
+    }
+
+    public Long getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+
+    public Integer getMemberCount() {
+        return memberCount;
+    }
+
+    public void setMemberCount(Integer memberCount) {
+        this.memberCount = memberCount;
+    }
+
+    public Integer getMaxMemberCount() {
+        return maxMemberCount;
+    }
+
+    public void setMaxMemberCount(Integer maxMemberCount) {
+        this.maxMemberCount = maxMemberCount;
+    }
+
+    @Override
+    public String toString() {
+        return JSONUtil.toJsonStr(this);
+    }
 }

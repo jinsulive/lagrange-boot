@@ -1,15 +1,15 @@
 package com.jinsulive.lagrange.sdk;
 
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.http.ContentType;
-import cn.hutool.http.Header;
-import cn.hutool.http.HttpRequest;
-import cn.hutool.http.HttpResponse;
+import cn.hutool.http.*;
+import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.sdk.request.AbstractRequest;
 import com.jinsulive.lagrange.sdk.response.AbstractResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author lxy
@@ -28,27 +28,40 @@ public class DefaultLagrangeBotClient extends AbstractLagrangeBotClient {
 
     @Override
     public <T extends AbstractResponse> T execute(AbstractRequest<T> request) throws Exception {
-        String url = this.buildUrl(request.getServiceUrl());
-        String jsonParamString = request.getJsonParamString();
-        HttpRequest postRequest = this.buildPostRequest(url, jsonParamString);
+        String serviceUrl = request.getServiceUrl();
+        JSONObject paramJson = request.getParamJson();
+        Method method = request.getMethod();
+        HttpRequest postRequest = this.buildRequest(serviceUrl, method, paramJson);
         HttpResponse execute = postRequest.execute();
         String response = execute.body();
         execute.close();
         if (StrUtil.isBlank(response)) {
-            log.error("DefaultLagrangeBotClient: response is blank. serviceUrl: {}, body: {}", request.getServiceUrl(), jsonParamString);
+            log.error("[DefaultLagrangeBotClient] response is blank. serviceUrl: {}, paramJson: {}", serviceUrl, paramJson);
             return null;
         }
         return JSONUtil.toBean(response, request.getResponseClass());
     }
 
-    private HttpRequest buildPostRequest(String url, String body) {
-        HttpRequest request = HttpRequest.post(url)
-                .header(Header.CONTENT_TYPE, ContentType.JSON.toString());
+    private HttpRequest buildRequest(String serviceUrl, Method method, JSONObject paramJson) {
+        String url = this.buildUrl(serviceUrl);
+        HttpRequest httpRequest;
+        if (method == Method.POST) {
+            httpRequest = HttpRequest.post(url);
+            httpRequest.header(Header.CONTENT_TYPE, ContentType.JSON.toString());
+            httpRequest.body(paramJson.toString());
+            log.debug("[DefaultLagrangeBotClient] [POST] url: {}, paramJson: {}", url, paramJson);
+        } else if (method == Method.GET) {
+            String finalUrl = HttpUtil.urlWithForm(url, paramJson, StandardCharsets.UTF_8, false);
+            httpRequest = HttpRequest.get(finalUrl);
+            log.debug("[DefaultLagrangeBotClient] [GET] finalUrl: {}", finalUrl);
+        } else {
+            throw new UnsupportedOperationException("unsupported http method: " + method + ". serviceUrl: " + serviceUrl);
+        }
         String httpToken = config.getHttpToken();
         if (StrUtil.isNotBlank(httpToken)) {
-            request.header(Header.AUTHORIZATION, config.getTokenType() + httpToken);
+            httpRequest.header(Header.AUTHORIZATION, config.getTokenType() + httpToken);
         }
-        return request.body(body);
+        return httpRequest;
     }
 
     private String buildUrl(String serviceUrl) {

@@ -1,10 +1,13 @@
 package com.jinsulive.lagrange.sdk.request.group;
 
+import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.sdk.request.AbstractRequest;
 import com.jinsulive.lagrange.sdk.response.group.GroupMemberListResponse;
 
 /**
+ * 获取群成员列表
+ *
  * @author lxy
  * @since 2024年09月11日 15:22:26
  */
@@ -32,10 +35,9 @@ public class QueryGroupMemberListRequest extends AbstractRequest<GroupMemberList
     }
 
     @Override
-    public String getJsonParamString() {
+    public JSONObject getParamJson() {
         return JSONUtil.createObj()
-                .putOpt("group_id", groupId)
-                .toString();
+                .putOpt("group_id", groupId);
     }
 
     @Override

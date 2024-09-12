@@ -1,5 +1,6 @@
 package com.jinsulive.lagrange.sdk.request.group;
 
+import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.sdk.request.AbstractRequest;
 import com.jinsulive.lagrange.sdk.response.EmptyResponse;
@@ -70,13 +71,12 @@ public class SetGroupAddRequest extends AbstractRequest<EmptyResponse> {
     }
 
     @Override
-    public String getJsonParamString() {
+    public JSONObject getParamJson() {
         return JSONUtil.createObj()
                 .putOpt("flag", flag)
                 .putOpt("sub_type", subType)
                 .putOpt("approve", approve)
-                .putOpt("reason", reason)
-                .toString();
+                .putOpt("reason", reason);
     }
 
     @Override

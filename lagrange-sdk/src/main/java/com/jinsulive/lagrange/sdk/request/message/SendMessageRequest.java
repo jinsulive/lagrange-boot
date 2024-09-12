@@ -1,5 +1,6 @@
 package com.jinsulive.lagrange.sdk.request.message;
 
+import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.core.constant.message.MessageEventType;
 import com.jinsulive.lagrange.core.entity.message.Message;
@@ -67,14 +68,13 @@ public class SendMessageRequest extends AbstractRequest<MessageHandleResponse> {
     }
 
     @Override
-    public String getJsonParamString() {
+    public JSONObject getParamJson() {
         ConvertMessageUtil.convert(message);
         return JSONUtil.createObj()
                 .putOpt("message_type", messageType)
                 .putOpt("user_id", userId)
                 .putOpt("group_id", groupId)
-                .putOpt("message", message)
-                .toString();
+                .putOpt("message", message);
     }
 
     @Override

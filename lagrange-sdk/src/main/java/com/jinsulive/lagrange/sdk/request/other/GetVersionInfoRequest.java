@@ -10,14 +10,10 @@ import com.jinsulive.lagrange.sdk.response.other.GetVersionInfoResponse;
  * @since 2024年09月11日 16:21:12
  */
 public class GetVersionInfoRequest extends AbstractRequest<GetVersionInfoResponse> {
+
     @Override
     public String getServiceUrl() {
         return "get_version_info";
-    }
-
-    @Override
-    public String getJsonParamString() {
-        return "{}";
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.jinsulive.lagrange.sdk.request.other;
 
+import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.sdk.request.AbstractRequest;
 import com.jinsulive.lagrange.sdk.response.EmptyResponse;
@@ -33,10 +34,9 @@ public class SetRestartRequest extends AbstractRequest<EmptyResponse> {
     }
 
     @Override
-    public String getJsonParamString() {
+    public JSONObject getParamJson() {
         return JSONUtil.createObj()
-                .putOpt("delay", delay)
-                .toString();
+                .putOpt("delay", delay);
     }
 
     @Override

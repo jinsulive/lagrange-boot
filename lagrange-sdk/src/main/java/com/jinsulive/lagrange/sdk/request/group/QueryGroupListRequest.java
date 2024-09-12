@@ -1,5 +1,6 @@
 package com.jinsulive.lagrange.sdk.request.group;
 
+import cn.hutool.http.Method;
 import com.jinsulive.lagrange.sdk.request.AbstractRequest;
 import com.jinsulive.lagrange.sdk.response.group.GroupListResponse;
 
@@ -10,14 +11,15 @@ import com.jinsulive.lagrange.sdk.response.group.GroupListResponse;
  * @since 2024年09月11日 15:20:34
  */
 public class QueryGroupListRequest extends AbstractRequest<GroupListResponse> {
+
     @Override
-    public String getServiceUrl() {
-        return "get_group_list";
+    public Method getMethod() {
+        return Method.GET;
     }
 
     @Override
-    public String getJsonParamString() {
-        return "{}";
+    public String getServiceUrl() {
+        return "get_group_list";
     }
 
     @Override

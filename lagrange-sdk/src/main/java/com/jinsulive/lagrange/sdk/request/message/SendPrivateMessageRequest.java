@@ -1,5 +1,6 @@
 package com.jinsulive.lagrange.sdk.request.message;
 
+import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.core.entity.message.Message;
 import com.jinsulive.lagrange.sdk.request.AbstractRequest;
@@ -43,12 +44,11 @@ public class SendPrivateMessageRequest extends AbstractRequest<MessageHandleResp
     }
 
     @Override
-    public String getJsonParamString() {
+    public JSONObject getParamJson() {
         ConvertMessageUtil.convert(message);
         return JSONUtil.createObj()
                 .putOpt("user_id", userId)
-                .putOpt("message", message)
-                .toString();
+                .putOpt("message", message);
     }
 
     @Override

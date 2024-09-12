@@ -1,5 +1,6 @@
 package com.jinsulive.lagrange.sdk.request.other;
 
+import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.sdk.request.AbstractRequest;
 import com.jinsulive.lagrange.sdk.response.other.GetRecordResponse;
@@ -27,11 +28,10 @@ public class GetRecordRequest extends AbstractRequest<GetRecordResponse> {
     }
 
     @Override
-    public String getJsonParamString() {
+    public JSONObject getParamJson() {
         return JSONUtil.createObj()
                 .putOpt("file", file)
-                .putOpt("out_format", outFormat)
-                .toString();
+                .putOpt("out_format", outFormat);
     }
 
     @Override

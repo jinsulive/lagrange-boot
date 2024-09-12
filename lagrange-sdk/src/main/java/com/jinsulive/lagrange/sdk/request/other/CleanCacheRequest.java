@@ -1,5 +1,6 @@
 package com.jinsulive.lagrange.sdk.request.other;
 
+import cn.hutool.http.Method;
 import com.jinsulive.lagrange.sdk.request.AbstractRequest;
 import com.jinsulive.lagrange.sdk.response.EmptyResponse;
 
@@ -10,14 +11,15 @@ import com.jinsulive.lagrange.sdk.response.EmptyResponse;
  * @since 2024年09月11日 16:27:16
  */
 public class CleanCacheRequest extends AbstractRequest<EmptyResponse> {
+
     @Override
-    public String getServiceUrl() {
-        return "clean_cache";
+    public Method getMethod() {
+        return Method.GET;
     }
 
     @Override
-    public String getJsonParamString() {
-        return "{}";
+    public String getServiceUrl() {
+        return "clean_cache";
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.jinsulive.lagrange.sdk.request.other;
 
+import cn.hutool.http.Method;
+import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.sdk.request.AbstractRequest;
 import com.jinsulive.lagrange.sdk.response.other.GetCredentialsResponse;
@@ -17,16 +19,31 @@ public class GetCredentialsRequest extends AbstractRequest<GetCredentialsRespons
      */
     private String domain;
 
+    public GetCredentialsRequest() {
+    }
+
+    public String getDomain() {
+        return domain;
+    }
+
+    public void setDomain(String domain) {
+        this.domain = domain;
+    }
+
+    @Override
+    public Method getMethod() {
+        return Method.GET;
+    }
+
     @Override
     public String getServiceUrl() {
         return "get_credentials";
     }
 
     @Override
-    public String getJsonParamString() {
+    public JSONObject getParamJson() {
         return JSONUtil.createObj()
-                .putOpt("domain", domain)
-                .toString();
+                .putOpt("domain", domain);
     }
 
     @Override

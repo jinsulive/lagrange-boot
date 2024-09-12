@@ -1,5 +1,6 @@
 package com.jinsulive.lagrange.sdk.request.group;
 
+import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.core.constant.HonorType;
 import com.jinsulive.lagrange.sdk.request.AbstractRequest;
@@ -8,6 +9,8 @@ import com.jinsulive.lagrange.sdk.response.group.GroupHonorInfoResponse;
 import java.util.Optional;
 
 /**
+ * 获取群荣誉信息
+ *
  * @author lxy
  * @since 2024年09月11日 15:27:29
  */
@@ -47,11 +50,10 @@ public class QueryGroupHonorInfoRequest extends AbstractRequest<GroupHonorInfoRe
     }
 
     @Override
-    public String getJsonParamString() {
+    public JSONObject getParamJson() {
         return JSONUtil.createObj()
                 .set("group_id", groupId)
-                .putOpt("type", Optional.of(type).orElse(HonorType.ALL).getValue())
-                .toString();
+                .putOpt("type", Optional.ofNullable(type).orElse(HonorType.ALL).getValue());
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.jinsulive.lagrange.sdk.request.other;
 
+import cn.hutool.http.Method;
+import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.sdk.request.AbstractRequest;
 import com.jinsulive.lagrange.sdk.response.other.GetImageResponse;
@@ -28,15 +30,19 @@ public class GetImageRequest extends AbstractRequest<GetImageResponse> {
     }
 
     @Override
+    public Method getMethod() {
+        return Method.GET;
+    }
+
+    @Override
     public String getServiceUrl() {
         return "get_image";
     }
 
     @Override
-    public String getJsonParamString() {
+    public JSONObject getParamJson() {
         return JSONUtil.createObj()
-                .putOpt("file", file)
-                .toString();
+                .putOpt("file", file);
     }
 
     @Override

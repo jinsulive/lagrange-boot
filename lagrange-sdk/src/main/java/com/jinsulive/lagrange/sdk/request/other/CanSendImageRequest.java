@@ -1,5 +1,6 @@
 package com.jinsulive.lagrange.sdk.request.other;
 
+import cn.hutool.http.Method;
 import com.jinsulive.lagrange.sdk.request.AbstractRequest;
 import com.jinsulive.lagrange.sdk.response.other.CanSendResponse;
 
@@ -12,13 +13,13 @@ import com.jinsulive.lagrange.sdk.response.other.CanSendResponse;
 public class CanSendImageRequest extends AbstractRequest<CanSendResponse> {
 
     @Override
-    public String getServiceUrl() {
-        return "can_send_image";
+    public Method getMethod() {
+        return Method.GET;
     }
 
     @Override
-    public String getJsonParamString() {
-        return "{}";
+    public String getServiceUrl() {
+        return "can_send_image";
     }
 
     @Override

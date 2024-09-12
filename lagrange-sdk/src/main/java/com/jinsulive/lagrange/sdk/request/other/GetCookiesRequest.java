@@ -1,5 +1,7 @@
 package com.jinsulive.lagrange.sdk.request.other;
 
+import cn.hutool.http.Method;
+import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.sdk.request.AbstractRequest;
 import com.jinsulive.lagrange.sdk.response.other.GetCookiesResponse;
@@ -27,15 +29,19 @@ public class GetCookiesRequest extends AbstractRequest<GetCookiesResponse> {
     }
 
     @Override
+    public Method getMethod() {
+        return Method.GET;
+    }
+
+    @Override
     public String getServiceUrl() {
         return "get_cookies";
     }
 
     @Override
-    public String getJsonParamString() {
+    public JSONObject getParamJson() {
         return JSONUtil.createObj()
-                .putOpt("domain", domain)
-                .toString();
+                .putOpt("domain", domain);
     }
 
     @Override

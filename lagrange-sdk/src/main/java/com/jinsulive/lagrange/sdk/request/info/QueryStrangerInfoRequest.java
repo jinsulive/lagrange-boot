@@ -1,5 +1,6 @@
 package com.jinsulive.lagrange.sdk.request.info;
 
+import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.sdk.request.AbstractRequest;
 import com.jinsulive.lagrange.sdk.response.info.StrangerInfoResponse;
@@ -11,17 +12,17 @@ import com.jinsulive.lagrange.sdk.response.info.StrangerInfoResponse;
  * @since 2024年03月21日 15:18:24
  */
 public class QueryStrangerInfoRequest extends AbstractRequest<StrangerInfoResponse> {
-    private String userId;
-    private Boolean noCache;
+    private Long userId;
+    private Boolean noCache = false;
 
     public QueryStrangerInfoRequest() {
     }
 
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -39,11 +40,10 @@ public class QueryStrangerInfoRequest extends AbstractRequest<StrangerInfoRespon
     }
 
     @Override
-    public String getJsonParamString() {
+    public JSONObject getParamJson() {
         return JSONUtil.createObj()
                 .putOpt("user_id", userId)
-                .putOpt("no_cache", noCache)
-                .toString();
+                .putOpt("no_cache", noCache);
     }
 
     @Override

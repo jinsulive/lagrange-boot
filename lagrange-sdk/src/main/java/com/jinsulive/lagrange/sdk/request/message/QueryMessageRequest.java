@@ -1,5 +1,6 @@
 package com.jinsulive.lagrange.sdk.request.message;
 
+import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.sdk.request.AbstractRequest;
 import com.jinsulive.lagrange.sdk.response.message.MessageQueryResponse;
@@ -29,10 +30,9 @@ public class QueryMessageRequest extends AbstractRequest<MessageQueryResponse> {
     }
 
     @Override
-    public String getJsonParamString() {
+    public JSONObject getParamJson() {
         return JSONUtil.createObj()
-                .putOpt("message_id", messageId)
-                .toString();
+                .putOpt("message_id", messageId);
     }
 
     @Override

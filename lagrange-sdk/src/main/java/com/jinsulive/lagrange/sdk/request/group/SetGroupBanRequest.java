@@ -1,5 +1,6 @@
 package com.jinsulive.lagrange.sdk.request.group;
 
+import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.sdk.request.AbstractRequest;
 import com.jinsulive.lagrange.sdk.response.EmptyResponse;
@@ -59,12 +60,11 @@ public class SetGroupBanRequest extends AbstractRequest<EmptyResponse> {
     }
 
     @Override
-    public String getJsonParamString() {
+    public JSONObject getParamJson() {
         return JSONUtil.createObj()
                 .putOpt("group_id", groupId)
                 .putOpt("user_id", userId)
-                .putOpt("duration", duration)
-                .toString();
+                .putOpt("duration", duration);
     }
 
     @Override

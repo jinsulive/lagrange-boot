@@ -21,6 +21,11 @@ public class GetVersionInfoData {
      */
     private String protocolVersion;
 
+    /**
+     * nt 协议版本
+     */
+    private String ntProtocol;
+
     public GetVersionInfoData() {
     }
 
@@ -46,6 +51,14 @@ public class GetVersionInfoData {
 
     public void setProtocolVersion(String protocolVersion) {
         this.protocolVersion = protocolVersion;
+    }
+
+    public String getNtProtocol() {
+        return ntProtocol;
+    }
+
+    public void setNtProtocol(String ntProtocol) {
+        this.ntProtocol = ntProtocol;
     }
 
     @Override

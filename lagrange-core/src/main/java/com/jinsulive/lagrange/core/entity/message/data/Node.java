@@ -15,7 +15,7 @@ import java.util.List;
 public class Node {
 
     private String id;
-    private String userId;
+    private Long userId;
     private String nickname;
     private List<Message> content;
 
@@ -41,11 +41,11 @@ public class Node {
         this.id = id;
     }
 
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -72,7 +72,7 @@ public class Node {
 
     public static final class Builder {
         private String id;
-        private String userId;
+        private Long userId;
         private String nickname;
         private List<Message> content;
 
@@ -84,7 +84,7 @@ public class Node {
             return this;
         }
 
-        public Builder userId(String userId) {
+        public Builder userId(Long userId) {
             this.userId = userId;
             return this;
         }
