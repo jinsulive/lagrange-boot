@@ -14,11 +14,11 @@ public class NoticeEvent extends BaseEvent {
     /**
      * 群号
      */
-    private Integer groupId;
+    private Long groupId;
     /**
      * 发送者QQ号/管理员QQ号/离开者QQ号/加入者QQ号/被禁言QQ号/新添加好友QQ号/好友QQ号/红包发送者QQ号/成员QQ号
      */
-    private Integer userId;
+    private Long userId;
     /**
      * 文件信息
      */
@@ -57,19 +57,19 @@ public class NoticeEvent extends BaseEvent {
     public NoticeEvent() {
     }
 
-    public Integer getGroupId() {
+    public Long getGroupId() {
         return groupId;
     }
 
-    public void setGroupId(Integer groupId) {
+    public void setGroupId(Long groupId) {
         this.groupId = groupId;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
