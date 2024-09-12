@@ -1,5 +1,6 @@
 package com.jinsulive.lagrange.spring.autoconfigure.config;
 
+import com.jinsulive.lagrange.sdk.AbstractLagrangeBotClient;
 import com.jinsulive.lagrange.sdk.LagrangeBotClient;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;
@@ -26,7 +27,10 @@ public class LagrangeBotClientConfig {
             throw new IllegalArgumentException("sendType has http. but lagrange httpServer is null");
         }
         Class<? extends LagrangeBotClient> aClass = (Class<? extends LagrangeBotClient>) Class.forName(lagrangeConfig.getLagrangeBotClient());
-        return aClass.getConstructor(String.class).newInstance(httpServer);
+        AbstractLagrangeBotClient.Config config = new AbstractLagrangeBotClient.Config(
+                httpServer, lagrangeConfig.getHttpToken(), lagrangeConfig.getTokenType()
+        );
+        return aClass.getConstructor(AbstractLagrangeBotClient.Config.class).newInstance(config);
     }
 
 }

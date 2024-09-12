@@ -41,7 +41,12 @@ public class LagrangeClientRegistryRunner implements ApplicationRunner, Applicat
     public void run(ApplicationArguments args) throws Exception {
         DefaultListableBeanFactory beanFactory = (DefaultListableBeanFactory) applicationContext.getAutowireCapableBeanFactory();
         URI serverUri = URI.create(lagrangeConfig.getWebSocketServer());
-        LagrangeBotWebSocketClient lagrangeBotWebSocketClient = new LagrangeBotWebSocketClient(serverUri, eventServiceHandler);
+        LagrangeBotWebSocketClient.Config config = new LagrangeBotWebSocketClient.Config();
+        config.setServerUri(serverUri);
+        config.setWebsocketToken(lagrangeConfig.getWebSocketToken());
+        config.setTokenType(lagrangeConfig.getTokenType());
+        config.setEventServiceHandler(eventServiceHandler);
+        LagrangeBotWebSocketClient lagrangeBotWebSocketClient = new LagrangeBotWebSocketClient(config);
         Class<LagrangeBotWebSocketClient> lagrangeBotWebSocketClientClass = LagrangeBotWebSocketClient.class;
         AbstractBeanDefinition beanDefinition = BeanDefinitionBuilder.genericBeanDefinition(lagrangeBotWebSocketClientClass,
                 () -> lagrangeBotWebSocketClient).setPrimary(false).getBeanDefinition();

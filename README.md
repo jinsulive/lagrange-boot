@@ -32,7 +32,8 @@
 
 > 将 lagrange.json 文件放置到 src/main/resources 目录 或 项目根目录的 config 目录下  
 > `openDebugLog` 与 `openMataEventLog` 默认配置为 `false`，可自行配置，方便开发与调试  
-> `lagrangeBotClient` 默认配置为 `com.jinsulive.lagrange.sdk.DefaultLagrangeBotClient`, 可自定义实现该接口
+> `lagrangeBotClient` 默认配置为 `com.jinsulive.lagrange.sdk.DefaultLagrangeBotClient`
+> 若需自定义实现`lagrangeBotClient`，请继承`com.jinsulive.lagrange.sdk.AbstractLagrangeBotClient`抽象类
 
 [lagrange-example.json](./lagrange-spring-boot-starter/src/main/resources/lagrange-example.json)
 
@@ -41,6 +42,9 @@
   "lagrange": {
     "webSocketServer": "ws://127.0.0.1:8081",
     "httpServer": "http://127.0.0.1:8083",
+    "webSocketToken": "",
+    "httpToken": "",
+    "tokenType": "Bearer ",
     "openDebugLog": false,
     "openMataEventLog": false,
     "lagrangeBotClient": "com.jinsulive.lagrange.sdk.DefaultLagrangeBotClient"

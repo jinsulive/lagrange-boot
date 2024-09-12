@@ -15,17 +15,15 @@ import org.slf4j.LoggerFactory;
  * @author lxy
  * @since 2024年03月15日 10:52:39
  */
-public class DefaultLagrangeBotClient implements LagrangeBotClient {
+public class DefaultLagrangeBotClient extends AbstractLagrangeBotClient {
 
     private static final Logger log = LoggerFactory.getLogger(DefaultLagrangeBotClient.class);
 
-    private final String serverUrl;
+    private final Config config;
 
-    public DefaultLagrangeBotClient(String serverUrl) {
-        if (StrUtil.isBlankOrUndefined(serverUrl)) {
-            throw new IllegalArgumentException("lagrange bot server url can not be blank or undefined");
-        }
-        this.serverUrl = serverUrl;
+    public DefaultLagrangeBotClient(Config config) {
+        super(config);
+        this.config = config;
     }
 
     @Override
@@ -44,12 +42,17 @@ public class DefaultLagrangeBotClient implements LagrangeBotClient {
     }
 
     private HttpRequest buildPostRequest(String url, String body) {
-        return HttpRequest.post(url)
-                .header(Header.CONTENT_TYPE, ContentType.JSON.toString())
-                .body(body);
+        HttpRequest request = HttpRequest.post(url)
+                .header(Header.CONTENT_TYPE, ContentType.JSON.toString());
+        String httpToken = config.getHttpToken();
+        if (StrUtil.isNotBlank(httpToken)) {
+            request.header(Header.AUTHORIZATION, config.getTokenType() + httpToken);
+        }
+        return request.body(body);
     }
 
     private String buildUrl(String serviceUrl) {
+        String serverUrl = config.getServerUrl();
         if (serverUrl.endsWith("/") && serviceUrl.startsWith("/")) {
             return serverUrl + serviceUrl.substring(1);
         }

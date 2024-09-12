@@ -15,6 +15,12 @@ public class LagrangeConfig {
 
     private String httpServer;
 
+    private String webSocketToken = "";
+
+    private String httpToken = "";
+
+    private String tokenType = "Bearer ";
+
     private boolean openDebugLog = false;
 
     private boolean openMataEventLog = false;
@@ -38,6 +44,30 @@ public class LagrangeConfig {
 
     public void setHttpServer(String httpServer) {
         this.httpServer = httpServer;
+    }
+
+    public String getWebSocketToken() {
+        return webSocketToken;
+    }
+
+    public void setWebSocketToken(String webSocketToken) {
+        this.webSocketToken = webSocketToken;
+    }
+
+    public String getHttpToken() {
+        return httpToken;
+    }
+
+    public void setHttpToken(String httpToken) {
+        this.httpToken = httpToken;
+    }
+
+    public String getTokenType() {
+        return tokenType;
+    }
+
+    public void setTokenType(String tokenType) {
+        this.tokenType = tokenType;
     }
 
     public boolean isOpenDebugLog() {

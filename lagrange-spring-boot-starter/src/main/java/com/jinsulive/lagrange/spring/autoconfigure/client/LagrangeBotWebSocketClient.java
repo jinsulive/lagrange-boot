@@ -1,5 +1,7 @@
 package com.jinsulive.lagrange.spring.autoconfigure.client;
 
+import cn.hutool.core.util.StrUtil;
+import cn.hutool.http.Header;
 import com.jinsulive.lagrange.core.event.BaseEvent;
 import com.jinsulive.lagrange.core.util.ConvertUtil;
 import com.jinsulive.lagrange.spring.autoconfigure.handler.EventServiceHandler;
@@ -22,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 public class LagrangeBotWebSocketClient extends WebSocketClient implements DisposableBean {
 
     private static final Logger log = LoggerFactory.getLogger(LagrangeBotWebSocketClient.class);
-    private final EventServiceHandler eventServiceHandler;
+    private final Config config;
 
     /**
      * Initial reconnect delay in seconds
@@ -34,9 +36,15 @@ public class LagrangeBotWebSocketClient extends WebSocketClient implements Dispo
     private int reconnectAttempts = 0;
     private Boolean reconnect = false;
 
-    public LagrangeBotWebSocketClient(URI serverUri, EventServiceHandler eventServiceHandler) {
-        super(serverUri);
-        this.eventServiceHandler = eventServiceHandler;
+    public LagrangeBotWebSocketClient(Config config) {
+        super(config.getServerUri());
+        this.config = config;
+        String websocketToken = config.getWebsocketToken();
+        if (StrUtil.isNotBlank(websocketToken)) {
+            String authorization = config.getTokenType() + websocketToken;
+            log.debug("[websocket] authorization header: {}", authorization);
+            this.addHeader(Header.AUTHORIZATION.getValue(), authorization);
+        }
         this.connect();
     }
 
@@ -53,7 +61,7 @@ public class LagrangeBotWebSocketClient extends WebSocketClient implements Dispo
                 log.warn("[websocket] 收到未知类型消息: {}", message);
                 return;
             }
-            eventServiceHandler.handle(baseEvent);
+            config.getEventServiceHandler().handle(baseEvent);
         } catch (Exception e) {
             log.error("[websocket] 消息处理出现异常 message: {}, e: {}", message, e.getMessage(), e);
         }
@@ -108,4 +116,52 @@ public class LagrangeBotWebSocketClient extends WebSocketClient implements Dispo
         this.closeBlocking();
         log.info("[websocket] 连接关闭");
     }
+
+    public static class Config {
+
+        private URI serverUri;
+
+        private String websocketToken;
+
+        private String tokenType;
+
+        private EventServiceHandler eventServiceHandler;
+
+        public Config() {
+        }
+
+        public URI getServerUri() {
+            return serverUri;
+        }
+
+        public void setServerUri(URI serverUri) {
+            this.serverUri = serverUri;
+        }
+
+        public String getWebsocketToken() {
+            return websocketToken;
+        }
+
+        public void setWebsocketToken(String websocketToken) {
+            this.websocketToken = websocketToken;
+        }
+
+        public String getTokenType() {
+            return tokenType;
+        }
+
+        public void setTokenType(String tokenType) {
+            this.tokenType = tokenType;
+        }
+
+        public EventServiceHandler getEventServiceHandler() {
+            return eventServiceHandler;
+        }
+
+        public void setEventServiceHandler(EventServiceHandler eventServiceHandler) {
+            this.eventServiceHandler = eventServiceHandler;
+        }
+
+    }
+
 }
