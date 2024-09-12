@@ -26,8 +26,8 @@
 
 > 本项目基于[Lagrange.Core](https://github.com/KonataDev/Lagrange.Core)实现  
 > 参照 [OneBot 11标准](https://github.com/botuniverse/onebot-11)  
-> 基于SpringBoot 3.0.5 + Java 17 开发的SpringBoot组件
-> 本项目目前还处于开发阶段，相关内容后续可能会有所改动，部分sdk未经验证，如有错误，欢迎提issue
+> 基于SpringBoot 3.0.5 + Java 17 开发的SpringBoot组件  
+> 本项目目前还处于开发阶段，相关内容后续可能会有所改动，部分sdk未经验证，如有错误，欢迎提issue  
 > 并非所有标准API可用，具体参照[Lagrange.Core文档](https://github.com/LagrangeDev/Lagrange.Core?tab=readme-ov-file#features-list)
 
 ### 使用说明
