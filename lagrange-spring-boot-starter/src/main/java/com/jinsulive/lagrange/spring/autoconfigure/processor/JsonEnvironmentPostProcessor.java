@@ -20,6 +20,7 @@ import org.springframework.core.env.PropertySource;
 import javax.annotation.Nullable;
 import java.io.*;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -73,7 +74,9 @@ public class JsonEnvironmentPostProcessor implements EnvironmentPostProcessor, A
         if (resourceJson.isEmpty()) {
             return new OriginTrackedMapPropertySource(name, Collections.emptyMap(), true);
         }
-        return new OriginTrackedMapPropertySource(name, Collections.unmodifiableMap(resourceJson), true);
+        Map<String, Object> map = new HashMap<>();
+        resourceJson.forEach((key, value) -> putEntry(map, key, value));
+        return new OriginTrackedMapPropertySource(name, Collections.unmodifiableMap(map), true);
     }
 
 
