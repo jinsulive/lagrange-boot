@@ -28,7 +28,8 @@
 > 参照 [OneBot 11标准](https://github.com/botuniverse/onebot-11)  
 > 基于SpringBoot 3.0.5 + Java 17 开发的SpringBoot组件  
 > 本项目目前还处于开发阶段，相关内容后续可能会有所改动，部分sdk未经验证，如有错误，欢迎提issue  
-> 并非所有标准API可用，具体参照[Lagrange.Core文档](https://github.com/LagrangeDev/Lagrange.Core?tab=readme-ov-file#features-list)
+>
+并非所有标准API可用，具体参照[Lagrange.Core文档](https://github.com/LagrangeDev/Lagrange.Core?tab=readme-ov-file#features-list)
 
 ### 使用说明
 
@@ -42,6 +43,8 @@
 
 <Details>
 <summary>YAML方式</summary>
+
+> 在spring-boot配置文件中配置
 
 ```yaml
 lagrange:
@@ -78,6 +81,7 @@ lagrange:
   }
 }
 ```
+
 </Details>
 
 #### 事件监听
@@ -113,6 +117,7 @@ public void noticeListener(NoticeEvent event) {
 > 注册一个请求监听事件，允许的参数类型为`RequestEvent`、`String`
 
 ```java
+
 @RequestListener
 public void requestListener(RequestEvent event) {
 }
