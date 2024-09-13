@@ -22,7 +22,7 @@ public enum SexType {
     public static SexType convert(String type) {
         return Arrays.stream(SexType.values())
                 .filter(postType -> Objects.equals(postType.getType(), type))
-                .findFirst().orElse(null);
+                .findFirst().orElse(UNKNOWN);
     }
 
     public String getType() {

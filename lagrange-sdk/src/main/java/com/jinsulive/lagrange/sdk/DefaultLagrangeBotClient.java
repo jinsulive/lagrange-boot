@@ -44,6 +44,7 @@ public class DefaultLagrangeBotClient extends AbstractLagrangeBotClient {
             log.error("[DefaultLagrangeBotClient] response is blank. serviceUrl: {}, paramJson: {}", serviceUrl, paramJson);
             return null;
         }
+        log.debug("[DefaultLagrangeBotClient] response: {}", response);
         return JSONUtil.toBean(response, request.getResponseClass());
     }
 

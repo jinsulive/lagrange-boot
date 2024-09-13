@@ -9,7 +9,7 @@ import com.jinsulive.lagrange.sdk.response.group.data.GroupHonorInfoData;
  */
 public class GroupHonorInfoResponse extends AbstractResponse {
 
-    public GroupHonorInfoData data;
+    private GroupHonorInfoData data;
 
     public GroupHonorInfoResponse() {
     }

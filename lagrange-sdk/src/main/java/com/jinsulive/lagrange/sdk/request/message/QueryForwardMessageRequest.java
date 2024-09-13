@@ -3,7 +3,7 @@ package com.jinsulive.lagrange.sdk.request.message;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.sdk.request.AbstractRequest;
-import com.jinsulive.lagrange.sdk.response.message.MessageQueryResponse;
+import com.jinsulive.lagrange.sdk.response.message.QueryForwardMessageResponse;
 
 /**
  * 获取合并转发消息
@@ -11,7 +11,7 @@ import com.jinsulive.lagrange.sdk.response.message.MessageQueryResponse;
  * @author lxy
  * @since 2024年09月11日 13:48:54
  */
-public class QueryForwardMessageRequest extends AbstractRequest<MessageQueryResponse> {
+public class QueryForwardMessageRequest extends AbstractRequest<QueryForwardMessageResponse> {
 
     private String id;
 
@@ -38,7 +38,7 @@ public class QueryForwardMessageRequest extends AbstractRequest<MessageQueryResp
     }
 
     @Override
-    public Class<MessageQueryResponse> getResponseClass() {
-        return MessageQueryResponse.class;
+    public Class<QueryForwardMessageResponse> getResponseClass() {
+        return QueryForwardMessageResponse.class;
     }
 }

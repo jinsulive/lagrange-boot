@@ -6,7 +6,7 @@ import com.jinsulive.lagrange.core.entity.message.Message;
 import java.util.List;
 
 /**
- * 合并转发/合并转发节点
+ * 合并转发节点
  *
  * @author lxy
  * @see <a href="https://github.com/botuniverse/onebot-11/blob/master/message/segment.md#%E5%90%88%E5%B9%B6%E8%BD%AC%E5%8F%91%E8%8A%82%E7%82%B9-" />
@@ -14,7 +14,6 @@ import java.util.List;
  */
 public class Node {
 
-    private String id;
     private Long userId;
     private String nickname;
     private List<Message> content;
@@ -23,7 +22,6 @@ public class Node {
     }
 
     private Node(Builder builder) {
-        id = builder.id;
         userId = builder.userId;
         nickname = builder.nickname;
         content = builder.content;
@@ -31,14 +29,6 @@ public class Node {
 
     public static Builder builder() {
         return new Builder();
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public Long getUserId() {
@@ -71,17 +61,11 @@ public class Node {
     }
 
     public static final class Builder {
-        private String id;
         private Long userId;
         private String nickname;
         private List<Message> content;
 
         private Builder() {
-        }
-
-        public Builder id(String id) {
-            this.id = id;
-            return this;
         }
 
         public Builder userId(Long userId) {

@@ -59,6 +59,14 @@ public enum NoticeSubType {
      */
     HONOR("honor"),
     /**
+     * 精华消息添加
+     */
+    ADD("add"),
+    /**
+     * 精华消息删除
+     */
+    DELETE("delete"),
+    /**
      * null
      */
     NULL(null);
@@ -72,7 +80,7 @@ public enum NoticeSubType {
     public static NoticeSubType convert(String value) {
         return Arrays.stream(values())
                 .filter(item -> Objects.equals(item.getValue(), value))
-                .findFirst().orElse(null);
+                .findFirst().orElse(NULL);
     }
 
     public String getValue() {

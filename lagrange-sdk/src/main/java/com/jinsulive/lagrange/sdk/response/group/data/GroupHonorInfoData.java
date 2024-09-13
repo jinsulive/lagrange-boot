@@ -114,10 +114,12 @@ public class GroupHonorInfoData {
          * QQ 号
          */
         private Long userId;
+        private Long uin;
         /**
          * 昵称
          */
         private String nickname;
+        private String name;
         /**
          * 头像 URL
          */
@@ -131,24 +133,47 @@ public class GroupHonorInfoData {
          * 荣誉描述
          */
         private String description;
+        private String desc;
+        private String btnText;
+        private String text;
 
         public Detail() {
         }
 
+        @Deprecated
         public Long getUserId() {
             return userId;
         }
 
+        @Deprecated
         public void setUserId(Long userId) {
             this.userId = userId;
         }
 
+        public Long getUin() {
+            return uin;
+        }
+
+        public void setUin(Long uin) {
+            this.uin = uin;
+        }
+
+        @Deprecated
         public String getNickname() {
             return nickname;
         }
 
+        @Deprecated
         public void setNickname(String nickname) {
             this.nickname = nickname;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
         }
 
         public String getAvatar() {
@@ -173,6 +198,30 @@ public class GroupHonorInfoData {
 
         public void setDescription(String description) {
             this.description = description;
+        }
+
+        public String getDesc() {
+            return desc;
+        }
+
+        public void setDesc(String desc) {
+            this.desc = desc;
+        }
+
+        public String getBtnText() {
+            return btnText;
+        }
+
+        public void setBtnText(String btnText) {
+            this.btnText = btnText;
+        }
+
+        public String getText() {
+            return text;
+        }
+
+        public void setText(String text) {
+            this.text = text;
         }
 
         @Override

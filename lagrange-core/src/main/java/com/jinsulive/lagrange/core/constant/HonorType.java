@@ -46,7 +46,7 @@ public enum HonorType {
     public static HonorType convert(String value) {
         return Arrays.stream(values())
                 .filter(item -> Objects.equals(item.getValue(), value))
-                .findFirst().orElse(null);
+                .findFirst().orElse(NULL);
     }
 
     public String getValue() {

@@ -47,6 +47,10 @@ public enum NoticeType {
      */
     NOTIFY("notify"),
     /**
+     * 精华消息
+     */
+    ESSENCE("essence"),
+    /**
      * null
      */
     NULL(null);
@@ -60,7 +64,7 @@ public enum NoticeType {
     public static NoticeType convert(String value) {
         return Arrays.stream(values())
                 .filter(item -> Objects.equals(item.getValue(), value))
-                .findFirst().orElse(null);
+                .findFirst().orElse(NULL);
     }
 
     public String getValue() {
