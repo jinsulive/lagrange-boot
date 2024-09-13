@@ -38,6 +38,8 @@
 
 #### 配置
 
+> 两种配置方式二选一即可，若同时配置，YAML配置将覆盖JSON配置
+
 <Details>
 <summary>YAML方式</summary>
 
