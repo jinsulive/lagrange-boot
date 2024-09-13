@@ -3,30 +3,32 @@ package com.jinsulive.lagrange.spring.autoconfigure.processor;
 import cn.hutool.core.io.resource.ClassPathResource;
 import cn.hutool.core.io.resource.FileResource;
 import cn.hutool.core.io.resource.Resource;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.core.util.JsonUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.env.EnvironmentPostProcessor;
 import org.springframework.boot.env.OriginTrackedMapPropertySource;
+import org.springframework.boot.logging.DeferredLog;
+import org.springframework.context.ApplicationEvent;
+import org.springframework.context.ApplicationListener;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.PropertySource;
 
+import javax.annotation.Nullable;
 import java.io.*;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
  * @author lxy
  * @since 2024年03月19日 17:25:41
  */
-public class JsonEnvironmentPostProcessor implements EnvironmentPostProcessor {
+public class JsonEnvironmentPostProcessor implements EnvironmentPostProcessor, ApplicationListener<ApplicationEvent> {
 
-    private static final Logger log = LoggerFactory.getLogger(JsonEnvironmentPostProcessor.class);
+    private static final DeferredLog log = new DeferredLog();
 
     private final String[] jsonSourceNames = new String[]{"lagrange.json", "config/lagrange.json"};
 
@@ -40,31 +42,38 @@ public class JsonEnvironmentPostProcessor implements EnvironmentPostProcessor {
                 propertySource = loadJsonPropertySource(jsonSourceName, resource);
                 break;
             } catch (Exception e) {
-                log.warn("尝试加载ClassPath配置文件异常: {}, e: {}", jsonSourceName, e.getMessage());
+                log.debug(String.format("try to load %s from 'classpath' error. e: %s", jsonSourceName, e.getMessage()));
             }
             try {
                 resource = new FileResource(System.getProperty("user.dir") + File.separator + jsonSourceName);
                 propertySource = loadJsonPropertySource(jsonSourceName, resource);
                 break;
             } catch (Exception e) {
-                log.warn("尝试从外部加载配置文件异常: {}, e: {}", jsonSourceName, e.getMessage());
+                log.debug(String.format("try to load %s from 'user.dir' error. e: %s", jsonSourceName, e.getMessage()));
             }
         }
         if (propertySource == null) {
-            throw new RuntimeException("lagrange.json 配置文件加载异常, 请查看配置文件存放路径是否正确");
+            log.warn("fail to load 'lagrange.json' or 'config/lagrange.json', check whether the storage path is correct. " +
+                    "if you has been configured in YAML mode, ignore it.");
         }
-        environment.getPropertySources().addLast(propertySource);
+        if (propertySource != null) {
+            environment.getPropertySources().addLast(propertySource);
+        }
     }
 
     public PropertySource<?> loadJsonPropertySource(String name, Resource resource) throws IOException {
         String resourceString = readResourceAsString(resource);
+        if (StrUtil.isBlank(resourceString)) {
+            return null;
+        }
         JSONObject resourceJson = JsonUtil.toJsonObj(resourceString);
-        Map<String, Object> map = new HashMap<>();
-        resourceJson.forEach((key, value) -> putEntry(map, key, value));
-        if (map.isEmpty()) {
+        if (resourceJson == null) {
+            return null;
+        }
+        if (resourceJson.isEmpty()) {
             return new OriginTrackedMapPropertySource(name, Collections.emptyMap(), true);
         }
-        return new OriginTrackedMapPropertySource(name, Collections.unmodifiableMap(map), true);
+        return new OriginTrackedMapPropertySource(name, Collections.unmodifiableMap(resourceJson), true);
     }
 
 
@@ -117,5 +126,10 @@ public class JsonEnvironmentPostProcessor implements EnvironmentPostProcessor {
         inputStreamReader.close();
         in.close();
         return builder.toString();
+    }
+
+    @Override
+    public void onApplicationEvent(@Nullable ApplicationEvent event) {
+        log.replayTo(JsonEnvironmentPostProcessor.class);
     }
 }

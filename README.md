@@ -32,12 +32,33 @@
 
 ### 使用说明
 
-#### 配置
-
-> 将 lagrange.json 文件放置到 src/main/resources 目录 或 项目根目录的 config 目录下  
-> `openDebugLog` 与 `openMataEventLog` 默认配置为 `false`，可自行配置，方便开发与调试  
+> 使用`@EnableLagrangeBot`开启即可，如需启用内置的`http`的`sdk`，将`sendType`设置为`SendType.HTTP`  
 > `lagrangeBotClient` 默认配置为 `com.jinsulive.lagrange.sdk.DefaultLagrangeBotClient`  
 > 若需自定义实现`lagrangeBotClient`，请继承`com.jinsulive.lagrange.sdk.AbstractLagrangeBotClient`抽象类
+
+#### 配置
+
+<Details>
+<summary>YAML方式</summary>
+
+```yaml
+lagrange:
+  web-socket-server: ws://127.0.0.1:8081
+  http-server: http://127.0.0.1:8083
+  web-socket-token: ""
+  http-token: ""
+  open-mata-event-log: false
+  open-debug-log: false
+  token-type: "Bearer "
+  lagrange-bot-client: com.jinsulive.lagrange.sdk.DefaultLagrangeBotClient
+```
+
+</Details>
+
+<Details>
+<summary>JSON方式</summary>
+
+> 将 `lagrange.json` 或 `config/lagrange.json` 文件放置到`classpath`目录或项目根目录下
 
 [lagrange-example.json](./lagrange-spring-boot-starter/src/main/resources/lagrange-example.json)
 
@@ -55,7 +76,7 @@
   }
 }
 ```
-> 使用`@EnableLagrangeBot`开启即可，如需启用内置的`http`的`sdk`，请将`sendType`设置为`SendType.HTTP`
+</Details>
 
 #### 事件监听
 

@@ -1,1 +1,2 @@
 org.springframework.boot.env.EnvironmentPostProcessor=com.jinsulive.lagrange.spring.autoconfigure.processor.JsonEnvironmentPostProcessor
+org.springframework.context.ApplicationListener=com.jinsulive.lagrange.spring.autoconfigure.processor.JsonEnvironmentPostProcessor
