@@ -2,6 +2,7 @@ package com.jinsulive.lagrange.sdk.request.other;
 
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import com.jinsulive.lagrange.sdk.LagrangeNotRealizedYet;
 import com.jinsulive.lagrange.sdk.request.AbstractRequest;
 import com.jinsulive.lagrange.sdk.response.other.GetRecordResponse;
 
@@ -11,6 +12,7 @@ import com.jinsulive.lagrange.sdk.response.other.GetRecordResponse;
  * @author lxy
  * @since 2024年09月11日 15:55:51
  */
+@LagrangeNotRealizedYet
 public class GetRecordRequest extends AbstractRequest<GetRecordResponse> {
 
     /**

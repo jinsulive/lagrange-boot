@@ -28,6 +28,11 @@ public class DefaultLagrangeBotClient extends AbstractLagrangeBotClient {
 
     @Override
     public <T extends AbstractResponse> T execute(AbstractRequest<T> request) throws Exception {
+        boolean isNotRealizedYet = request.getClass().isAnnotationPresent(LagrangeNotRealizedYet.class);
+        if (isNotRealizedYet) {
+            throw new IllegalArgumentException("\"" + request.getServiceUrl() +
+                    "\" not realize yet in lagrange, may be realize in the future.");
+        }
         String serviceUrl = request.getServiceUrl();
         JSONObject paramJson = request.getParamJson();
         Method method = request.getMethod();

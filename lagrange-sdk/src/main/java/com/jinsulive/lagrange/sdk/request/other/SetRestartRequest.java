@@ -1,5 +1,6 @@
 package com.jinsulive.lagrange.sdk.request.other;
 
+import cn.hutool.http.Method;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.sdk.request.AbstractRequest;
@@ -26,6 +27,11 @@ public class SetRestartRequest extends AbstractRequest<EmptyResponse> {
 
     public void setDelay(Integer delay) {
         this.delay = delay;
+    }
+
+    @Override
+    public Method getMethod() {
+        return Method.GET;
     }
 
     @Override

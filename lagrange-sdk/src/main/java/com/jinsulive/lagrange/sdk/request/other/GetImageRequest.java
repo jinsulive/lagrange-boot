@@ -3,6 +3,7 @@ package com.jinsulive.lagrange.sdk.request.other;
 import cn.hutool.http.Method;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import com.jinsulive.lagrange.sdk.LagrangeNotRealizedYet;
 import com.jinsulive.lagrange.sdk.request.AbstractRequest;
 import com.jinsulive.lagrange.sdk.response.other.GetImageResponse;
 
@@ -12,6 +13,7 @@ import com.jinsulive.lagrange.sdk.response.other.GetImageResponse;
  * @author lxy
  * @since 2024年09月11日 16:00:28
  */
+@LagrangeNotRealizedYet
 public class GetImageRequest extends AbstractRequest<GetImageResponse> {
     /**
      * 收到的图片文件名（消息段的 file 参数）

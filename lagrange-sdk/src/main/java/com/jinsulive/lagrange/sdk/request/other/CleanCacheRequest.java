@@ -1,6 +1,7 @@
 package com.jinsulive.lagrange.sdk.request.other;
 
 import cn.hutool.http.Method;
+import com.jinsulive.lagrange.sdk.LagrangeNotRealizedYet;
 import com.jinsulive.lagrange.sdk.request.AbstractRequest;
 import com.jinsulive.lagrange.sdk.response.EmptyResponse;
 
@@ -10,6 +11,7 @@ import com.jinsulive.lagrange.sdk.response.EmptyResponse;
  * @author lxy
  * @since 2024年09月11日 16:27:16
  */
+@LagrangeNotRealizedYet
 public class CleanCacheRequest extends AbstractRequest<EmptyResponse> {
 
     @Override

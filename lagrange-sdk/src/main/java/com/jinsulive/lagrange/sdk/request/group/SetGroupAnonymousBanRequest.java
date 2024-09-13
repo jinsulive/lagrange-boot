@@ -2,6 +2,7 @@ package com.jinsulive.lagrange.sdk.request.group;
 
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import com.jinsulive.lagrange.sdk.LagrangeNotRealizedYet;
 import com.jinsulive.lagrange.sdk.request.AbstractRequest;
 import com.jinsulive.lagrange.sdk.response.EmptyResponse;
 
@@ -12,6 +13,7 @@ import com.jinsulive.lagrange.sdk.response.EmptyResponse;
  * @author lxy
  * @since 2024年09月11日 14:41:48
  */
+@LagrangeNotRealizedYet
 public class SetGroupAnonymousBanRequest extends AbstractRequest<EmptyResponse> {
 
     /**
