@@ -27,6 +27,9 @@ public class ConvertMessageUtil {
         }
         Image image = (Image) message.getData();
         String file = image.getFile();
+        if (Objects.isNull(file)) {
+            return;
+        }
         String path;
         // 如果不是文件系统开头直接返回
         if (!file.startsWith("file://")) {
