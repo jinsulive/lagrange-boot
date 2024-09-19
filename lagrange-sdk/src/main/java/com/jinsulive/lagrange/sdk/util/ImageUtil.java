@@ -5,10 +5,9 @@ import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Base64;
 
 /**
@@ -82,6 +81,43 @@ public class ImageUtil {
             try {
                 if (bais != null) {
                     bais.close();
+                }
+            } catch (IOException ignore) {
+            }
+        }
+    }
+
+    /**
+     * 将一张网络图片转化成Base64字符串
+     *
+     * @param imageUrl 图片网络地址
+     * @return 图片base64字符串
+     */
+    public static String netImageToBase64(String imageUrl) {
+        InputStream is = null;
+        try (ByteArrayOutputStream data = new ByteArrayOutputStream()) {
+            // 创建URL
+            URL url = new URL(imageUrl);
+            byte[] by = new byte[1024];
+            // 创建链接
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setConnectTimeout(10000);
+            is = conn.getInputStream();
+            // 将内容读取内存中
+            int len;
+            while ((len = is.read(by)) != -1) {
+                data.write(by, 0, len);
+            }
+            return Base64.getEncoder().encodeToString(data.toByteArray());
+        } catch (IOException e) {
+            log.error("网络图片转Base64字符串失败 imageUrl: {}, e: {}", imageUrl, e.getMessage(), e);
+            return null;
+        } finally {
+            try {
+                if (is != null) {
+                    // 关闭流
+                    is.close();
                 }
             } catch (IOException ignore) {
             }
