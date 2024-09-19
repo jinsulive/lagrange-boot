@@ -1,0 +1,20 @@
+name: 新功能提议
+description: 希望拥有新的功能
+title: '[Feature Request]: '
+labels: [ "enhancement" ]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### 如果您有能力，请考虑提交PR
+        ### 当 Owner 或 Member 认为该 Feature Request 不合适，可能直接关闭 ISSUE
+
+  - type: textarea
+    id: feature-content
+    attributes:
+      label: 新需求内容
+      description: |
+        请尽可能详细描述您的需求，如果可以，请提供代码样例或参考项目
+    validations:
+      required: true
