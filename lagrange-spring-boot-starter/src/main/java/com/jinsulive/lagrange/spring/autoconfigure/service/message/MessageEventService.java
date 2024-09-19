@@ -58,6 +58,8 @@ public class MessageEventService implements EventService {
                 if (listenerInfo instanceof MessageListenerInfo messageListenerInfo) {
                     boolean match = messageEventMatcherService.match(messageEvent, messageListenerInfo);
                     if (match) {
+                        messageEvent.setMatchType(messageListenerInfo.getMatchType());
+                        messageEvent.setMatchValue(messageListenerInfo.getMatchValue());
                         this.invoke(messageEvent, messageListenerInfo);
                     }
                 }

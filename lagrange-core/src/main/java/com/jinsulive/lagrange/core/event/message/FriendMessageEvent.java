@@ -2,6 +2,7 @@ package com.jinsulive.lagrange.core.event.message;
 
 import cn.hutool.json.JSONUtil;
 import com.jinsulive.lagrange.core.constant.PostType;
+import com.jinsulive.lagrange.core.constant.core.MatchType;
 import com.jinsulive.lagrange.core.entity.message.Message;
 
 import java.util.List;
@@ -32,6 +33,14 @@ public class FriendMessageEvent {
      * 原始消息链
      */
     private List<Message> sourceMessageChain;
+    /**
+     * 匹配类型
+     */
+    private MatchType matchType;
+    /**
+     * 匹配规则
+     */
+    private String matchValue;
 
     public FriendMessageEvent() {
     }
@@ -46,6 +55,8 @@ public class FriendMessageEvent {
         plainText = builder.plainText;
         rawMessage = builder.rawMessage;
         sourceMessageChain = builder.sourceMessageChain;
+        matchType = builder.matchType;
+        matchValue = builder.matchValue;
     }
 
     public static Builder builder() {
@@ -124,6 +135,22 @@ public class FriendMessageEvent {
         this.sourceMessageChain = sourceMessageChain;
     }
 
+    public MatchType getMatchType() {
+        return matchType;
+    }
+
+    public void setMatchType(MatchType matchType) {
+        this.matchType = matchType;
+    }
+
+    public String getMatchValue() {
+        return matchValue;
+    }
+
+    public void setMatchValue(String matchValue) {
+        this.matchValue = matchValue;
+    }
+
     @Override
     public String toString() {
         return JSONUtil.toJsonStr(this);
@@ -139,6 +166,8 @@ public class FriendMessageEvent {
         private String plainText;
         private String rawMessage;
         private List<Message> sourceMessageChain;
+        private MatchType matchType;
+        private String matchValue;
 
         private Builder() {
         }
@@ -185,6 +214,16 @@ public class FriendMessageEvent {
 
         public Builder sourceMessageChain(List<Message> sourceMessageChain) {
             this.sourceMessageChain = sourceMessageChain;
+            return this;
+        }
+
+        public Builder matchType(MatchType matchType) {
+            this.matchType = matchType;
+            return this;
+        }
+
+        public Builder matchValue(String matchValue) {
+            this.matchValue = matchValue;
             return this;
         }
 

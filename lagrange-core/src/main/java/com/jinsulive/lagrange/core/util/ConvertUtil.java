@@ -66,6 +66,8 @@ public class ConvertUtil {
                     .plainText(messageEvent.getPlainText())
                     .rawMessage(messageEvent.getRawMessage())
                     .sourceMessageChain(messageEvent.getMessage())
+                    .matchType(messageEvent.getMatchType())
+                    .matchValue(messageEvent.getMatchValue())
                     .build();
         }
         return null;
@@ -83,6 +85,8 @@ public class ConvertUtil {
                     .plainText(messageEvent.getPlainText())
                     .rawMessage(messageEvent.getRawMessage())
                     .sourceMessageChain(messageEvent.getMessage())
+                    .matchType(messageEvent.getMatchType())
+                    .matchValue(messageEvent.getMatchValue())
                     .build();
         }
         return null;

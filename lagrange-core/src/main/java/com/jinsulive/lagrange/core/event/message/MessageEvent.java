@@ -1,5 +1,6 @@
 package com.jinsulive.lagrange.core.event.message;
 
+import com.jinsulive.lagrange.core.constant.core.MatchType;
 import com.jinsulive.lagrange.core.constant.message.MessageEventType;
 import com.jinsulive.lagrange.core.constant.message.MessageSubType;
 import com.jinsulive.lagrange.core.entity.message.Message;
@@ -25,6 +26,8 @@ public class MessageEvent extends BaseEvent {
     private Integer font;
     private Sender sender;
     private String plainText;
+    private MatchType matchType;
+    private String matchValue;
 
     public MessageEvent() {
     }
@@ -116,4 +119,21 @@ public class MessageEvent extends BaseEvent {
     public void setPlainText(String plainText) {
         this.plainText = plainText;
     }
+
+    public MatchType getMatchType() {
+        return matchType;
+    }
+
+    public void setMatchType(MatchType matchType) {
+        this.matchType = matchType;
+    }
+
+    public String getMatchValue() {
+        return matchValue;
+    }
+
+    public void setMatchValue(String matchValue) {
+        this.matchValue = matchValue;
+    }
+
 }
