@@ -8,6 +8,7 @@ body:
     attributes:
       value: |
         ### 如果您有能力，请考虑提交PR
+        ### 请先确定您提交的需求是否已被提出
         ### 当 Owner 或 Member 认为该 Feature Request 不合适，可能直接关闭 ISSUE
 
   - type: textarea
