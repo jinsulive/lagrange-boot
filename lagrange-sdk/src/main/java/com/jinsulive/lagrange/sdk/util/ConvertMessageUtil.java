@@ -31,12 +31,14 @@ public class ConvertMessageUtil {
             return;
         }
         String path;
+        String imageToBase64 = null;
         // 如果不是文件系统开头直接返回
-        if (!file.startsWith("file://")) {
-            return;
+        if (file.startsWith("file://")) {
+            path = file.replaceFirst("file://", "");
+            imageToBase64 = ImageUtil.imageToBase64(path);
+        } else if (PatternUtil.isUrl(file)) {
+            imageToBase64 = ImageUtil.netImageToBase64(file);
         }
-        path = file.replaceFirst("file://", "");
-        String imageToBase64 = ImageUtil.imageToBase64(path);
         if (Objects.isNull(imageToBase64)) {
             return;
         }
