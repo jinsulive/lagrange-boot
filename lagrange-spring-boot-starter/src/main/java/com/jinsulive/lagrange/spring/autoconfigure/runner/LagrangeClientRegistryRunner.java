@@ -46,6 +46,7 @@ public class LagrangeClientRegistryRunner implements ApplicationRunner, Applicat
         config.setWebsocketToken(lagrangeConfig.getWebSocketToken());
         config.setTokenType(lagrangeConfig.getTokenType());
         config.setEventServiceHandler(eventServiceHandler);
+        config.setOpenDebugLog(lagrangeConfig.isOpenDebugLog());
         LagrangeBotWebSocketClient lagrangeBotWebSocketClient = new LagrangeBotWebSocketClient(config);
         Class<LagrangeBotWebSocketClient> lagrangeBotWebSocketClientClass = LagrangeBotWebSocketClient.class;
         AbstractBeanDefinition beanDefinition = BeanDefinitionBuilder.genericBeanDefinition(lagrangeBotWebSocketClientClass,
