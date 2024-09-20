@@ -18,7 +18,7 @@ public class FriendMessageEvent {
     private Long time;
     private Long selfId;
     private PostType postType;
-    private Integer messageId;
+    private Long messageId;
     private Long userId;
     private String nickname;
     /**
@@ -87,11 +87,11 @@ public class FriendMessageEvent {
         this.postType = postType;
     }
 
-    public Integer getMessageId() {
+    public Long getMessageId() {
         return messageId;
     }
 
-    public void setMessageId(Integer messageId) {
+    public void setMessageId(Long messageId) {
         this.messageId = messageId;
     }
 
@@ -160,7 +160,7 @@ public class FriendMessageEvent {
         private Long time;
         private Long selfId;
         private PostType postType;
-        private Integer messageId;
+        private Long messageId;
         private Long userId;
         private String nickname;
         private String plainText;
@@ -187,7 +187,7 @@ public class FriendMessageEvent {
             return this;
         }
 
-        public Builder messageId(Integer messageId) {
+        public Builder messageId(Long messageId) {
             this.messageId = messageId;
             return this;
         }

@@ -17,7 +17,7 @@ public class MessageEvent extends BaseEvent {
 
     private MessageEventType messageType;
     private MessageSubType subType;
-    private Integer messageId;
+    private Long messageId;
     private Long groupId;
     private Long userId;
     private String anonymous;
@@ -48,11 +48,11 @@ public class MessageEvent extends BaseEvent {
         this.subType = subType;
     }
 
-    public Integer getMessageId() {
+    public Long getMessageId() {
         return messageId;
     }
 
-    public void setMessageId(Integer messageId) {
+    public void setMessageId(Long messageId) {
         this.messageId = messageId;
     }
 
