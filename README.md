@@ -109,7 +109,9 @@ lagrange:
 ```java
 
 @MessageListener(
-        contentTrim = true // 是否清除前后空格
+        contentTrim = true, // 是否清除前后空格
+        match = @MessageListener.Match(), // 匹配器
+        filter = @MessageListener.Filter() // 过滤器
 )
 public void messageListener(String event) {
 }
@@ -121,7 +123,10 @@ public void messageListener(String event) {
 
 ```java
 
-@NoticeListener
+@NoticeListener(
+        match = @NoticeListener.Match(), // 匹配器
+        filter = @NoticeListener.Filter() // 过滤器
+)
 public void noticeListener(NoticeEvent event) {
 }
 ```
@@ -132,7 +137,26 @@ public void noticeListener(NoticeEvent event) {
 
 ```java
 
-@RequestListener
+@RequestListener(
+        match = @RequestListener.Match() // 匹配器
+)
 public void requestListener(RequestEvent event) {
 }
 ```
+
+#### 消息发送示例
+```java
+    private LagrangeBotClient lagrangeBotClient;
+
+    public void sendGroupMessage() {
+        Long groupId = 0L;
+        List<Message> messages = MessageChain.builder()
+                .text("测试")
+                .get();
+        SendGroupMessageRequest request = new SendGroupMessageRequest();
+        request.setGroupId(groupId);
+        request.setMessage(messages);
+        lagrangeBotClient.execute(request);
+    }
+```
+
