@@ -7,6 +7,6 @@
     "tokenType": "Bearer ",
     "openDebugLog": false,
     "openMataEventLog": false,
-    "lagrangeBotClient": "com.jinsulive.lagrange.sdk.DefaultLagrangeBotClient"
+    "lagrangeBotClient": "cn.jinsulive.lagrange.sdk.DefaultLagrangeBotClient"
   }
 }

@@ -34,8 +34,8 @@
 ### 使用说明
 
 > 使用`@EnableLagrangeBot`开启即可，如需启用内置的`http`的`sdk`，将`sendType`设置为`SendType.HTTP`  
-> `lagrangeBotClient` 默认配置为 `com.jinsulive.lagrange.sdk.DefaultLagrangeBotClient`  
-> 若需自定义实现`lagrangeBotClient`，请继承`com.jinsulive.lagrange.sdk.AbstractLagrangeBotClient`抽象类
+> `lagrangeBotClient` 默认配置为 `cn.jinsulive.lagrange.sdk.DefaultLagrangeBotClient`  
+> 若需自定义实现`lagrangeBotClient`，请继承`cn.jinsulive.lagrange.sdk.AbstractLagrangeBotClient`抽象类
 
 #### 配置
 
@@ -55,7 +55,7 @@ lagrange:
   open-mata-event-log: false
   open-debug-log: false
   token-type: "Bearer "
-  lagrange-bot-client: com.jinsulive.lagrange.sdk.DefaultLagrangeBotClient
+  lagrange-bot-client: cn.jinsulive.lagrange.sdk.DefaultLagrangeBotClient
 ```
 
 </Details>
@@ -77,7 +77,7 @@ lagrange:
     "tokenType": "Bearer ",
     "openDebugLog": false,
     "openMataEventLog": false,
-    "lagrangeBotClient": "com.jinsulive.lagrange.sdk.DefaultLagrangeBotClient"
+    "lagrangeBotClient": "cn.jinsulive.lagrange.sdk.DefaultLagrangeBotClient"
   }
 }
 ```
