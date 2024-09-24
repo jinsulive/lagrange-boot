@@ -6,11 +6,14 @@ import cn.hutool.json.JSONUtil;
  * 回复
  *
  * @author lxy
- * @see <a href="https://github.com/botuniverse/onebot-11/blob/master/message/segment.md#%E5%9B%9E%E5%A4%8D" />
+ * @see <a href="https://github.com/botuniverse/onebot-11/blob/master/message/segment.md#%E5%9B%9E%E5%A4%8D" >回复</a>
  * @since 2024年03月07日 00:08:01
  */
 public class Reply {
-    private String id;
+    /**
+     * 回复的消息 ID
+     */
+    private Long id;
 
     public Reply() {
     }
@@ -23,11 +26,11 @@ public class Reply {
         return new Builder();
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -37,12 +40,12 @@ public class Reply {
     }
 
     public static final class Builder {
-        private String id;
+        private Long id;
 
         private Builder() {
         }
 
-        public Builder id(String id) {
+        public Builder id(Long id) {
             this.id = id;
             return this;
         }

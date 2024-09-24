@@ -6,10 +6,13 @@ import cn.hutool.json.JSONUtil;
  * 合并转发
  *
  * @author lxy
- * @see <a href="https://github.com/botuniverse/onebot-11/blob/master/message/segment.md#%E5%90%88%E5%B9%B6%E8%BD%AC%E5%8F%91-" />
+ * @see <a href="https://github.com/botuniverse/onebot-11/blob/master/message/segment.md#%E5%90%88%E5%B9%B6%E8%BD%AC%E5%8F%91-">合并转发</a>
  * @since 2024年03月07日 00:10:53
  */
 public class Forward {
+    /**
+     * 转发消息ID
+     */
     private String id;
 
     public Forward() {

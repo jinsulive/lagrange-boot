@@ -6,10 +6,13 @@ import cn.hutool.json.JSONUtil;
  * json
  *
  * @author lxy
- * @see <a href="https://github.com/botuniverse/onebot-11/blob/master/message/segment.md#json-%E6%B6%88%E6%81%AF" />
+ * @see <a href="https://github.com/botuniverse/onebot-11/blob/master/message/segment.md#json-%E6%B6%88%E6%81%AF">json消息</a>
  * @since 2024年03月07日 00:16:28
  */
 public class Json {
+    /**
+     * JSON 构造体
+     */
     private String data;
 
     public Json() {

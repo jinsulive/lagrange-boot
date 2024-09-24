@@ -6,16 +6,33 @@ import cn.hutool.json.JSONUtil;
  * 图片
  *
  * @author lxy
- * @see <a href="https://github.com/botuniverse/onebot-11/blob/master/message/segment.md#%E5%9B%BE%E7%89%87"/>
+ * @see <a href="https://github.com/botuniverse/onebot-11/blob/master/message/segment.md#%E5%9B%BE%E7%89%87">图片</a>
  * @since 2024年03月06日 22:58:08
  */
 public class Image {
-
+    /**
+     * 图片文件名
+     */
     private String file;
+    /**
+     * 图片 URL
+     */
     private String url;
+    /**
+     * 图片类型，flash 表示闪照，无此参数表示普通图片
+     */
     private String type;
+    /**
+     * 只在通过网络 URL 发送时有效，表示是否使用已缓存的文件，默认 1
+     */
     private Integer cache;
+    /**
+     * 只在通过网络 URL 发送时有效，表示是否通过代理下载文件（需通过环境变量或配置文件配置代理），默认 1
+     */
     private Integer proxy;
+    /**
+     * 只在通过网络 URL 发送时有效，单位秒，表示下载网络文件的超时时间，默认不超时
+     */
     private Integer timeout;
 
     public Image() {

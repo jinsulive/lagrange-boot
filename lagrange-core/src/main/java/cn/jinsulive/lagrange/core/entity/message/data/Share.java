@@ -6,14 +6,26 @@ import cn.hutool.json.JSONUtil;
  * 链接分享
  *
  * @author lxy
- * @see <a href="https://github.com/botuniverse/onebot-11/blob/master/message/segment.md#%E9%93%BE%E6%8E%A5%E5%88%86%E4%BA%AB" />
+ * @see <a href="https://github.com/botuniverse/onebot-11/blob/master/message/segment.md#%E9%93%BE%E6%8E%A5%E5%88%86%E4%BA%AB">链接分享</a>
  * @since 2024年03月06日 23:26:40
  */
 public class Share {
 
+    /**
+     * URL
+     */
     private String url;
+    /**
+     * 标题
+     */
     private String title;
+    /**
+     * 发送时可选，内容描述
+     */
     private String content;
+    /**
+     * 发送时可选，图片 URL
+     */
     private String image;
 
     public Share() {

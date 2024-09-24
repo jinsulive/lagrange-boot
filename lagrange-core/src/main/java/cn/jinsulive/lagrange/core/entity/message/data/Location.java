@@ -6,17 +6,25 @@ import cn.hutool.json.JSONUtil;
  * 位置
  *
  * @author lxy
- * @see <a href="https://github.com/botuniverse/onebot-11/blob/master/message/segment.md#%E4%BD%8D%E7%BD%AE" />
+ * @see <a href="https://github.com/botuniverse/onebot-11/blob/master/message/segment.md#%E4%BD%8D%E7%BD%AE">位置</a>
  * @since 2024年03月06日 23:34:23
  */
 public class Location {
-
+    /**
+     * 纬度
+     */
     private String lat;
-
+    /**
+     * 经度
+     */
     private String lon;
-
+    /**
+     * 发送时可选，标题
+     */
     private String title;
-
+    /**
+     * 发送时可选，内容描述
+     */
     private String content;
 
     public Location() {

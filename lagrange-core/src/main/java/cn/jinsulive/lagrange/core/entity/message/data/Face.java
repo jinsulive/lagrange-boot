@@ -6,10 +6,13 @@ import cn.hutool.json.JSONUtil;
  * QQ表情
  *
  * @author lxy
- * @see <a href="https://github.com/botuniverse/onebot-11/blob/master/message/segment.md#qq-%E8%A1%A8%E6%83%85" />
+ * @see <a href="https://github.com/botuniverse/onebot-11/blob/master/message/segment.md#qq-%E8%A1%A8%E6%83%85">QQ表情</a>
  * @since 2024年03月06日 22:52:58
  */
 public class Face {
+    /**
+     * 表情id
+     */
     private String id;
 
     public Face() {

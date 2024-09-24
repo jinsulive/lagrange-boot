@@ -6,13 +6,17 @@ import cn.hutool.json.JSONUtil;
  * At某人
  *
  * @author lxy
- * @see <a href="https://github.com/botuniverse/onebot-11/blob/master/message/segment.md#%E6%9F%90%E4%BA%BA" />
+ * @see <a href="https://github.com/botuniverse/onebot-11/blob/master/message/segment.md#%E6%9F%90%E4%BA%BA">At某人</a>
  * @since 2024年03月06日 23:22:23
  */
 public class At {
-
+    /**
+     * qq号
+     */
     private String qq;
-
+    /**
+     * 昵称
+     */
     private String name;
 
     public At() {

@@ -7,17 +7,37 @@ import cn.jinsulive.lagrange.core.constant.message.data.MusicType;
  * 音乐分享/音乐自定义分享
  *
  * @author lxy
- * @see <a href="https://github.com/botuniverse/onebot-11/blob/master/message/segment.md#%E9%9F%B3%E4%B9%90" />
+ * @see <a href="https://github.com/botuniverse/onebot-11/blob/master/message/segment.md#%E9%9F%B3%E4%B9%90">音乐</a>
  * @since 2024年03月06日 23:36:31
  */
 public class Music {
-
+    /**
+     * 音乐类型
+     */
     private MusicType type;
+    /**
+     * 歌曲 ID
+     */
     private String id;
+    /**
+     * 点击后跳转目标 URL
+     */
     private String url;
+    /**
+     * 音乐 URL
+     */
     private String audio;
+    /**
+     * 标题
+     */
     private String title;
+    /**
+     * 发送时可选，内容描述
+     */
     private String content;
+    /**
+     * 发送时可选，图片 URL
+     */
     private String image;
 
     public Music() {

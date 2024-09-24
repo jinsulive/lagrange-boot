@@ -6,10 +6,13 @@ import cn.hutool.json.JSONUtil;
  * 纯文本
  *
  * @author lxy
- * @see <a href="https://github.com/botuniverse/onebot-11/blob/master/message/segment.md#%E7%BA%AF%E6%96%87%E6%9C%AC" />
+ * @see <a href="https://github.com/botuniverse/onebot-11/blob/master/message/segment.md#%E7%BA%AF%E6%96%87%E6%9C%AC">纯文本</a>
  * @since 2024年03月06日 22:51:58
  */
 public class Text {
+    /**
+     * 内容
+     */
     private String text;
 
     public Text() {

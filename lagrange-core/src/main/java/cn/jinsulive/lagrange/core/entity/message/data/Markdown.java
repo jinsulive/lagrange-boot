@@ -9,6 +9,9 @@ import cn.hutool.json.JSONUtil;
  * @since 2024年03月07日 00:08:01
  */
 public class Markdown {
+    /**
+     * markdown构造体
+     */
     private String content;
 
     public Markdown() {

@@ -6,16 +6,31 @@ import cn.jinsulive.lagrange.core.entity.message.Message;
 import java.util.List;
 
 /**
+ * node节点
  *
  * @author lxy
  * @since 2024年03月07日 00:13:29
  */
 public class Node {
-
+    /**
+     * qq号
+     */
     private Long userId;
+    /**
+     * 昵称
+     */
     private String nickname;
+    /**
+     * qq号
+     */
     private String uin;
+    /**
+     * 昵称
+     */
     private String name;
+    /**
+     * 消息链
+     */
     private List<Message> content;
 
     public Node() {

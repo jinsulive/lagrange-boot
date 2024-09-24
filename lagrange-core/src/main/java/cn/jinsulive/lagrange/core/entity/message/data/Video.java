@@ -6,15 +6,29 @@ import cn.hutool.json.JSONUtil;
  * 短视频
  *
  * @author lxy
- * @see <a href="https://github.com/botuniverse/onebot-11/blob/master/message/segment.md#%E7%9F%AD%E8%A7%86%E9%A2%91" />
+ * @see <a href="https://github.com/botuniverse/onebot-11/blob/master/message/segment.md#%E7%9F%AD%E8%A7%86%E9%A2%91" >短视频</a>
  * @since 2024年03月06日 23:19:51
  */
 public class Video {
-
+    /**
+     * 视频文件名
+     */
     private String file;
+    /**
+     * 视频 URL
+     */
     private String url;
+    /**
+     * 只在通过网络 URL 发送时有效，表示是否使用已缓存的文件，默认 1
+     */
     private Integer cache;
+    /**
+     * 只在通过网络 URL 发送时有效，表示是否通过代理下载文件（需通过环境变量或配置文件配置代理），默认 1
+     */
     private Integer proxy;
+    /**
+     * 只在通过网络 URL 发送时有效，单位秒，表示下载网络文件的超时时间 ，默认不超时
+     */
     private Integer timeout;
 
     public Video() {

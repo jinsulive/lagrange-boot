@@ -1,7 +1,6 @@
 package cn.jinsulive.lagrange.core.entity.message;
 
 import cn.hutool.json.JSONUtil;
-import cn.jinsulive.lagrange.core.entity.message.data.*;
 import cn.jinsulive.lagrange.core.constant.message.MessageType;
 import cn.jinsulive.lagrange.core.entity.message.data.*;
 
