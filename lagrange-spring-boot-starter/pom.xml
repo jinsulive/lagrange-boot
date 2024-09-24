@@ -6,7 +6,7 @@
     <parent>
         <groupId>cn.jinsulive</groupId>
         <artifactId>lagrange-boot</artifactId>
-        <version>1.0.0.Beta.1</version>
+        <version>1.0.0.Beta.2</version>
     </parent>
 
     <artifactId>lagrange-spring-boot-starter</artifactId>
