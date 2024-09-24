@@ -18,6 +18,13 @@
     <description>lagrange spring-boot starter</description>
     <url>https://github.com/jinsulive/lagrange-boot</url>
 
+    <licenses>
+        <license>
+            <name>GPL-3.0</name>
+            <url>https://www.gnu.org/licenses/gpl-3.0.html</url>
+        </license>
+    </licenses>
+
     <developers>
         <developer>
             <name>lxy</name>
@@ -30,13 +37,6 @@
         <connection>scm:git:https://github.com/jinsulive/lagrange-boot.git</connection>
         <developerConnection>scm:git:https://github.com/jinsulive/lagrange-boot.git</developerConnection>
     </scm>
-
-    <licenses>
-        <license>
-            <name>GPL-3.0</name>
-            <url>https://www.gnu.org/licenses/gpl-3.0.html</url>
-        </license>
-    </licenses>
 
     <modules>
         <module>lagrange-core</module>
