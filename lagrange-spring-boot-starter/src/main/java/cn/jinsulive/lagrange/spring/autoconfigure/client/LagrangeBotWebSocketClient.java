@@ -3,7 +3,9 @@ package cn.jinsulive.lagrange.spring.autoconfigure.client;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.Header;
 import cn.jinsulive.lagrange.core.event.BaseEvent;
+import cn.jinsulive.lagrange.core.event.message.MessageEvent;
 import cn.jinsulive.lagrange.core.util.ConvertUtil;
+import cn.jinsulive.lagrange.core.util.LogUtil;
 import cn.jinsulive.lagrange.spring.autoconfigure.handler.EventServiceHandler;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
@@ -60,6 +62,8 @@ public class LagrangeBotWebSocketClient extends WebSocketClient implements Dispo
             if (Objects.isNull(baseEvent)) {
                 log.warn("[websocket] 收到未知类型消息: {}", message);
                 return;
+            } else if (baseEvent instanceof MessageEvent) {
+                LogUtil.debug(config.getOpenDebugLog(), "[websocket] 收到消息: {}", message);
             }
             config.getEventServiceHandler().handle(baseEvent);
         } catch (Exception e) {
@@ -125,6 +129,8 @@ public class LagrangeBotWebSocketClient extends WebSocketClient implements Dispo
 
         private String tokenType;
 
+        private Boolean openDebugLog;
+
         private EventServiceHandler eventServiceHandler;
 
         public Config() {
@@ -160,6 +166,14 @@ public class LagrangeBotWebSocketClient extends WebSocketClient implements Dispo
 
         public void setEventServiceHandler(EventServiceHandler eventServiceHandler) {
             this.eventServiceHandler = eventServiceHandler;
+        }
+
+        public Boolean getOpenDebugLog() {
+            return openDebugLog;
+        }
+
+        public void setOpenDebugLog(Boolean openDebugLog) {
+            this.openDebugLog = openDebugLog;
         }
 
     }
