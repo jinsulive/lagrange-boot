@@ -33,6 +33,20 @@
 
 ### 使用说明
 
+<Details>
+<summary>MAVEN引入</summary>
+
+目前最新版本为 `1.0.0.Beta.2`
+```xml
+<dependency>
+    <groupId>cn.jinsulive</groupId>
+    <artifactId>lagrange-spring-boot-starter</artifactId>
+    <version>版本号</version>
+</dependency>
+```
+
+</Details>
+
 > 使用`@EnableLagrangeBot`开启即可，如需启用内置的`http`的`sdk`，将`sendType`设置为`SendType.HTTP`  
 > `lagrangeBotClient` 默认配置为 `cn.jinsulive.lagrange.sdk.DefaultLagrangeBotClient`  
 > 若需自定义实现`lagrangeBotClient`，请继承`cn.jinsulive.lagrange.sdk.AbstractLagrangeBotClient`抽象类
