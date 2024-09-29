@@ -1,8 +1,9 @@
-package cn.jinsulive.lagrange.spring.autoconfigure.config;
+package cn.jinsulive.lagrange.spring.autoconfigure.runner;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.jinsulive.lagrange.sdk.AbstractLagrangeBotClient;
 import cn.jinsulive.lagrange.sdk.LagrangeBotClient;
+import cn.jinsulive.lagrange.spring.autoconfigure.config.LagrangeConfig;
 import cn.jinsulive.lagrange.spring.autoconfigure.entity.Bot;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;

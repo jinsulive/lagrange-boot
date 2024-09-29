@@ -1,6 +1,6 @@
 package cn.jinsulive.lagrange.spring.autoconfigure;
 
-import cn.jinsulive.lagrange.spring.autoconfigure.config.LagrangeSdkClientRegistryRunner;
+import cn.jinsulive.lagrange.spring.autoconfigure.runner.LagrangeSdkClientRegistryRunner;
 import cn.jinsulive.lagrange.spring.autoconfigure.constant.SendType;
 import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.annotation.AnnotationAttributes;
