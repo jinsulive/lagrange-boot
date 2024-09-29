@@ -14,21 +14,31 @@ public abstract class AbstractLagrangeBotClient implements LagrangeBotClient {
 
     public AbstractLagrangeBotClient(Config config) {
         if (StrUtil.isBlankOrUndefined(config.getServerUrl())) {
-            throw new IllegalArgumentException("lagrange bot server url can not be blank or undefined");
+            throw new IllegalArgumentException("lagrange bot[ ID: " + config.getBotId() + " ] server url can not be blank or undefined");
         }
         this.config = config;
     }
 
     public static class Config {
 
+        public Long botId;
         private String serverUrl;
         private String httpToken;
         private String tokenType;
 
-        public Config(String serverUrl, String httpToken, String tokenType) {
+        public Config(Long botId, String serverUrl, String httpToken, String tokenType) {
+            this.botId = botId;
             this.serverUrl = serverUrl;
             this.httpToken = httpToken;
             this.tokenType = tokenType;
+        }
+
+        public Long getBotId() {
+            return botId;
+        }
+
+        public void setBotId(Long botId) {
+            this.botId = botId;
         }
 
         public String getServerUrl() {

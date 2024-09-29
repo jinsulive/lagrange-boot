@@ -1,6 +1,5 @@
 package cn.jinsulive.lagrange.spring.autoconfigure.service.notice;
 
-import cn.hutool.core.lang.Assert;
 import cn.hutool.json.JSONUtil;
 import cn.jinsulive.lagrange.core.annotation.ListenerInfo;
 import cn.jinsulive.lagrange.core.annotation.notice.NoticeListenerInfo;
@@ -49,7 +48,7 @@ public class NoticeEventService implements EventService {
     @Override
     public void handler(BaseEvent event) {
         NoticeEvent noticeEvent = (NoticeEvent) event;
-        LogUtil.debug(lagrangeConfig.isOpenDebugLog(), "[NoticeEvent] 收到notice消息: {}", noticeEvent);
+        LogUtil.debug(lagrangeConfig.isOpenDebugLog(), "[NoticeEvent.{}] 收到notice消息: {}", noticeEvent.getSelfId(), noticeEvent);
         executorService.execute(() -> {
             List<ListenerInfo> messageListenerInfos = methodListenerContext.getListenerInfos();
             messageListenerInfos.forEach(listenerInfo -> {
@@ -66,7 +65,10 @@ public class NoticeEventService implements EventService {
     private void invoke(NoticeEvent noticeEvent, NoticeListenerInfo noticeListenerInfo) {
         Method method = noticeListenerInfo.getMethod();
         Class<?>[] parameterTypes = method.getParameterTypes();
-        Assert.isTrue(parameterTypes.length == 1, "{} should have only one parameter. but found {}.", noticeListenerInfo.getName(), parameterTypes.length);
+        if (parameterTypes.length != 1) {
+            log.error("[NoticeEvent.invoke.{}] {} should have only one parameter. but found {}.", noticeEvent.getSelfId(), noticeListenerInfo.getName(), parameterTypes.length);
+            return;
+        }
         Class<?> parameterType = parameterTypes[0];
         Class<?> declaringClass = method.getDeclaringClass();
         try {
@@ -78,7 +80,7 @@ public class NoticeEventService implements EventService {
                 method.invoke(instance, JSONUtil.toJsonStr(noticeEvent));
             }
         } catch (IllegalAccessException | InvocationTargetException e) {
-            log.error("[NoticeEvent-Executor] 执行 {} 异常 error: {}", noticeListenerInfo.getName(), e.getMessage(), e);
+            log.error("[NoticeEvent.invoke.{}] 执行 {} 异常 error: {}", noticeEvent.getSelfId(), noticeListenerInfo.getName(), e.getMessage(), e);
         }
     }
 }

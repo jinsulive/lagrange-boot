@@ -12,7 +12,7 @@
 
     <groupId>cn.jinsulive</groupId>
     <artifactId>lagrange-boot</artifactId>
-    <version>1.0.0.Beta.2</version>
+    <version>1.0.0.Beta.3</version>
     <packaging>pom</packaging>
 
     <description>lagrange spring-boot starter</description>
@@ -50,14 +50,20 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <hutool-all.version>5.8.25</hutool-all.version>
+        <hutool.version>5.8.25</hutool.version>
         <java-webSocket.version>1.5.3</java-webSocket.version>
         <reflections.version>0.10.2</reflections.version>
         <jackson.version>2.14.2</jackson.version>
+        <gson.version>2.10.1</gson.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${gson.version}</version>
+            </dependency>
             <!-- websocket 客户端 -->
             <dependency>
                 <groupId>org.java-websocket</groupId>
@@ -67,8 +73,13 @@
             <!-- hutool -->
             <dependency>
                 <groupId>cn.hutool</groupId>
-                <artifactId>hutool-all</artifactId>
-                <version>${hutool-all.version}</version>
+                <artifactId>hutool-json</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-http</artifactId>
+                <version>${hutool.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.reflections</groupId>

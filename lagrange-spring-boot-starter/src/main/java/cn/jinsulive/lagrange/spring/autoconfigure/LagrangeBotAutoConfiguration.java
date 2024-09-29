@@ -3,7 +3,7 @@ package cn.jinsulive.lagrange.spring.autoconfigure;
 import cn.jinsulive.lagrange.spring.autoconfigure.config.LagrangeConfig;
 import cn.jinsulive.lagrange.spring.autoconfigure.handler.EventServiceHandler;
 import cn.jinsulive.lagrange.spring.autoconfigure.processor.EventListenerMethodProcessor;
-import cn.jinsulive.lagrange.spring.autoconfigure.runner.LagrangeClientRegistryRunner;
+import cn.jinsulive.lagrange.spring.autoconfigure.runner.LagrangeWebSocketClientRegistryRunner;
 import cn.jinsulive.lagrange.spring.autoconfigure.service.EventService;
 import cn.jinsulive.lagrange.spring.autoconfigure.service.mata.MataEventService;
 import cn.jinsulive.lagrange.spring.autoconfigure.service.message.MessageEventMatcherService;
@@ -99,10 +99,10 @@ public class LagrangeBotAutoConfiguration {
         return new EventListenerMethodProcessor();
     }
 
-    @Bean("lagrangeClientRegistryRunner")
+    @Bean("lagrangeWebSocketClientRegistryRunner")
     @ConditionalOnMissingBean
-    public LagrangeClientRegistryRunner lagrangeClientRegistryRunner() {
-        return new LagrangeClientRegistryRunner();
+    public LagrangeWebSocketClientRegistryRunner lagrangeClientRegistryRunner() {
+        return new LagrangeWebSocketClientRegistryRunner();
     }
 
     @Bean("lagrangeExecutorService")
@@ -111,7 +111,7 @@ public class LagrangeBotAutoConfiguration {
         int availableProcessors = Runtime.getRuntime().availableProcessors();
         return new ThreadPoolExecutor(availableProcessors, availableProcessors,
                 300L, TimeUnit.SECONDS, new LinkedBlockingQueue<>(),
-                new CustomizableThreadFactory("lagrange-executor-"),
+                new CustomizableThreadFactory("lagrange.invoke-"),
                 new ThreadPoolExecutor.CallerRunsPolicy());
     }
 

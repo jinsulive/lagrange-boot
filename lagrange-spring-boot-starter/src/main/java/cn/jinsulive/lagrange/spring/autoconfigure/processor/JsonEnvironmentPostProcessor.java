@@ -4,10 +4,10 @@ import cn.hutool.core.io.resource.ClassPathResource;
 import cn.hutool.core.io.resource.FileResource;
 import cn.hutool.core.io.resource.Resource;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.json.JSONArray;
-import cn.hutool.json.JSONObject;
-import cn.hutool.json.JSONUtil;
-import cn.jinsulive.lagrange.core.util.JsonUtil;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.env.EnvironmentPostProcessor;
 import org.springframework.boot.env.OriginTrackedMapPropertySource;
@@ -67,49 +67,33 @@ public class JsonEnvironmentPostProcessor implements EnvironmentPostProcessor, A
         if (StrUtil.isBlank(resourceString)) {
             return null;
         }
-        JSONObject resourceJson = JsonUtil.toJsonObj(resourceString);
-        if (resourceJson == null) {
-            return null;
-        }
+        Gson gson = new Gson();
+        JsonObject resourceJson = gson.fromJson(resourceString, JsonObject.class);
         if (resourceJson.isEmpty()) {
             return new OriginTrackedMapPropertySource(name, Collections.emptyMap(), true);
         }
-        Map<String, Object> map = new HashMap<>();
-        resourceJson.forEach((key, value) -> putEntry(map, key, value));
+        Map<String, Object> map = flattenJson(resourceJson, "");
         return new OriginTrackedMapPropertySource(name, Collections.unmodifiableMap(map), true);
     }
 
-
-    /***
-     * 针对多级的结构
-     */
-    private void putEntry(Map<String, Object> map, String key, Object value) {
-        if (value instanceof JSONObject) {
-            ((JSONObject) value).forEach((key1, value1) -> putEntry(map, key + "." + key1, value1));
-        } else if (value instanceof JSONArray) {
-            map.put(key, convertArray((JSONArray) value));
-        } else {
-            map.put(key, value);
-        }
-    }
-
-    /**
-     * 将json数组转换为字符串 格式如下: 1,2,3
-     */
-    private String convertArray(JSONArray array) {
-        if (array.isEmpty()) {
-            return "";
-        }
-        StringBuilder builder = new StringBuilder();
-        array.forEach(value -> {
-            builder.append(",");
-            if (value instanceof JSONObject || value instanceof JSONArray) {
-                builder.append(JSONUtil.parse(value));
-            } else {
-                builder.append(value);
+    public static Map<String, Object> flattenJson(JsonElement element, String prefix) {
+        Map<String, Object> flatMap = new HashMap<>();
+        if (element.isJsonObject()) {
+            JsonObject jsonObject = element.getAsJsonObject();
+            for (Map.Entry<String, JsonElement> entry : jsonObject.entrySet()) {
+                String key = prefix.isEmpty() ? entry.getKey() : prefix + "." + entry.getKey();
+                flatMap.putAll(flattenJson(entry.getValue(), key));
             }
-        });
-        return builder.substring(1);
+        } else if (element.isJsonArray()) {
+            JsonArray jsonArray = element.getAsJsonArray();
+            for (int i = 0; i < jsonArray.size(); i++) {
+                String key = prefix + "[" + i + "]";
+                flatMap.putAll(flattenJson(jsonArray.get(i), key));
+            }
+        } else {
+            flatMap.put(prefix, element.getAsString());
+        }
+        return flatMap;
     }
 
     /**

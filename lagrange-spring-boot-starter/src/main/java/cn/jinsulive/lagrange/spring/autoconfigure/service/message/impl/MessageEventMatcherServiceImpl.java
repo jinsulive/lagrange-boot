@@ -50,7 +50,7 @@ public class MessageEventMatcherServiceImpl implements MessageEventMatcherServic
                     At at = ConvertUtil.convertMessageData(message.getData(), At.class);
                     return at != null && at.getQq().equals(selfId.toString());
                 } catch (Exception e) {
-                    log.error("MessageEventMatcher 转换At消息失败 e: {}", e.getMessage(), e);
+                    log.error("[MessageEventMatcher.{}] 转换At消息失败 e: {}", messageEvent.getSelfId(), e.getMessage(), e);
                     return false;
                 }
             }

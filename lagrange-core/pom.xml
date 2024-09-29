@@ -6,7 +6,7 @@
     <parent>
         <groupId>cn.jinsulive</groupId>
         <artifactId>lagrange-boot</artifactId>
-        <version>1.0.0.Beta.2</version>
+        <version>1.0.0.Beta.3</version>
     </parent>
 
     <artifactId>lagrange-core</artifactId>
@@ -22,7 +22,11 @@
         <!-- hutool -->
         <dependency>
             <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
+            <artifactId>hutool-json</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-http</artifactId>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

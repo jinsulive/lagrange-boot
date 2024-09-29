@@ -1,10 +1,14 @@
 {
   "lagrange": {
-    "webSocketServer": "ws://127.0.0.1:8081",
-    "httpServer": "http://127.0.0.1:8083",
-    "webSocketToken": "",
-    "httpToken": "",
-    "tokenType": "Bearer ",
+    "bots": [
+      {
+        "webSocketServer": "ws://127.0.0.1:8081",
+        "httpServer": "http://127.0.0.1:8083",
+        "webSocketToken": "",
+        "httpToken": "",
+        "tokenType": "Bearer "
+      }
+    ],
     "openDebugLog": false,
     "openMataEventLog": false,
     "lagrangeBotClient": "cn.jinsulive.lagrange.sdk.DefaultLagrangeBotClient"

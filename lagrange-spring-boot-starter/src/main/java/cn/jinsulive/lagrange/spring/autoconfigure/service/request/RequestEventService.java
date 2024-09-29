@@ -1,6 +1,5 @@
 package cn.jinsulive.lagrange.spring.autoconfigure.service.request;
 
-import cn.hutool.core.lang.Assert;
 import cn.hutool.json.JSONUtil;
 import cn.jinsulive.lagrange.core.annotation.ListenerInfo;
 import cn.jinsulive.lagrange.core.annotation.request.RequestListenerInfo;
@@ -48,7 +47,7 @@ public class RequestEventService implements EventService {
     @Override
     public void handler(BaseEvent event) {
         RequestEvent requestEvent = (RequestEvent) event;
-        LogUtil.debug(lagrangeConfig.isOpenDebugLog(), "[RequestEvent] 收到request消息: {}", requestEvent);
+        LogUtil.debug(lagrangeConfig.isOpenDebugLog(), "[RequestEvent.{}] 收到request消息: {}", requestEvent.getSelfId(), requestEvent);
         executorService.execute(() -> {
             List<ListenerInfo> messageListenerInfos = methodListenerContext.getListenerInfos();
             messageListenerInfos.forEach(listenerInfo -> {
@@ -65,7 +64,10 @@ public class RequestEventService implements EventService {
     private void invoke(RequestEvent requestEvent, RequestListenerInfo requestListenerInfo) {
         Method method = requestListenerInfo.getMethod();
         Class<?>[] parameterTypes = method.getParameterTypes();
-        Assert.isTrue(parameterTypes.length == 1, "{} should have only one parameter. but found {}.", requestListenerInfo.getName(), parameterTypes.length);
+        if (parameterTypes.length != 1) {
+            log.error("[RequestEvent.invoke.{}] {} should have only one parameter. but found {}.", requestEvent.getSelfId(), requestListenerInfo.getName(), parameterTypes.length);
+            return;
+        }
         Class<?> parameterType = parameterTypes[0];
         Class<?> declaringClass = method.getDeclaringClass();
         try {
@@ -77,7 +79,7 @@ public class RequestEventService implements EventService {
                 method.invoke(instance, JSONUtil.toJsonStr(requestEvent));
             }
         } catch (IllegalAccessException | InvocationTargetException e) {
-            log.error("[RequestEvent-Executor] 执行 {} 异常 error: {}", requestListenerInfo.getName(), e.getMessage(), e);
+            log.error("[RequestEvent.invoke.{}] 执行 {} 异常 error: {}", requestEvent.getSelfId(), requestListenerInfo.getName(), e.getMessage(), e);
         }
     }
 

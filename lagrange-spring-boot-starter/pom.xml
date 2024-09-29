@@ -6,7 +6,7 @@
     <parent>
         <groupId>cn.jinsulive</groupId>
         <artifactId>lagrange-boot</artifactId>
-        <version>1.0.0.Beta.2</version>
+        <version>1.0.0.Beta.3</version>
     </parent>
 
     <artifactId>lagrange-spring-boot-starter</artifactId>
@@ -21,6 +21,10 @@
         <dependency>
             <groupId>cn.jinsulive</groupId>
             <artifactId>lagrange-sdk</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
         </dependency>
         <!-- websocket 客户端 -->
         <dependency>

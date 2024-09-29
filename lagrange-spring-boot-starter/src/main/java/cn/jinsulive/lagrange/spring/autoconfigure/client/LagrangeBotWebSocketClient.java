@@ -25,8 +25,9 @@ import java.util.concurrent.TimeUnit;
  */
 public class LagrangeBotWebSocketClient extends WebSocketClient implements DisposableBean {
 
-    private static final Logger log = LoggerFactory.getLogger(LagrangeBotWebSocketClient.class);
     private final Config config;
+
+    private final Logger log;
 
     /**
      * Initial reconnect delay in seconds
@@ -41,6 +42,7 @@ public class LagrangeBotWebSocketClient extends WebSocketClient implements Dispo
     public LagrangeBotWebSocketClient(Config config) {
         super(config.getServerUri());
         this.config = config;
+        log = LoggerFactory.getLogger(this.getClass().getName() + "." + config.getBotId());
         String websocketToken = config.getWebsocketToken();
         if (StrUtil.isNotBlank(websocketToken)) {
             String authorization = config.getTokenType() + websocketToken;
@@ -123,6 +125,8 @@ public class LagrangeBotWebSocketClient extends WebSocketClient implements Dispo
 
     public static class Config {
 
+        private Long botId;
+
         private URI serverUri;
 
         private String websocketToken;
@@ -134,6 +138,14 @@ public class LagrangeBotWebSocketClient extends WebSocketClient implements Dispo
         private EventServiceHandler eventServiceHandler;
 
         public Config() {
+        }
+
+        public Long getBotId() {
+            return botId;
+        }
+
+        public void setBotId(Long botId) {
+            this.botId = botId;
         }
 
         public URI getServerUri() {

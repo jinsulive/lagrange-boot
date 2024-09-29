@@ -36,7 +36,7 @@
 <Details>
 <summary>MAVEN引入</summary>
 
-目前最新版本为 `1.0.0.Beta.2`
+目前最新版本为 `1.0.0.Beta.3`，下文配置方式以最新版本为例
 ```xml
 <dependency>
     <groupId>cn.jinsulive</groupId>
@@ -62,13 +62,15 @@
 
 ```yaml
 lagrange:
-  web-socket-server: ws://127.0.0.1:8081
-  http-server: http://127.0.0.1:8083
-  web-socket-token: ""
-  http-token: ""
+  bots:
+    - id: botId
+      web-socket-server: ws://127.0.0.1:8081
+      http-server: http://127.0.0.1:8083
+      web-socket-token: ""
+      http-token: ""
+      token-type: "Bearer "
   open-mata-event-log: false
   open-debug-log: false
-  token-type: "Bearer "
   lagrange-bot-client: cn.jinsulive.lagrange.sdk.DefaultLagrangeBotClient
 ```
 
@@ -84,11 +86,15 @@ lagrange:
 ```json
 {
   "lagrange": {
-    "webSocketServer": "ws://127.0.0.1:8081",
-    "httpServer": "http://127.0.0.1:8083",
-    "webSocketToken": "",
-    "httpToken": "",
-    "tokenType": "Bearer ",
+    "bots": [
+      {
+        "webSocketServer": "ws://127.0.0.1:8081",
+        "httpServer": "http://127.0.0.1:8083",
+        "webSocketToken": "",
+        "httpToken": "",
+        "tokenType": "Bearer "
+      }
+    ],
     "openDebugLog": false,
     "openMataEventLog": false,
     "lagrangeBotClient": "cn.jinsulive.lagrange.sdk.DefaultLagrangeBotClient"
@@ -145,9 +151,10 @@ public void requestListener(RequestEvent event) {
 ```
 
 #### 消息发送示例
-```java
-    private LagrangeBotClient lagrangeBotClient;
 
+> 以SDK形式发送为例
+
+```java
     public void sendGroupMessage() {
         Long groupId = 0L;
         List<Message> messages = MessageChain.builder()
@@ -156,7 +163,7 @@ public void requestListener(RequestEvent event) {
         SendGroupMessageRequest request = new SendGroupMessageRequest();
         request.setGroupId(groupId);
         request.setMessage(messages);
-        lagrangeBotClient.execute(request);
+        BotManager.getSdkClient(botId).execute(request);
     }
 ```
 

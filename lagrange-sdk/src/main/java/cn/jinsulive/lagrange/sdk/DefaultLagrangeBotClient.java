@@ -17,13 +17,11 @@ import java.nio.charset.StandardCharsets;
  */
 public class DefaultLagrangeBotClient extends AbstractLagrangeBotClient {
 
-    private static final Logger log = LoggerFactory.getLogger(DefaultLagrangeBotClient.class);
-
-    private final Config config;
+    private final Logger log;
 
     public DefaultLagrangeBotClient(Config config) {
         super(config);
-        this.config = config;
+        log = LoggerFactory.getLogger(this.getClass().getName() + "." + config.getBotId());
     }
 
     @Override

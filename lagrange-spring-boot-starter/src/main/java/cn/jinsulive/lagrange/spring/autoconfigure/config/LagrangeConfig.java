@@ -1,6 +1,10 @@
 package cn.jinsulive.lagrange.spring.autoconfigure.config;
 
+import cn.hutool.json.JSONUtil;
+import cn.jinsulive.lagrange.spring.autoconfigure.entity.Bot;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+
+import java.util.List;
 
 /**
  * lagrange config
@@ -11,15 +15,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "lagrange")
 public class LagrangeConfig {
 
-    private String webSocketServer;
-
-    private String httpServer;
-
-    private String webSocketToken = "";
-
-    private String httpToken = "";
-
-    private String tokenType = "Bearer ";
+    private List<Bot> bots;
 
     private boolean openDebugLog = false;
 
@@ -30,44 +26,12 @@ public class LagrangeConfig {
     public LagrangeConfig() {
     }
 
-    public String getWebSocketServer() {
-        return webSocketServer;
+    public List<Bot> getBots() {
+        return bots;
     }
 
-    public void setWebSocketServer(String webSocketServer) {
-        this.webSocketServer = webSocketServer;
-    }
-
-    public String getHttpServer() {
-        return httpServer;
-    }
-
-    public void setHttpServer(String httpServer) {
-        this.httpServer = httpServer;
-    }
-
-    public String getWebSocketToken() {
-        return webSocketToken;
-    }
-
-    public void setWebSocketToken(String webSocketToken) {
-        this.webSocketToken = webSocketToken;
-    }
-
-    public String getHttpToken() {
-        return httpToken;
-    }
-
-    public void setHttpToken(String httpToken) {
-        this.httpToken = httpToken;
-    }
-
-    public String getTokenType() {
-        return tokenType;
-    }
-
-    public void setTokenType(String tokenType) {
-        this.tokenType = tokenType;
+    public void setBots(List<Bot> bots) {
+        this.bots = bots;
     }
 
     public boolean isOpenDebugLog() {
@@ -92,6 +56,11 @@ public class LagrangeConfig {
 
     public void setLagrangeBotClient(String lagrangeBotClient) {
         this.lagrangeBotClient = lagrangeBotClient;
+    }
+
+    @Override
+    public String toString() {
+        return JSONUtil.toJsonStr(this);
     }
 
 }

@@ -32,8 +32,8 @@ public class MataEventService implements EventService {
     public void handler(BaseEvent event) {
         MataEvent mataEvent = (MataEvent) event;
         if (Objects.equals("lifecycle", mataEvent.getMetaEventType())) {
-            log.info("[MataEvent] websocket连接成功");
+            log.info("[MataEvent.{}] websocket连接成功", event.getSelfId());
         }
-        LogUtil.debug(lagrangeConfig.isOpenMataEventLog(), "[MataEvent] 收到mata_event消息: {}", mataEvent);
+        LogUtil.debug(lagrangeConfig.isOpenMataEventLog(), "[MataEvent.{}] 收到mata_event消息: {}", event.getSelfId(), mataEvent);
     }
 }

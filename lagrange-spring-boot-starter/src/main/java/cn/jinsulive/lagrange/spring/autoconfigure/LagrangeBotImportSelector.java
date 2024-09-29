@@ -1,6 +1,6 @@
 package cn.jinsulive.lagrange.spring.autoconfigure;
 
-import cn.jinsulive.lagrange.spring.autoconfigure.config.LagrangeBotClientConfig;
+import cn.jinsulive.lagrange.spring.autoconfigure.config.LagrangeSdkClientRegistryRunner;
 import cn.jinsulive.lagrange.spring.autoconfigure.constant.SendType;
 import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.annotation.AnnotationAttributes;
@@ -22,7 +22,7 @@ public class LagrangeBotImportSelector implements ImportSelector {
             if (annotationAttributes != null) {
                 SendType sendType = annotationAttributes.getEnum("sendType");
                 if (sendType == SendType.HTTP) {
-                    return new String[]{LagrangeBotClientConfig.class.getName()};
+                    return new String[]{LagrangeSdkClientRegistryRunner.class.getName()};
                 }
             }
         }
